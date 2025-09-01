@@ -1,0 +1,164 @@
+#root {
+  width: 100%;
+}
+
+* {
+  font-family: 'Quicksand';
+}
+
+body {
+  font-family: 'Quicksand';
+  place-items: normal !important;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* .card {
+  padding: 2em;
+} */
+
+.read-the-docs {
+  color: #888;
+}
+
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./assets/fonts/Quicksand-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./assets/fonts/Quicksand-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./assets/fonts/Quicksand-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./assets/fonts/Quicksand-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./assets/fonts/Quicksand-SemiBold.ttf");
+  font-weight: 600;
+}
+
+
+/* header */
+.css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 10px 14px !important;
+  display: flex;
+  align-items: center;
+}
+
+.css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.123) !important;
+  border: none !important;
+}
+
+.css-1r6ecdj-MuiFormLabel-root-MuiInputLabel-root {
+  top: -5px !important;
+}
+
+.css-p1jkex-MuiFormLabel-root-MuiInputLabel-root {
+  top: -10% !important;
+}
+
+.css-1mvj0rg-MuiInputBase-root-MuiOutlinedInput-root {
+  border: none !important;
+}
+
+/* .btn {
+  transition: all 0.5s ease !important;
+  outline: none !important;
+}
+
+.btn:hover {
+  background-color: white;
+  color: #0A5EB0 !important;
+  border-color: #0A5EB0 !important;
+  color: #0A5EB0 !important;
+} */
+
+
+/* home page */
+.images img {
+  width: 250px;
+}
+
+.homeButtons button {
+  padding: 10px;
+  text-transform: capitalize;
+}
+
+.links a {
+  transition: all 0.5s ease;
+}
+
+.links a:hover {
+  color: #0A5EB0 !important;
+}
+
+/* .learnMore {
+  border: 1px solid #0A5EB0 !important;
+  background-color: white !important;
+  color: #0A5EB0 !important;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border: none !important;
+  transition: all 0.5s ease !important;
+}
+
+.learnMore:hover {
+  background-color: #0A5EB0 !important;
+  color: white !important;
+} */
+
+
+.palette {
+  color: #0A5EB0;
+  color: #0a5db01e;
+  color: #f564aa48;
+  color: #F564A9;
+  color: #0c0c0cb9;
+  color: #C0EBA6;
+  color: #8080801e;
+}
+
+/* footer */
+.contactContent p {
+  padding: 0px;
+  margin: 5px 0px;
+  font-weight: bold;
+}
+
+footer a {
+  color: #213547;
+}
+
+/* cards */
