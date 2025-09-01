@@ -22,6 +22,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                 }}>
                     <CardMedia
                         component="img"
+                        loading='lazy'
                         image={image}
                         alt={title}
                         sx={{

@@ -24,7 +24,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="images animate__animated animate__fadeInRight" style={{ width: "45%", display: "flex", justifyContent: "center", alignContent: "center" }}>
-                    <img src={heroImage} alt="hero image" style={{ width: "80%" }} />
+                    <img src={heroImage} alt="hero image" style={{ width: "80%" }} loading="lazy" />
                 </div>
             </div>
             <CoursesCards />

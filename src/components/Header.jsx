@@ -26,7 +26,7 @@ const Header = () => {
                 zIndex: "100"
             }}>
             <div className="logo" style={{ width: "20%", fontSize: "10px", display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}>
-                <img src={logo} alt="logo" style={{ width: "50px" }} />
+                <img src={logo} alt="logo" style={{ width: "50px" }} loading="lazy" />
                 <h1 style={{ display: "inline", fontFamily: "arial" }}>Learn<span style={{ fontFamily: "Quicksand", color: theme.palette.primary.main }}>lang</span></h1>
             </div>
             <div className="links" style={{ width: "20%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>

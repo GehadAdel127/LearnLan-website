@@ -22,6 +22,7 @@ const CourseCard = ({ title, image, price, rate, numberOfStudents, numberOfLesso
                     height="300"
                     image={image}
                     alt="course image"
+                    loading='lazy'
                 />
                 <div className="rating" style={{ position: "absolute", top: "10px", left: "10px", color: "white", display: "flex", justifyContent: "center", alignItems: "center", background: "#0c0c0cb9", width: "15%", gap: "5px", borderRadius: "20px", padding: "5px 10px", fontWeight: "600" }}>
                     <StarRateIcon style={{ fontSize: "24px", color: "gold" }} />

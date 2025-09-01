@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="footerContent" style={{ display: "flex", justifyContent: "center", alignItems: "start", gap: "50px" }}>
                 <div className="main" style={{ width: "35%" }}>
                     <div className="icon" style={{ display: "flex", justifyContent: "start", alignItems: "center", gap: "10px" }}>
-                        <img src={logo} alt="logo image" style={{ width: "50px" }} />
+                        <img src={logo} alt="logo image" style={{ width: "50px" }} loading="lazy" />
                         <h2 style={{ display: "inline", fontFamily: "arial" }}>Learn<span style={{ fontFamily: "Quicksand", color: theme.palette.primary.main }}>lang</span></h2>
                     </div>
                     <div className="content animate__animated animate__slideInUp">
