@@ -3,7 +3,11 @@
 }
 
 * {
-  font-family: 'Quicksand';
+  font-family: 'Quicksand' !important;
+}
+
+button {
+  text-transform: capitalize !important;
 }
 
 body {
@@ -123,6 +127,12 @@ body {
 
 .links a:hover {
   color: #0A5EB0 !important;
+}
+
+.css-xn78qt-MuiImageListItemBar-titleWrap {
+  padding: 0px !important;
+  padding-left: 17px !important;
+  color: black !important;
 }
 
 /* .learnMore {

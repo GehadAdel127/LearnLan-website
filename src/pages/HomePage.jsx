@@ -9,6 +9,7 @@ import CoursesCards from "../components/CoursesCards";
 import Instructors from "../components/Instructors";
 import PriceComponent from "../components/PriceComponent";
 import Start from "../components/Start";
+import Testimonial from "../components/Testimonial";
 const HomePage = () => {
     const theme = useTheme()
     return (
@@ -30,6 +31,7 @@ const HomePage = () => {
             <Start />
             <Instructors />
             <PriceComponent />
+            <Testimonial />
         </section>
     )
 }

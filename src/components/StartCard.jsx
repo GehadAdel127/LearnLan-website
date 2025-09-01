@@ -15,7 +15,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                     background: backgroundColor,
                     clipPath: polygonClipPath,
                     WebkitClipPath: polygonClipPath,
-                    height: "350px",
+                    height: "320px",
                     position: "relative",
                     overflow: "hidden",
                     borderRadius: "10px"
@@ -40,7 +40,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                         component="div"
                         sx={{
                             fontWeight: "600",
-                            fontSize: "16px",
+                            fontSize: "17px",
                             fontFamily: "Quicksand"
                         }}>
                         {title}
@@ -49,6 +49,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                         variant="body2"
                         sx={{
                             fontSize: fontSize || "12px",
+                            fontWeight: "600",
                             fontFamily: "Quicksand",
                             color: theme.palette.text.secondary
                         }}>
