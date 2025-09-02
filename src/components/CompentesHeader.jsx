@@ -1,11 +1,19 @@
-import { useTheme } from "@emotion/react"
+import { useTheme } from "@emotion/react";
+
+
+// custom hook
+import AnimatedSection from '../components/AnimatedSection';
 
 const CompentesHeader = ({ title, head }) => {
     const theme = useTheme()
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "0px" }}>
-            <h4 style={{ color: theme.palette.primary.main }} className="animate__animated animate__fadeInLeft">{title} </h4>
-            <h2 className="animate__animated animate__fadeInRight"> {head} </h2>
+            <AnimatedSection animationClass="fadeInLeft">
+                <h4 style={{ color: theme.palette.primary.main }}>{title} </h4>
+            </AnimatedSection>
+            <AnimatedSection animationClass="fadeInRight">
+                <h2> {head} </h2>
+            </AnimatedSection>
         </section>
     )
 }

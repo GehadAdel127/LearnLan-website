@@ -9,6 +9,9 @@ import image4 from "../assets/images/timeManagement.jpeg";
 import CompentesHeader from "./CompentesHeader";
 import StartCard from "./StartCard";
 
+// custom hook
+import AnimatedSection from '../components/AnimatedSection';
+
 const steps = [
     {
         id: 1,
@@ -41,11 +44,15 @@ const Start = () => {
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
             <CompentesHeader title="Simple steps" head="Start Your Learning Journey" />
-            <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap" }}>
-                {steps.map((step) => (
-                    <StartCard key={step.id} title={step.title} description={step.description} image={step.image} />
-                ))}
-            </div>
+            <AnimatedSection animationClass="fadeInDown">
+                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap" }}>
+                    {steps.map((step, index) => (
+                        <AnimatedSection key={step.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
+                            <StartCard title={step.title} description={step.description} image={step.image} />
+                        </AnimatedSection>
+                    ))}
+                </div>
+            </AnimatedSection>
         </section>
     )
 }

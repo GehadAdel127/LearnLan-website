@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
-const PriceCards = ({ name, price, features, icon: IconComponent, selected, inView }) => {
+const PriceCards = ({ name, price, features, icon: IconComponent, selected }) => {
     const theme = useTheme();
     const cardStyle = {
         height: "410px",
@@ -16,7 +16,7 @@ const PriceCards = ({ name, price, features, icon: IconComponent, selected, inVi
         ...(selected ? { top: "-50px", boxShadow: "20px 20px 20px 20px #8080801e", height: "450px" } : {})
     }
     return (
-        <section style={{ width: "30%", margin: "10px" }} className='card animate__animated animate__slideInDown'>
+        <section style={{ width: "400px", margin: "10px" }} className='card animate__animated animate__slideInDown'>
             <Card sx={cardStyle}>
                 <IconComponent sx={{
                     padding: "10px", fontFamily: theme.typography.fontFamily, fontSize: "22px", fontWeight: "600",

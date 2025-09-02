@@ -7,6 +7,10 @@ import Spanish from "../assets/images/studentgirl3.jpg";
 import { useTheme } from "@emotion/react";
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import CourseCard from "./CourseCard";
+
+// custom hook
+import AnimatedSection from '../components/AnimatedSection';
+
 const CoursesCards = () => {
     const theme = useTheme()
 
@@ -50,20 +54,26 @@ const CoursesCards = () => {
                     <ChevronRightOutlinedIcon style={{ color: theme.palette.primary.main, fontWeight: "400" }} />
                 </div>
             </div>
-            <div className="cards animate__animated animate__fadeInDown" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "100px" }}>
-                {coursesData.map((course, index) => (
-                    <CourseCard
-                        key={course.id}
-                        image={course.image}
-                        title={course.title}
-                        price={course.price}
-                        rate={course.rate}
-                        numberOfLessons={course.numberOfLessons}
-                        numberOfStudents={course.numberOfStudents}
-                        animationDelay={`${index * 0.3}s`}
-                    />
-                ))}
-            </div>
+            <AnimatedSection animationClass="fadeInDown">
+                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "50px" }}>
+                    {coursesData.map((course, index) => (
+                        <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
+                            <CourseCard
+                                key={course.id}
+                                image={course.image}
+                                title={course.title}
+                                price={course.price}
+                                rate={course.rate}
+                                numberOfLessons={course.numberOfLessons}
+                                numberOfStudents={course.numberOfStudents}
+                                animationDelay={`${index * 0.3}s`}
+                            />
+                        </AnimatedSection>
+                    ))}
+                </div>
+
+            </AnimatedSection>
+
         </section>
     )
 }

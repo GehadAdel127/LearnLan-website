@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 const CourseCard = ({ title, image, price, rate, numberOfStudents, numberOfLessons }) => {
     const theme = useTheme()
     return (
-        <section className='courseCard' style={{ width: "25%", marginTop: "50px", height: "420px" }}>
+        <section className='courseCard' style={{ width: "350px", marginTop: "50px", height: "420px" }}>
             <Card style={{ border: "none", boxShadow: "none", position: "relative", cursor: "pointer", borderRadius: "20px" }}>
                 <CardMedia
                     style={{ borderRadius: "20px", width: "100%", height: "250px", objectFit: "cover", objectPosition: "center" }}
