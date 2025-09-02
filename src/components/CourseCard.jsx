@@ -57,7 +57,6 @@ const CourseCard = ({ title, image, price, rate, numberOfStudents, numberOfLesso
                         </div>
                     </CardActions>
                 </CardContent>
-
             </Card>
         </section >
     )
