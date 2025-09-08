@@ -50,7 +50,6 @@ const images = {
         spanish7
     ]
 };
-
 const coursesData = [
     {
         id: 1,
@@ -60,6 +59,7 @@ const coursesData = [
         numberOfStudents: 1500,
         rate: 4.8,
         numberOfLessons: 30,
+        name: "Arabic"
     },
     {
         id: 2,
@@ -69,6 +69,7 @@ const coursesData = [
         numberOfStudents: 2100,
         rate: 4.9,
         numberOfLessons: 45,
+        name: "English"
     },
     {
         id: 3,
@@ -78,6 +79,39 @@ const coursesData = [
         numberOfStudents: 950,
         rate: 4.7,
         numberOfLessons: 20,
+        name: "Spanish"
+    },
+]
+export const lessonsData = [
+    {
+        id: 1,
+        title: "Beginner's Arabic: The Basics",
+        image: images.arabic[1],
+        price: "49.99",
+        numberOfStudents: 1500,
+        rate: 4.8,
+        numberOfLessons: 30,
+        name: "Arabic"
+    },
+    {
+        id: 2,
+        title: "Advanced English: Academic Writing",
+        image: images.english[1],
+        price: "59.99",
+        numberOfStudents: 2100,
+        rate: 4.9,
+        numberOfLessons: 45,
+        name: "English"
+    },
+    {
+        id: 3,
+        title: "Intermediate Spanish: Daily Conversation",
+        image: images.spanish[1],
+        price: "39.99",
+        numberOfStudents: 950,
+        rate: 4.7,
+        numberOfLessons: 20,
+        name: "Spanish"
     },
     {
         id: 4,
@@ -87,6 +121,7 @@ const coursesData = [
         numberOfStudents: 1100,
         rate: 4.6,
         numberOfLessons: 50,
+        name: "Arabic"
     },
     {
         id: 5,
@@ -96,6 +131,7 @@ const coursesData = [
         numberOfStudents: 3200,
         rate: 4.5,
         numberOfLessons: 15,
+        name: "English"
     },
     {
         id: 6,
@@ -105,6 +141,7 @@ const coursesData = [
         numberOfStudents: 650,
         rate: 4.9,
         numberOfLessons: 40,
+        name: "Spanish"
     },
     {
         id: 7,
@@ -114,6 +151,7 @@ const coursesData = [
         numberOfStudents: 780,
         rate: 4.7,
         numberOfLessons: 25,
+        name: "Arabic"
     },
     {
         id: 8,
@@ -123,6 +161,7 @@ const coursesData = [
         numberOfStudents: 1900,
         rate: 4.8,
         numberOfLessons: 35,
+        name: "English"
     },
     {
         id: 9,
@@ -132,6 +171,7 @@ const coursesData = [
         numberOfStudents: 450,
         rate: 4.9,
         numberOfLessons: 30,
+        name: "Spanish"
     },
     {
         id: 10,
@@ -141,6 +181,7 @@ const coursesData = [
         numberOfStudents: 2500,
         rate: 4.8,
         numberOfLessons: 28,
+        name: "English"
     },
     {
         id: 11,
@@ -150,6 +191,7 @@ const coursesData = [
         numberOfStudents: 1800,
         rate: 4.7,
         numberOfLessons: 22,
+        name: "Arabic"
     },
     {
         id: 12,
@@ -159,6 +201,7 @@ const coursesData = [
         numberOfStudents: 800,
         rate: 4.6,
         numberOfLessons: 38,
+        name: "Spanish"
     },
     {
         id: 13,
@@ -168,6 +211,7 @@ const coursesData = [
         numberOfStudents: 1600,
         rate: 4.9,
         numberOfLessons: 20,
+        name: "English"
     },
     {
         id: 14,
@@ -177,6 +221,7 @@ const coursesData = [
         numberOfStudents: 350,
         rate: 4.8,
         numberOfLessons: 32,
+        name: "Arabic"
     },
     {
         id: 15,
@@ -186,6 +231,7 @@ const coursesData = [
         numberOfStudents: 220,
         rate: 4.9,
         numberOfLessons: 45,
+        name: "Spanish"
     },
     {
         id: 16,
@@ -195,6 +241,7 @@ const coursesData = [
         numberOfStudents: 4100,
         rate: 4.5,
         numberOfLessons: 10,
+        name: "English"
     },
     {
         id: 17,
@@ -204,6 +251,7 @@ const coursesData = [
         numberOfStudents: 980,
         rate: 4.7,
         numberOfLessons: 18,
+        name: "Arabic"
     },
     {
         id: 18,
@@ -213,6 +261,7 @@ const coursesData = [
         numberOfStudents: 1750,
         rate: 4.8,
         numberOfLessons: 30,
+        name: "English"
     },
     {
         id: 19,
@@ -222,6 +271,7 @@ const coursesData = [
         numberOfStudents: 2900,
         rate: 4.6,
         numberOfLessons: 15,
+        name: "Spanish"
     },
     {
         id: 20,
@@ -231,6 +281,7 @@ const coursesData = [
         numberOfStudents: 550,
         rate: 4.9,
         numberOfLessons: 55,
+        name: "Arabic"
     },
 ];
 export default coursesData

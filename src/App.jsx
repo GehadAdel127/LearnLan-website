@@ -3,7 +3,6 @@ import './App.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import AboutUs from './pages/AboutUs'
-import CourseDetails from './pages/CourseDetails'
 import Courses from './pages/Courses'
 import Dashboard from './pages/Dashboard'
 import HomePage from './pages/HomePage'
@@ -13,6 +12,7 @@ import Register from './pages/Register'
 
 // import the animation
 import 'animate.css'
+import Lessons from './pages/Lessons'
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/courses' element={<Courses />} />
-        <Route path='/coursedetails' element={<CourseDetails />} />
+        <Route path='/courses/:name' element={<Lessons />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

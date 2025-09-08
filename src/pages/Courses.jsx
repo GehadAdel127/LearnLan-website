@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 
 // data fetching
 import { useTheme } from "@emotion/react";
+import { Link } from "react-router-dom";
 import coursesData from "./CoursesData";
 
 const Courses = () => {
@@ -60,20 +61,23 @@ const Courses = () => {
             </Paper>
             <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "50px" }}>
                 {displayCourses.map((course, index) => (
-                    <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
-                        <CourseCard
-                            image={course.image}
-                            title={course.title}
-                            price={course.price}
-                            rate={course.rate}
-                            numberOfLessons={course.numberOfLessons}
-                            numberOfStudents={course.numberOfStudents}
-                            animationDelay={`${index * 0.3}s`}
-                        />
+                    <AnimatedSection key={course.id} animationClass="fadeInDown" delay={`${index * 0.2}s`}>
+                        <Link to={`/courses/${course.name}`}>
+                            <CourseCard
+                                name={course.name}
+                                image={course.image}
+                                title={course.title}
+                                price={course.price}
+                                rate={course.rate}
+                                numberOfLessons={course.numberOfLessons}
+                                numberOfStudents={course.numberOfStudents}
+                                animationDelay={`${index * 0.2}s`}
+                            />
+                        </Link>
                     </AnimatedSection>
                 ))}
             </div>
-            <Stack spacing={2} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}>
+            <Stack spacing={2} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", marginTop: "150px" }}>
                 <Pagination count={numberOfPages} page={pages}
                     variant="outlined" color="primary"
                     onChange={handlePagesChange} />

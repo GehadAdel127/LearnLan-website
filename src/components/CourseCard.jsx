@@ -5,13 +5,15 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
 
-const CourseCard = ({ title, image, price, rate, numberOfStudents, numberOfLessons }) => {
+const CourseCard = ({ name, title, image, price, rate, numberOfStudents, numberOfLessons }) => {
     const theme = useTheme()
     return (
         <section className='courseCard' style={{ width: "350px", marginTop: "50px", height: "420px" }}>
@@ -30,7 +32,7 @@ const CourseCard = ({ title, image, price, rate, numberOfStudents, numberOfLesso
                 </div>
                 <CardContent style={{ padding: "10px" }}>
                     <p style={{ color: "black", fontWeight: "700", fontSize: "20px", margin: "0px" }}>
-                        {title}
+                        <span style={{ color: theme.palette.primary.main }}>{name}</span> : {title}
                     </p>
                     <div className="icons" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
                         <div className="numberOfLessons" style={{ display: "flex", justifyContent: "start", alignItems: "start", color: "#505050b9" }}>
@@ -57,6 +59,11 @@ const CourseCard = ({ title, image, price, rate, numberOfStudents, numberOfLesso
                         </div>
                     </CardActions>
                 </CardContent>
+                <CardActions>
+                    <Link to="/cart">
+                        <Button variant="contained">Add to cart</Button>
+                    </Link>
+                </CardActions>
             </Card>
         </section >
     )

@@ -44,15 +44,13 @@ const Start = () => {
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
             <CompentesHeader title="Simple steps" head="Start Your Learning Journey" />
-            <AnimatedSection animationClass="fadeInDown">
-                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap" }}>
-                    {steps.map((step, index) => (
-                        <AnimatedSection key={step.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
-                            <StartCard title={step.title} description={step.description} image={step.image} />
-                        </AnimatedSection>
-                    ))}
-                </div>
-            </AnimatedSection>
+            <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap" }}>
+                {steps.map((step, index) => (
+                    <AnimatedSection key={step.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
+                        <StartCard title={step.title} description={step.description} image={step.image} />
+                    </AnimatedSection>
+                ))}
+            </div>
         </section>
     )
 }

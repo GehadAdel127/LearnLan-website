@@ -20,7 +20,7 @@ const useOnScreen = () => {
                 }
             },
             {
-                rootMargin: '-5px',
+                rootMargin: '10px',
             }
         );
 
