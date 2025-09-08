@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 
 // data fetching
 import { useTheme } from "@emotion/react";
-import { Link } from "react-router-dom";
 import coursesData from "./CoursesData";
 
 const Courses = () => {
@@ -62,18 +61,16 @@ const Courses = () => {
             <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "50px" }}>
                 {displayCourses.map((course, index) => (
                     <AnimatedSection key={course.id} animationClass="fadeInDown" delay={`${index * 0.2}s`}>
-                        <Link to={`/courses/${course.name}`}>
-                            <CourseCard
-                                name={course.name}
-                                image={course.image}
-                                title={course.title}
-                                price={course.price}
-                                rate={course.rate}
-                                numberOfLessons={course.numberOfLessons}
-                                numberOfStudents={course.numberOfStudents}
-                                animationDelay={`${index * 0.2}s`}
-                            />
-                        </Link>
+                        <CourseCard
+                            name={course.name}
+                            image={course.image}
+                            title={course.title}
+                            price={course.price}
+                            rate={course.rate}
+                            numberOfLessons={course.numberOfLessons}
+                            numberOfStudents={course.numberOfStudents}
+                            animationDelay={`${index * 0.2}s`}
+                        />
                     </AnimatedSection>
                 ))}
             </div>

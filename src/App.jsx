@@ -12,6 +12,7 @@ import Register from './pages/Register'
 
 // import the animation
 import 'animate.css'
+import LessonDetails from './pages/LessonDetails'
 import Lessons from './pages/Lessons'
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/courses' element={<Courses />} />
         <Route path='/courses/:name' element={<Lessons />} />
+        <Route path='/courses/:name/:lessonId' element={<LessonDetails />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

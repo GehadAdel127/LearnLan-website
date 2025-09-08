@@ -75,7 +75,7 @@ const Footer = () => {
                     </AnimatedSection>
                 </div>
             </div>
-            <div className="copyRight" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+            <div className="copyRight" style={{ display: "flex", justifyContent: "space-between", alignItems: "end", width: "100%" }}>
                 <AnimatedSection animationClass="fadeInLeft"  >
                     <p style={{ marginTop: "50px" }}>© 2025 Your Learning.All Rights Reserved.</p>
                 </AnimatedSection>
