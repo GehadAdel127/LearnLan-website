@@ -12,6 +12,7 @@ import Register from './pages/Register'
 
 // import the animation
 import 'animate.css'
+import ForgetPassword from './pages/ForgetPassword'
 import LessonDetails from './pages/LessonDetails'
 import Lessons from './pages/Lessons'
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/courses' element={<Courses />} />
         <Route path='/courses/:name' element={<Lessons />} />

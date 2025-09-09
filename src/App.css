@@ -81,7 +81,7 @@ body {
   align-items: center;
 }
 
-.css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
+Header .css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
   border-color: rgba(0, 0, 0, 0.123) !important;
   border: none !important;
 }
@@ -148,7 +148,9 @@ body {
   background-color: #0A5EB0 !important;
   color: white !important;
 } */
-
+.cards .animate__animated {
+  width: 25%;
+}
 
 .palette {
   color: #0A5EB0;
@@ -171,4 +173,7 @@ footer a {
   color: #213547;
 }
 
-/* cards */
+/* forms */
+form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
+  width: 100%;
+}

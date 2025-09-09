@@ -12,7 +12,7 @@ const LessonsCard = ({ image, title, lessonTitle, description, height, link }) =
             <Card
                 style={{
                     width: "100%",
-                    height: height + 300 || "380px",
+                    height: height + 300 || "410px",
                     border: "none",
                     boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                     borderRadius: "15px",
@@ -37,7 +37,7 @@ const LessonsCard = ({ image, title, lessonTitle, description, height, link }) =
                         gutterBottom
                         variant="h6"
                         component="div"
-                        style={{ fontWeight: "bold", marginTop: "8px" }}
+                        style={{ fontWeight: "bold", marginTop: "8px", fontSize: "16px" }}
                     >
                         {lessonTitle}
                     </Typography>
@@ -45,7 +45,7 @@ const LessonsCard = ({ image, title, lessonTitle, description, height, link }) =
                         gutterBottom
                         variant="p"
                         component="div"
-                        style={{ fontWeight: "normal", marginTop: "8px" }}
+                        style={{ fontWeight: "normal", marginTop: "8px", fontSize: "14px" }}
                     >
                         {description}
                     </Typography>

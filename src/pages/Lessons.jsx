@@ -25,8 +25,8 @@ const Lessons = () => {
                 All {filteredLessons.name} Course Lessons
             </h2>
             {filteredLessons.lessons.map((lesson, index) => (
-                <div style={{ width: "30%" }}>
-                    <AnimatedSection key={index} animationClass="fadeInDown" delay={`${index * 0.2}s`}>
+                <div style={{ width: "20%" }} key={lesson.lessonId}>
+                    <AnimatedSection animationClass="fadeInDown" delay={`${index * 0.1}s`}>
                         <LessonsCard link={`/courses/${name}/${lesson.lessonId}`} title={filteredLessons.title} lessonTitle={lesson.lessonTitle} image={filteredLessons.image} description={lesson.description} />
                     </AnimatedSection>
                 </div>

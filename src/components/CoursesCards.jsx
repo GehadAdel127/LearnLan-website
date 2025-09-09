@@ -24,6 +24,7 @@ const CoursesCards = () => {
             numberOfStudents: 1500,
             rate: 4.8,
             numberOfLessons: 30,
+            name: "Arabic"
         },
         {
             id: 2,
@@ -33,6 +34,7 @@ const CoursesCards = () => {
             numberOfStudents: 2100,
             rate: 4.9,
             numberOfLessons: 45,
+            name: "English"
         },
         {
             id: 3,
@@ -42,6 +44,7 @@ const CoursesCards = () => {
             numberOfStudents: 950,
             rate: 4.7,
             numberOfLessons: 20,
+            name: "Spanish"
         }
     ];
 
@@ -55,7 +58,7 @@ const CoursesCards = () => {
                 </div>
             </div>
             <AnimatedSection animationClass="fadeInDown">
-                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "50px" }}>
+                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "70px" }}>
                     {coursesData.map((course, index) => (
                         <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
                             <CourseCard
@@ -67,6 +70,7 @@ const CoursesCards = () => {
                                 numberOfLessons={course.numberOfLessons}
                                 numberOfStudents={course.numberOfStudents}
                                 animationDelay={`${index * 0.3}s`}
+                                name={course.name}
                             />
                         </AnimatedSection>
                     ))}
