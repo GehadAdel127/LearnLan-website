@@ -1,8 +1,8 @@
 export const fakeDB = {
     users: [
-        { name: "Gehad", email: "gehad6111@gmail.com", password: "1234567" },
-        { name: "Ahmed", email: 'ahmad345@gmail.com', password: "1272002" },
-        { name: "Reem", email: 'reem346@gmail.com', password: "12720026111" }
+        { name: "Gehad", email: "gehad6111@gmail.com", password: "1234567", profileImage: "" },
+        { name: "Ahmed", email: 'ahmad345@gmail.com', password: "1272002", profileImage: "" },
+        { name: "Reem", email: 'reem346@gmail.com', password: "12720026111", profileImage: "" }
     ],
 }
 
@@ -13,10 +13,10 @@ export const loginService = async (email, password) => {
     return user
 }
 
-export const registerService = async (name, email, password) => {
+export const registerService = async (name, email, password, profileImage) => {
     const exists = fakeDB.users.find((u) => u.name === name && u.email === email && u.password === password)
     if (exists) throw new Error("User already exists")
-    const newUser = { name, email, password }
+    const newUser = { name, email, password, profileImage }
     fakeDB.users.push(newUser)
     return newUser
 }

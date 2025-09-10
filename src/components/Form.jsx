@@ -15,6 +15,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [profileImage, setProfileImage] = useState(null)
     const [errorMessage, setErrorMessage] = useState("")
     const { login } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -26,7 +27,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
             if (sign === "Sign in") {
                 user = await loginService(email, password)
             } else if (sign === "Sign Up") {
-                user = await registerService(name, email, password)
+                user = await registerService(name, email, password, profileImage)
             } else {
                 console.log("Other forms like forget password");
             }
@@ -99,6 +100,23 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </AnimatedSection>
+                            {sign === "Sign Up" && (
+                                <AnimatedSection animationClass="fadeInDown" delay="1s">
+                                    <TextField
+                                        type="file"
+                                        inputProps={{ accept: "image/*" }}
+                                        onChange={(e) => {
+                                            const file = e.target.files[0];
+                                            const reader = new FileReader();
+                                            reader.onloadend = () => {
+                                                setProfileImage(reader.result); // base64 string
+                                            };
+                                            if (file) reader.readAsDataURL(file);
+                                        }}
+                                    />
+                                </AnimatedSection>
+                            )}
+
                         </div>
                         <AnimatedSection animationClass="fadeInDown" delay='1.1s' >
                             {remember && <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px", width: "70%" }}>
