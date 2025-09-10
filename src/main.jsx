@@ -9,6 +9,7 @@ import './index.css';
 
 // material ui imports
 import { createTheme } from '@mui/material/styles';
+import { AuthProvider } from './Context/AuthContext.jsx';
 const theme = createTheme({
   typography: {
     fontFamily: ["Quicksand", "sans-serif"]
@@ -33,7 +34,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,

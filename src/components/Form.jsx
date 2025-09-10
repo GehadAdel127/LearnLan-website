@@ -1,13 +1,43 @@
 import { useTheme } from '@emotion/react'
+import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
-import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import loginImage from "../assets/images/Globalization.jpeg"
+import { AuthContext } from '../Context/AuthContext'
+import { loginService, registerService } from '../Services/AuthServices'
 import AnimatedSection from './AnimatedSection'
 
-const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign, unsignTitle, linkPath, remember }) => {
+const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign, unsignTitle, linkPath, remember, nameInput }) => {
     const theme = useTheme()
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
+    const { login } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            let user
+            if (sign === "Sign in") {
+                user = await loginService(email, password)
+            } else if (sign === "Sign Up") {
+                user = await registerService(name, email, password)
+            } else {
+                console.log("Other forms like forget password");
+            }
+            login(user)
+            navigate("/")
+        }
+        catch (error) {
+            setErrorMessage(error.message)
+        }
+    }
+
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", flexDirection: flexDirection, marginTop: "150px", gap: "10%" }}>
             <div className="imageSection" style={{ width: "40%" }}>
@@ -27,19 +57,31 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                     <AnimatedSection animationClass="fadeInDown" delay='0.5s' >
                         <p>{description}</p>
                     </AnimatedSection>
-                    <form style={{ width: "100%" }}>
+                    <form style={{ width: "100%" }} >
                         <div className="inputs" style={{ display: "flex", flexDirection: "column", width: "70%", gap: "20px" }}>
+                            {nameInput && <AnimatedSection animationClass="fadeInDown" delay='0.7s' >
+                                <TextField
+                                    required
+                                    id="name-input"
+                                    variant="outlined"
+                                    label="Name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </AnimatedSection>}
                             {remember && <AnimatedSection animationClass="fadeInDown" delay='0.7s' >
                                 <TextField
                                     required
-                                    id="outlined-required"
+                                    id="email-input"
                                     variant="outlined"
                                     label="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </AnimatedSection>}
                             {!remember && <AnimatedSection animationClass="fadeInDown" delay='0.9s' >
                                 <TextField
-                                    id="outlined-password-input"
+                                    id="outlined-new-password-input"
                                     label="New Password"
                                     variant="outlined"
                                     type="password"
@@ -53,6 +95,8 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                                     variant="outlined"
                                     type="password"
                                     autoComplete="current-password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </AnimatedSection>
                         </div>
@@ -65,11 +109,16 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                                 {forget && <Link to="/forgetpassword">Forget password?</Link>}
                             </div>}
                         </AnimatedSection>
+                        {errorMessage &&
+                            <AnimatedSection animationClass="fadeInDown" delay='0.3s'>
+                                <Alert severity="error" style={{ marginTop: "20px" }}>{errorMessage}</Alert>
+                            </AnimatedSection>
+                        }
                         <AnimatedSection animationClass="fadeInDown" delay='1.3s' >
-                            <Button variant="contained" sx={{ marginTop: "50px" }}>{sign}</Button>
+                            <Button variant="contained" sx={{ marginTop: "20px" }} onClick={handleSubmit}>{sign}</Button>
                         </AnimatedSection>
                         <AnimatedSection animationClass="fadeInDown" delay='1.4s' >
-                            <p style={{ marginTop: "50px" }}>{unsignTitle} <Link to={linkPath} style={{ fontWeight: "bold" }} >{unsign}</Link></p>
+                            <p style={{ marginTop: "20px" }}>{unsignTitle} <Link to={linkPath} style={{ fontWeight: "bold" }} >{unsign}</Link></p>
                         </AnimatedSection>
                     </form>
                 </div>
