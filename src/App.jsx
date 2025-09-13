@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -15,12 +15,14 @@ import 'animate.css'
 import ForgetPassword from './pages/ForgetPassword'
 import LessonDetails from './pages/LessonDetails'
 import Lessons from './pages/Lessons'
+import Profile from './pages/Profile'
 
 function App() {
-
+  const location = useLocation();
+  const hideHeaderFooter = location.pathname === "/profile";
   return (
     <div className='App'>
-      <Header />
+      {!hideHeaderFooter && <Header />}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login />} />
@@ -30,10 +32,11 @@ function App() {
         <Route path='/courses' element={<Courses />} />
         <Route path='/courses/:name' element={<Lessons />} />
         <Route path='/courses/:name/:lessonId' element={<LessonDetails />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-      <Footer />
+      {!hideHeaderFooter && <Footer />}
     </div>
   )
 }

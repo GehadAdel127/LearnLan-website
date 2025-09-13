@@ -1,62 +1,108 @@
 // images import
-import TextField from "@mui/material/TextField"
-import logo from "../assets/images/logo.png"
-// react router imports
-import { useTheme } from "@emotion/react"
-import Button from "@mui/material/Button"
-import { useContext, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import TextField from "@mui/material/TextField";
+import logo from "../assets/images/logo.png";
+
+// react router + react
+import { useTheme } from "@emotion/react";
+import { useCallback, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 // context
-import { AuthContext } from "../Context/AuthContext"
+import { AuthContext } from "../Context/AuthContext";
 
 // MUI
-import Avatar from "@mui/material/Avatar"
+import {
+    Avatar,
+    Box,
+    Button,
+    IconButton,
+    Menu,
+    MenuItem,
+    Stack
+} from "@mui/material";
 
 const Header = () => {
-    const theme = useTheme()
-    const [selectedLink, setSelectedLink] = useState("/")
-    const user = useContext(AuthContext)
-    const [searchQuery, setSearchQuery] = useState("")
-    const navigate = useNavigate()
+    const theme = useTheme();
+    const { user, logout } = useContext(AuthContext);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [anchorEl, setAnchorEl] = useState(null);
+    const navigate = useNavigate();
+
+    const handleMenuOpen = useCallback((event) => {
+        setAnchorEl(event.currentTarget);
+    }, []);
+
+    const handleMenuClose = useCallback(() => {
+        setAnchorEl(null);
+    }, []);
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        try {
+            logout();
+            navigate("/login");
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    const handleSearchClick = () => {
+        if (searchQuery.trim()) {
+            navigate(`/courses?search=${encodeURIComponent(searchQuery.trim())}`);
+            setSearchQuery("");
+        }
+    };
+
     const getLinkStyle = (path) => ({
         fontSize: "16px",
         fontWeight: "700",
         textDecoration: "none",
-        color: selectedLink === path ? theme.palette.primary.main : "black",
+        color: window.location.pathname === path ? theme.palette.primary.main : "black",
         transition: "color 0.3s ease-in-out"
     });
 
-    // handle search on button click
-    const handleSearchClick = () => {
-        if (searchQuery.trim()) {
-            navigate(`/courses?search=${encodeURIComponent(searchQuery.trim())}`)
-            setSearchQuery("")
-        }
-    }
-
     return (
-        <header
+        <Box
+            component="header"
             className="animate__animated animate__fadeInDown"
-            style={{
-                display: "flex", justifyContent: "space-between", alignItems: "center", width: "90%",
-                padding: "0px 50px", backgroundColor: theme.palette.background.main, position: "fixed",
-                top: "20px", right: "20px", borderRadius: "20px", boxShadow: "10px 10px 10px rgb(0 0 0 / 13%)",
-                zIndex: "100"
-            }}>
-            <Link to={"/"} style={{ width: "20%" }}>
-                <div className="logo" style={{ width: "100%", fontSize: "10px", display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}>
+            sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "90%",
+                px: 6,
+                py: 2,
+                backgroundColor: theme.palette.background.main,
+                position: "fixed",
+                top: 20,
+                right: 20,
+                borderRadius: 3,
+                boxShadow: "10px 10px 10px rgb(0 0 0 / 13%)",
+                zIndex: 100
+            }}
+        >
+            {/* Logo */}
+            <Link to="/" style={{ textDecoration: "none" }}>
+                <Stack direction="row" alignItems="center" spacing={1}>
                     <img src={logo} alt="logo" style={{ width: "50px" }} loading="lazy" />
-                    <h1 style={{ display: "inline", fontFamily: "arial", color: "#213547" }}>Learn<span style={{ fontFamily: "Quicksand", color: theme.palette.primary.main }}>lang</span></h1>
-                </div>
-
+                    <h2 style={{ fontFamily: "arial", color: "#213547" }}>
+                        Learn
+                        <span style={{ fontFamily: "Quicksand", color: theme.palette.primary.main }}>
+                            lang
+                        </span>
+                    </h2>
+                </Stack>
             </Link>
-            <div className="links" style={{ width: "20%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <Link to="/" onClick={() => { (setSelectedLink("/")) }} style={getLinkStyle("/")}>Home</Link>
-                <Link to="/aboutus" onClick={() => { (setSelectedLink("/aboutus")) }} style={getLinkStyle("/aboutus")} >About Us</Link>
-                <Link to="/courses" onClick={() => { (setSelectedLink("/courses")) }} style={getLinkStyle("/courses")}>Courses</Link>
-            </div>
-            <div className="searchAndLogin" style={{ width: "26%", display: "flex", justifyContent: "end", alignItems: "center", gap: "10px" }}>
+
+            {/* Nav Links */}
+            <Stack direction="row" spacing={4}>
+                <Link to="/" style={getLinkStyle("/")}>Home</Link>
+                <Link to="/aboutus" style={getLinkStyle("/aboutus")}>About Us</Link>
+                <Link to="/courses" style={getLinkStyle("/courses")}>Courses</Link>
+            </Stack>
+
+            {/* Search and Auth Controls */}
+            <Stack direction="row" spacing={1} alignItems="center">
                 <TextField
                     id="outlined-basic"
                     label="Search for course"
@@ -64,18 +110,83 @@ const Header = () => {
                     size="small"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    style={{ width: "200px", background: "white", fontSize: "10px", borderRadius: "7px" }}
                     onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                            e.preventDefault()
-                            handleSearchClick()
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            handleSearchClick();
                         }
                     }}
+                    sx={{
+                        width: 200,
+                        backgroundColor: "white",
+                        borderRadius: 1
+                    }}
                 />
-                {user ? <Link to={'/profile'}><Avatar src={user.profileImage || "/broken-image.jpg"} /></Link> : <Link to="/login"><Button variant="contained" style={{ padding: "10px 15px", color: "white", fontSize: "12px", textTransform: "capitalize" }}>Try for free</Button></Link>}
-            </div>
-        </header>
-    )
-}
 
-export default Header
+                {user ? (
+                    <>
+                        <IconButton onClick={handleMenuOpen} style={{ outline: "none" }}>
+                            <Avatar
+                                src={user.profileImage || "/broken-image.jpg"}
+                                alt="User Avatar"
+                                sx={{ width: 40, height: 40 }}
+                            />
+                        </IconButton>
+                        <p>{user.name}</p>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                            transformOrigin={{ vertical: "top", horizontal: "right" }}
+                            PaperProps={{ elevation: 3, sx: { minWidth: 150 } }}
+                            disableScrollLock
+                        >
+                            <MenuItem
+                                onClick={() => {
+                                    navigate("/profile");
+                                    handleMenuClose();
+                                }}
+                            >
+                                Profile
+                            </MenuItem>
+                            <MenuItem
+                                onClick={() => {
+                                    alert("Theme switch placeholder");
+                                    handleMenuClose();
+                                }}
+                            >
+                                Theme
+                            </MenuItem>
+                            <MenuItem
+                                onClick={(e) => {
+                                    handleLogout(e);
+                                    handleMenuClose();
+                                }}
+                            >
+                                Logout
+                            </MenuItem>
+                        </Menu>
+                    </>
+                ) : (
+                    <Link to="/login">
+                        <Button
+                            variant="contained"
+                            sx={{
+                                px: 2,
+                                py: 1,
+                                color: "white",
+                                fontSize: "12px",
+                                textTransform: "capitalize"
+                            }}
+                        >
+                            Try for free
+                        </Button>
+                    </Link>
+                )}
+            </Stack>
+        </Box>
+    );
+};
+
+export default Header;

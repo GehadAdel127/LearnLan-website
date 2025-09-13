@@ -1,4 +1,5 @@
 import { useTheme } from '@emotion/react'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
@@ -18,6 +19,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
     const [profileImage, setProfileImage] = useState(null)
     const [errorMessage, setErrorMessage] = useState("")
     const { login } = useContext(AuthContext)
+    const [role, setRole] = useState("student");
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -25,14 +27,14 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
         try {
             let user
             if (sign === "Sign in") {
-                user = await loginService(email, password)
+                user = await loginService(email, password, role)
             } else if (sign === "Sign Up") {
-                user = await registerService(name, email, password, profileImage)
+                user = await registerService(name, email, password, profileImage, role)
             } else {
                 console.log("Other forms like forget password");
             }
             login(user)
-            navigate("/")
+            navigate("/profile")
         }
         catch (error) {
             setErrorMessage(error.message)
@@ -116,6 +118,21 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                                     />
                                 </AnimatedSection>
                             )}
+                            <AnimatedSection animationClass="fadeInDown" delay="1.1s">
+                                <FormControl fullWidth>
+                                    <InputLabel id="role-label">Role</InputLabel>
+                                    <Select
+                                        labelId="role-label"
+                                        value={role}
+                                        label="Role"
+                                        onChange={(e) => setRole(e.target.value)}
+                                    >
+                                        <MenuItem value="student">Student</MenuItem>
+                                        <MenuItem value="teacher">Teacher</MenuItem>
+                                        <MenuItem value="admin">Admin</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </AnimatedSection>
 
                         </div>
                         <AnimatedSection animationClass="fadeInDown" delay='1.1s' >

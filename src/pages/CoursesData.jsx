@@ -22,6 +22,11 @@ import spanish6 from "../assets/images/spanish (5).jpg";
 import spanish7 from "../assets/images/spanish (6).jpg";
 import spanish1 from "../assets/images/spanish.jpg";
 
+
+import image from "../assets/images/Monitor-cuate.png";
+import image2 from "../assets/images/image2.png";
+import image3 from "../assets/images/image3.png";
+
 const images = {
     arabic: [
         arabic1,
@@ -60,6 +65,8 @@ const coursesData = [
         rate: 4.8,
         numberOfLessons: 30,
         name: "Arabic",
+        profileImage: image,
+        profileColor: "#906fcc3a",
         lessons: [
             { lessonId: 1, lessonTitle: "Introduction to the Arabic Alphabet", description: "Learn the 28 letters of the Arabic alphabet and their basic sounds. This is the foundation for all future lessons." },
             { lessonId: 2, lessonTitle: "Writing Alif, Baa, and Taa", description: "Practice the correct strokes and shapes for the first three letters." },
@@ -102,6 +109,8 @@ const coursesData = [
         rate: 4.9,
         numberOfLessons: 45,
         name: "English",
+        profileImage: image2,
+        profileColor: "#ca90d43b",
         lessons: [
             { lessonId: 1, lessonTitle: "Essay Structure and Outlining", description: "Master the classic essay structure: introduction, body paragraphs, and conclusion. Learn to create a powerful outline." },
             { lessonId: 2, lessonTitle: "Developing a Strong Thesis Statement", description: "Learn to formulate a clear, concise, and argumentative thesis statement that guides your entire paper." },
@@ -159,6 +168,8 @@ const coursesData = [
         rate: 4.7,
         numberOfLessons: 20,
         name: "Spanish",
+        profileImage: image3,
+        profileColor: "#ff81ad34",
         lessons: [
             { lessonId: 1, lessonTitle: "Greetings and Introductions", description: "Practice conversational greetings, asking how someone is, and introducing yourself in various social contexts." },
             { lessonId: 2, lessonTitle: "Ordering at a Restaurant", description: "Key phrases and vocabulary for navigating a restaurant menu, ordering food, and paying the bill." },

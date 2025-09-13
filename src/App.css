@@ -177,3 +177,30 @@ footer a {
 form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
   width: 100%;
 }
+
+/* profile */
+.profile li a,
+.profile li {
+  list-style: none;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  padding: 5px 0;
+  cursor: pointer;
+  gap: 15px;
+  font-size: 18px;
+  font-weight: normal;
+  border-radius: 5px;
+  width: 100%;
+  transition: all 0.3s ease;
+  margin: 5px 0;
+}
+
+.profile li a:hover {
+  translate: 20px 0px;
+  color: white !important;
+}
+
+.profileCards .card:hover {
+  box-shadow: 10px 10px 10px #ddd;
+}
