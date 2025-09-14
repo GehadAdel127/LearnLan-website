@@ -69,15 +69,10 @@ const Header = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                width: "90%",
-                px: 6,
-                py: 2,
-                backgroundColor: theme.palette.background.main,
-                position: "fixed",
-                top: 20,
-                right: 20,
+                width: "100%",
+                p: 3,
                 borderRadius: 3,
-                boxShadow: "10px 10px 10px rgb(0 0 0 / 13%)",
+                // boxShadow: "10px 10px 10px rgb(0 0 0 / 13%)",
                 zIndex: 100
             }}
         >
@@ -95,14 +90,14 @@ const Header = () => {
             </Link>
 
             {/* Nav Links */}
-            <Stack direction="row" spacing={4}>
+            <Stack direction="row" spacing={2}>
                 <Link to="/" style={getLinkStyle("/")}>Home</Link>
                 <Link to="/aboutus" style={getLinkStyle("/aboutus")}>About Us</Link>
                 <Link to="/courses" style={getLinkStyle("/courses")}>Courses</Link>
             </Stack>
 
             {/* Search and Auth Controls */}
-            <Stack direction="row" spacing={1} alignItems="center">
+            <Stack direction="row" spacing={0} alignItems="center" width="28%">
                 <TextField
                     id="outlined-basic"
                     label="Search for course"
@@ -132,7 +127,10 @@ const Header = () => {
                                 sx={{ width: 40, height: 40 }}
                             />
                         </IconButton>
-                        <p>{user.name}</p>
+                        <div style={{ textAlign: "right", marginRight: 8 }}>
+                            <div style={{ fontSize: 14, fontWeight: 700 }}>{user.name}</div>
+                            <div style={{ fontSize: 12, color: "#666" }}>{user.email}</div>
+                        </div>
                         <Menu
                             anchorEl={anchorEl}
                             open={Boolean(anchorEl)}

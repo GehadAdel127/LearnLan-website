@@ -12,14 +12,18 @@ import Register from './pages/Register'
 
 // import the animation
 import 'animate.css'
+import { useState } from 'react'
 import ForgetPassword from './pages/ForgetPassword'
 import LessonDetails from './pages/LessonDetails'
 import Lessons from './pages/Lessons'
 import Profile from './pages/Profile'
+import fakeDB from './Services/AuthServices'
 
 function App() {
   const location = useLocation();
   const hideHeaderFooter = location.pathname === "/profile";
+  const [currentUser, setCurrentUser] = useState(fakeDB.users[0]); // example: Ali Hassan
+
   return (
     <div className='App'>
       {!hideHeaderFooter && <Header />}
@@ -32,7 +36,7 @@ function App() {
         <Route path='/courses' element={<Courses />} />
         <Route path='/courses/:name' element={<Lessons />} />
         <Route path='/courses/:name/:lessonId' element={<LessonDetails />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile' element={<Profile user={currentUser} />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

@@ -4,6 +4,7 @@
 
 * {
   font-family: 'Quicksand' !important;
+  outline: none !important;
 }
 
 button {
@@ -33,10 +34,6 @@ body {
     animation: logo-spin infinite 20s linear;
   }
 }
-
-/* .card {
-  padding: 2em;
-} */
 
 .read-the-docs {
   color: #888;
@@ -82,8 +79,8 @@ body {
 }
 
 Header .css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
-  border-color: rgba(0, 0, 0, 0.123) !important;
-  border: none !important;
+  border-color: #213547 !important;
+  color: #0A5EB0 !important;
 }
 
 .css-1r6ecdj-MuiFormLabel-root-MuiInputLabel-root {
@@ -94,20 +91,8 @@ Header .css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
   top: -10% !important;
 }
 
-.css-1mvj0rg-MuiInputBase-root-MuiOutlinedInput-root {
+/* .css-1mvj0rg-MuiInputBase-root-MuiOutlinedInput-root {
   border: none !important;
-}
-
-/* .btn {
-  transition: all 0.5s ease !important;
-  outline: none !important;
-}
-
-.btn:hover {
-  background-color: white;
-  color: #0A5EB0 !important;
-  border-color: #0A5EB0 !important;
-  color: #0A5EB0 !important;
 } */
 
 
@@ -203,4 +188,102 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
 
 .profileCards .card:hover {
   box-shadow: 10px 10px 10px #ddd;
+}
+
+/* Container */
+.react-calendar {
+  width: 100%;
+  max-width: 300px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+.calendar-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #0A5EB0;
+  margin-bottom: 10px;
+}
+
+/* Calendar Main Styles */
+.custom-calendar {
+  border: none;
+  width: 100%;
+}
+
+.custom-calendar .react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.custom-calendar .react-calendar__navigation button {
+  background: none;
+  border: none;
+  color: #0A5EB0;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.custom-calendar .react-calendar__tile {
+  border-radius: 10px;
+  height: 40px;
+  transition: background 0.3s ease;
+  font-size: 14px;
+}
+
+.custom-calendar .react-calendar__tile--active {
+  background-color: #0A5EB0 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.custom-calendar .react-calendar__tile--now {
+  background-color: #cddafd !important;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #0A5EB0;
+}
+
+.custom-calendar .today {
+  background-color: #0A5EB0 !important;
+  color: white !important;
+}
+
+.custom-calendar abbr {
+  font-size: 13px;
+}
+
+/* Remove week numbers */
+.custom-calendar .react-calendar__month-view__weekNumbers {
+  display: none;
+}
+
+.react-calendar__navigation__next-button,
+.react-calendar__navigation__prev-button {
+  display: none;
+}
+
+/* Visited Day (add a dot under the date) */
+.custom-calendar .visited-day {
+  position: relative;
+  color: #3f3f3f;
+}
+
+.custom-calendar .visited-day::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #0A5EB0;
+  border-radius: 50%;
 }

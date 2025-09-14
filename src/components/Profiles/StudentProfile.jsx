@@ -1,7 +1,10 @@
+import Profile from "../../pages/Profile"
 
 const StudentProfile = () => {
     return (
-        <div>StudentProfile</div>
+        <div>
+            <Profile />
+        </div>
     )
 }
 

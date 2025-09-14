@@ -5,8 +5,8 @@ const ProfileDetails = ({ name, details, title, image, color }) => {
             backgroundColor: color, width: "100%", borderRadius: "10px", display: "flex",
             justifyContent: "center", alignItems: "center", gap: "20px", transition: "all 0.5s ease"
         }}>
-            <img src={image} alt="computer" style={{ width: "150px" }} />
-            <div className="content">
+            <img src={image} alt="computer" style={{ width: "20%" }} />
+            <div className="content" style={{ width: "70%" }}>
                 <h3>{name}</h3>
                 <p>{details}</p>
                 <p>{title}</p>

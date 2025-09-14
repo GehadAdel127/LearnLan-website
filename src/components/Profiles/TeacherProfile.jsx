@@ -1,7 +1,10 @@
+import Profile from "../../pages/Profile"
 
 const TeacherProfile = () => {
     return (
-        <div>TeacherProfile</div>
+        <div>
+            <Profile />
+        </div>
     )
 }
 
