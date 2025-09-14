@@ -97,7 +97,7 @@ const Header = () => {
             </Stack>
 
             {/* Search and Auth Controls */}
-            <Stack direction="row" spacing={0} alignItems="center" width="28%">
+            <Stack direction="row" spacing={1} alignItems="center" width="28%">
                 <TextField
                     id="outlined-basic"
                     label="Search for course"
