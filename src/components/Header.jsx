@@ -123,11 +123,11 @@ const Header = () => {
                             </MenuItem>
                             <MenuItem
                                 onClick={() => {
-                                    alert("Theme switch placeholder");
+                                    navigate("/cart")
                                     handleMenuClose();
                                 }}
                             >
-                                Theme
+                                Cart
                             </MenuItem>
                             <MenuItem
                                 onClick={(e) => {

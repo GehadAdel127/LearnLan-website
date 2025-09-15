@@ -7,6 +7,7 @@ import Header from "./components/Header";
 
 // Pages
 import AboutUs from "./pages/AboutUs";
+import Cart from "./pages/CartPage";
 import Courses from "./pages/Courses";
 import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
@@ -24,6 +25,10 @@ import { AuthProvider } from "./Context/AuthContext";
 // Animation
 import "animate.css";
 import ProtectedRoute from "./components/ProtectedRoutes";
+import Checkout from "./pages/CheckOut";
+import OrderSuccess from "./pages/OrderSuccess";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 function App() {
   const location = useLocation();
@@ -39,7 +44,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />
-
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
           {/* Protected routes */}
           <Route
             path="/dashboard"

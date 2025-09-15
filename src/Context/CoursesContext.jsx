@@ -1,74 +1,55 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useAuth } from "./AuthContext"; // hook from your AuthContext
+import { createContext, useContext, useState } from "react";
 
 const CoursesContext = createContext();
 
 export const CoursesProvider = ({ children }) => {
-    const { user } = useAuth();
     const [savedCourses, setSavedCourses] = useState([]);
     const [cart, setCart] = useState([]);
 
-    // Load from localStorage when user changes
-    useEffect(() => {
-        if (user?.userId) {
-            const storedSaved = localStorage.getItem(`savedCourses_${user.userId}`);
-            const storedCart = localStorage.getItem(`cart_${user.userId}`);
-
-            setSavedCourses(storedSaved ? JSON.parse(storedSaved) : []);
-            setCart(storedCart ? JSON.parse(storedCart) : []);
-        } else {
-            setSavedCourses([]);
-            setCart([]);
-        }
-    }, [user?.userId]);
-
-    // Persist savedCourses
-    useEffect(() => {
-        if (user?.userId) {
-            localStorage.setItem(
-                `savedCourses_${user.userId}`,
-                JSON.stringify(savedCourses)
-            );
-        }
-    }, [savedCourses, user?.userId]);
-
-    // Persist cart
-    useEffect(() => {
-        if (user?.userId) {
-            const storedSaved = localStorage.getItem(`savedCourses_${user.userId}`);
-            const storedCart = localStorage.getItem(`cart_${user.userId}`);
-
-            setSavedCourses(storedSaved ? JSON.parse(storedSaved) : []);
-            setCart(storedCart ? JSON.parse(storedCart) : []);
-        } else {
-            setSavedCourses([]);
-            setCart([]);
-        }
-    }, [user]);
-
-
-    // Toggle save
-    const toggleSaveCourse = (id) => {
-        if (!user?.userId) return;
+    // Toggle save/remove course
+    const toggleSaveCourse = (course) => {
         setSavedCourses((prev) =>
-            prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
+            prev.some((c) => c.id === course.id)
+                ? prev.filter((c) => c.id !== course.id)
+                : [...prev, course]
         );
     };
 
-    // Add to cart
-    const addToCart = (id) => {
-        if (!user?.userId) return;
-        setCart((prev) => (prev.includes(id) ? prev : [...prev, id]));
+    // Add to cart (with quantity support)
+    const addToCart = (course) => {
+        setCart((prev) => {
+            const existing = prev.find((c) => c.id === course.id);
+            if (existing) {
+                return prev.map((c) =>
+                    c.id === course.id ? { ...c, quantity: c.quantity + 1 } : c
+                );
+            }
+            return [...prev, { ...course, quantity: 1 }];
+        });
     };
 
     const removeFromCart = (id) => {
-        if (!user?.userId) return;
-        setCart((prev) => prev.filter((c) => c !== id));
+        setCart((prev) => prev.filter((c) => c.id !== id));
+    };
+
+    const updateQuantity = (id, delta) => {
+        setCart((prev) =>
+            prev.map((c) =>
+                c.id === id ? { ...c, quantity: Math.max(1, c.quantity + delta) } : c
+            )
+        );
     };
 
     return (
         <CoursesContext.Provider
-            value={{ savedCourses, toggleSaveCourse, cart, addToCart, removeFromCart }}
+            value={{
+                savedCourses,
+                toggleSaveCourse,
+                cart,
+                addToCart,
+                removeFromCart,
+                updateQuantity,
+            }}
         >
             {children}
         </CoursesContext.Provider>

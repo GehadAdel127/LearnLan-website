@@ -49,11 +49,11 @@ const Footer = () => {
                     </div>
                     <AnimatedSection animationClass="slideInUp">
                         <div className="linksContent" style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "start", gap: "10px", marginTop: "22px" }}>
-                            <Link>Courses</Link>
-                            <Link>teachers</Link>
-                            <Link>About Us</Link>
-                            <Link>Contact Us</Link>
-                            <Link>Blog</Link>
+                            <Link to={"/courses"}>Courses</Link>
+                            <Link to={"/terms"}>Terms</Link>
+                            <Link to={"/aboutus"}>About Us</Link>
+                            <Link to={"/contact"}>Contact Us</Link>
+                            <Link to={"privacy"}>Privacy</Link>
                         </div>
                     </AnimatedSection>
                 </div>

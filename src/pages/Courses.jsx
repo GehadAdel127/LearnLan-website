@@ -1,19 +1,14 @@
+import { useTheme } from "@emotion/react";
+import SearchIcon from "@mui/icons-material/Search";
+import { FormControl, MenuItem, Select } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import InputBase from "@mui/material/InputBase";
+import Pagination from "@mui/material/Pagination";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import { useEffect, useState } from "react";
 import AnimatedSection from "../components/AnimatedSection";
 import CourseCard from "../components/CourseCard";
-// MUI
-import SearchIcon from '@mui/icons-material/Search';
-import { FormControl, MenuItem, Select } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
-import Pagination from "@mui/material/Pagination";
-import Paper from '@mui/material/Paper';
-import Stack from "@mui/material/Stack";
-
-// hooks
-import { useEffect, useState } from "react";
-
-// data fetching
-import { useTheme } from "@emotion/react";
 import coursesData from "./CoursesData";
 
 const Courses = () => {
@@ -48,17 +43,9 @@ const Courses = () => {
         setPages(1);
     }, [searchedCourse, sortOption]);
 
-    const handleSearchChange = (event) => {
-        setSearchedCourse(event.target.value);
-    };
-
-    const handlePagesChange = (event, value) => {
-        setPages(value);
-    };
-
-    const handleSortChange = (event) => {
-        setSortOption(event.target.value);
-    };
+    const handleSearchChange = (event) => setSearchedCourse(event.target.value);
+    const handlePagesChange = (event, value) => setPages(value);
+    const handleSortChange = (event) => setSortOption(event.target.value);
 
     const displayCourses = filteredCourses.slice(
         (pages - 1) * itemsPerPage,
@@ -66,28 +53,26 @@ const Courses = () => {
     );
 
     return (
-        <section style={{ marginTop: "150px", padding: "50px" }}>
+        <section style={{ marginTop: "0px", padding: "50px" }}>
             <h2>Courses</h2>
 
             {/* Search & Sort Row */}
             <div style={{ display: "flex", gap: "20px", alignItems: "center", marginBottom: "20px" }}>
                 <Paper
                     component="form"
-                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+                    sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
                 >
                     <InputBase
                         sx={{ ml: 1, flex: 1 }}
                         placeholder="Search For a course"
-                        inputProps={{ 'aria-label': 'search For a course' }}
                         value={searchedCourse}
                         onChange={handleSearchChange}
                     />
-                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                    <IconButton type="button" sx={{ p: "10px" }}>
                         <SearchIcon />
                     </IconButton>
                 </Paper>
 
-                {/* Sorting Dropdown */}
                 <FormControl sx={{ minWidth: 200 }}>
                     <Select value={sortOption} onChange={handleSortChange}>
                         <MenuItem value="default">Sort By:</MenuItem>
@@ -112,25 +97,19 @@ const Courses = () => {
                     gap: "50px",
                 }}
             >
-                {displayCourses.map((course, index) => (
-                    <AnimatedSection
-                        key={course.id}
-                        animationClass="fadeInDown"
-                        delay={`${index * 0.2}s`}
-                    >
-                        <CourseCard
-                            id={course.id}
-                            name={course.name}
-                            image={course.image}
-                            title={course.title}
-                            price={course.price}
-                            rate={course.rate}
-                            numberOfLessons={course.numberOfLessons}
-                            numberOfStudents={course.numberOfStudents}
-                            animationDelay={`${index * 0.2}s`}
-                        />
-                    </AnimatedSection>
-                ))}
+                {displayCourses.length === 0 ? (
+                    <p>No courses found.</p>
+                ) : (
+                    displayCourses.map((course, index) => (
+                        <AnimatedSection
+                            key={course.id}
+                            animationClass="fadeInDown"
+                            delay={`${index * 0.2}s`}
+                        >
+                            <CourseCard {...course} />
+                        </AnimatedSection>
+                    ))
+                )}
             </div>
 
             {/* Pagination */}

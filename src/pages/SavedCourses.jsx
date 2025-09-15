@@ -1,27 +1,32 @@
-import { Box, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
+import { useCourses } from "../Context/CoursesContext";
+import AnimatedSection from "../components/AnimatedSection";
 import CourseCard from "../components/CourseCard";
 
-const SavedCoursesSection = ({ savedCourses, onSaveCourse, onAddToCart }) => {
+const SavedCourses = () => {
+    const { savedCourses } = useCourses();
+
     return (
-        <Box sx={{ mt: 5 }}>
-            <Typography variant="h5" sx={{ mb: 3 }}>Saved Courses</Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
-                {savedCourses.length ? (
-                    savedCourses.map((course) => (
-                        <CourseCard
-                            key={course.id}
-                            {...course}
-                            isSaved={true}
-                            onSaveCourse={onSaveCourse}
-                            onAddToCart={onAddToCart}
-                        />
-                    ))
-                ) : (
-                    <Typography>No saved courses yet.</Typography>
-                )}
-            </Box>
-        </Box>
+        <Container sx={{ padding: "50px 20px" }}>
+            <Typography variant="h4" gutterBottom>
+                Saved Courses
+            </Typography>
+
+            {savedCourses.length === 0 ? (
+                <Typography variant="body1">You haven’t saved any courses yet.</Typography>
+            ) : (
+                <Grid container spacing={3}>
+                    {savedCourses.map((course, index) => (
+                        <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={course.id}>
+                            <AnimatedSection animationClass="fadeInUp" delay={`${index * 0.2}s`}>
+                                <CourseCard {...course} />
+                            </AnimatedSection>
+                        </Grid>
+                    ))}
+                </Grid>
+            )}
+        </Container>
     );
 };
 
-export default SavedCoursesSection;
+export default SavedCourses;

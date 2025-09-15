@@ -70,22 +70,19 @@ const instructorsDetails = [
 const Instructors = () => {
     const theme = useTheme()
     return (
-        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", width: "94%", padding: "30px" }}>
             <CompentesHeader title="Our instructors" head="Meet the passionate team" />
-            <AnimatedSection animationClass="fadeInDown">
-                <div className="cards" style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap" }}>
-                    {instructorsDetails.map((instructorsDetail, index) => (
-                        <AnimatedSection key={instructorsDetail.id} animationClass="fadeInDown" delay={`${index * 0.3}s`}>
-                            <StartCard title={instructorsDetail.name} language={instructorsDetail.language} description={instructorsDetail.description} image={instructorsDetail.image}
-                                backgroundColor={instructorsDetail.backgroundColor} textAlign={instructorsDetail.textAlign} color={instructorsDetail.color}
-                                polygonClipPath={instructorsDetail.polygonClipPath} fontSize={instructorsDetail.fontSize}
-                                bottom={instructorsDetail.bottom} instructorBackground={"transparent"} height={"400px"} />
-                        </AnimatedSection>
+            <div className="cards" style={{ width: "100%", gap: "10px", display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap" }}>
+                {instructorsDetails.map((instructorsDetail, index) => (
+                    <AnimatedSection key={instructorsDetail.id} animationClass="fadeInDown" delay={`${index * 0.3}s`} width={"24%"}>
+                        <StartCard title={instructorsDetail.name} language={instructorsDetail.language} description={instructorsDetail.description} image={instructorsDetail.image}
+                            backgroundColor={instructorsDetail.backgroundColor} textAlign={instructorsDetail.textAlign} color={instructorsDetail.color}
+                            polygonClipPath={instructorsDetail.polygonClipPath} fontSize={instructorsDetail.fontSize}
+                            bottom={instructorsDetail.bottom} instructorBackground={"transparent"} height={"450px"} />
+                    </AnimatedSection>
 
-                    ))}
-                </div>
-            </AnimatedSection>
-
+                ))}
+            </div>
         </section>
     )
 }

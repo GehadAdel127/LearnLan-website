@@ -10,7 +10,9 @@ import CourseCard from "./CourseCard";
 
 // custom hook
 import { useState } from "react";
+import { useCourses } from "../Context/CoursesContext";
 import AnimatedSection from './AnimatedSection';
+
 
 const PopularCourses = () => {
     const theme = useTheme();
@@ -48,7 +50,8 @@ const PopularCourses = () => {
         }
     ];
 
-    const [savedCourses, setSavedCourses] = useState([]);
+    const { savedCourses, toggleSaveCourse, addToCart } = useCourses();
+
     const [cart, setCart] = useState([]);
 
     const handleSaveCourse = (id) => {
@@ -73,7 +76,7 @@ const PopularCourses = () => {
                 </div>
             </div>
             <AnimatedSection animationClass="fadeInDown">
-                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "70px" }}>
+                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
                     {coursesData.map((course, index) => (
                         <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
                             <CourseCard
