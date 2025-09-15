@@ -4,10 +4,10 @@ import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import loginImage from "../assets/images/Globalization.jpeg"
-import { AuthContext } from '../Context/AuthContext'
+import { useAuth } from '../Context/AuthContext'
 import { loginService, registerService } from '../Services/AuthServices'
 import AnimatedSection from './AnimatedSection'
 
@@ -18,7 +18,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
     const [password, setPassword] = useState("")
     const [profileImage, setProfileImage] = useState(null)
     const [errorMessage, setErrorMessage] = useState("")
-    const { login } = useContext(AuthContext)
+    const { login } = useAuth()
     const [role, setRole] = useState("student");
     const navigate = useNavigate()
 
@@ -43,11 +43,9 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
 
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", flexDirection: flexDirection, marginTop: "150px", gap: "10%" }}>
-            <div className="imageSection" style={{ width: "40%" }}>
-                <AnimatedSection animationClass="fadeInDown" delay='0.3s'>
-                    <img src={loginImage} alt="login image" style={{ width: "100%" }} />
-                </AnimatedSection>
-            </div>
+            <AnimatedSection animationClass="fadeInDown" delay='0.3s' width={"40%"} >
+                <img src={loginImage} alt="login image" style={{ width: "100%" }} />
+            </AnimatedSection>
 
             <div className="contentSection" style={{ width: "40%" }}>
                 <div className="content">

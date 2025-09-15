@@ -12,7 +12,7 @@ const LessonsCard = ({ image, title, lessonTitle, description, height, link }) =
             <Card
                 style={{
                     width: "100%",
-                    height: height + 300 || "410px",
+                    height: height + 300 || "350px",
                     border: "none",
                     boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                     borderRadius: "15px",

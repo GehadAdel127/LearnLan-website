@@ -79,7 +79,7 @@ const Instructors = () => {
                             <StartCard title={instructorsDetail.name} language={instructorsDetail.language} description={instructorsDetail.description} image={instructorsDetail.image}
                                 backgroundColor={instructorsDetail.backgroundColor} textAlign={instructorsDetail.textAlign} color={instructorsDetail.color}
                                 polygonClipPath={instructorsDetail.polygonClipPath} fontSize={instructorsDetail.fontSize}
-                                bottom={instructorsDetail.bottom} />
+                                bottom={instructorsDetail.bottom} instructorBackground={"transparent"} height={"400px"} />
                         </AnimatedSection>
 
                     ))}

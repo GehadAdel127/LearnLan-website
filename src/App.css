@@ -7,16 +7,40 @@
   outline: none !important;
 }
 
-button {
-  text-transform: capitalize !important;
+body {
+  padding: 0;
+  margin: 0;
 }
 
-body {
-  font-family: 'Quicksand';
-  place-items: normal !important;
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #202020;
+  --primary-color: #0A5EB0;
+  --secondary-color: #e96581ff;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #fff;
+  --primary-color: #90caf9;
+  --secondary-color: #f48fb1;
+}
+
+/* Use variables */
+.App {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color);
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+}
+
+a {
+  color: var(--primary-color);
+}
+
+button {
+  color: var(--text-color);
+  text-transform: capitalize !important;
 }
 
 @keyframes logo-spin {
@@ -34,11 +58,6 @@ body {
     animation: logo-spin infinite 20s linear;
   }
 }
-
-.read-the-docs {
-  color: #888;
-}
-
 
 @font-face {
   font-family: "Quicksand";
@@ -70,32 +89,6 @@ body {
   font-weight: 600;
 }
 
-
-/* header */
-.css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
-  padding: 10px 14px !important;
-  display: flex;
-  align-items: center;
-}
-
-Header .css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
-  border-color: #213547 !important;
-  color: #0A5EB0 !important;
-}
-
-.css-1r6ecdj-MuiFormLabel-root-MuiInputLabel-root {
-  top: -5px !important;
-}
-
-.css-p1jkex-MuiFormLabel-root-MuiInputLabel-root {
-  top: -10% !important;
-}
-
-/* .css-1mvj0rg-MuiInputBase-root-MuiOutlinedInput-root {
-  border: none !important;
-} */
-
-
 /* home page */
 .images img {
   width: 250px;
@@ -111,40 +104,17 @@ Header .css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
 }
 
 .links a:hover {
-  color: #0A5EB0 !important;
+  color: var(--primary-color) !important;
 }
 
 .css-xn78qt-MuiImageListItemBar-titleWrap {
   padding: 0px !important;
   padding-left: 17px !important;
-  color: black !important;
+  color: var(--text-color) !important;
 }
 
-/* .learnMore {
-  border: 1px solid #0A5EB0 !important;
-  background-color: white !important;
-  color: #0A5EB0 !important;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  border: none !important;
-  transition: all 0.5s ease !important;
-}
-
-.learnMore:hover {
-  background-color: #0A5EB0 !important;
-  color: white !important;
-} */
 .cards .animate__animated {
   width: 25%;
-}
-
-.palette {
-  color: #0A5EB0;
-  color: #0a5db01e;
-  color: #f564aa48;
-  color: #F564A9;
-  color: #0c0c0cb9;
-  color: #C0EBA6;
-  color: #8080801e;
 }
 
 /* footer */
@@ -155,7 +125,7 @@ Header .css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
 }
 
 footer a {
-  color: #213547;
+  color: var(--text-color);
 }
 
 /* forms */
@@ -183,7 +153,7 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
 
 .profile li a:hover {
   translate: 20px 0px;
-  color: white !important;
+  color: var(--bg-color) !important;
 }
 
 .profileCards .card:hover {
@@ -194,7 +164,7 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
 .react-calendar {
   width: 100%;
   max-width: 300px;
-  background: #fff;
+  background: var(--bg-color);
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
@@ -206,7 +176,7 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
   text-align: center;
   font-weight: bold;
   font-size: 18px;
-  color: #0A5EB0;
+  color: var(--primary-color);
   margin-bottom: 10px;
 }
 
@@ -226,7 +196,7 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
 .custom-calendar .react-calendar__navigation button {
   background: none;
   border: none;
-  color: #0A5EB0;
+  color: var(--primary-color);
   font-size: 18px;
   cursor: pointer;
 }
@@ -239,7 +209,7 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
 }
 
 .custom-calendar .react-calendar__tile--active {
-  background-color: #0A5EB0 !important;
+  background-color: var(--primary-color) !important;
   color: white !important;
   font-weight: bold;
 }
@@ -248,11 +218,11 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
   background-color: #cddafd !important;
   border-radius: 10px;
   font-weight: bold;
-  color: #0A5EB0;
+  color: var(--primary-color);
 }
 
 .custom-calendar .today {
-  background-color: #0A5EB0 !important;
+  background-color: var(--primary-color) !important;
   color: white !important;
 }
 
@@ -284,6 +254,10 @@ form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
   transform: translateX(-50%);
   width: 6px;
   height: 6px;
-  background-color: #0A5EB0;
+  background-color: var(--primary-color);
   border-radius: 50%;
+}
+
+footer a {
+  text-decoration: none;
 }

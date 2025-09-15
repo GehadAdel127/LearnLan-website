@@ -10,8 +10,6 @@ const AdminDashboard = () => {
         <>
             <h2>Admin Dashboard</h2>
             <AdminStats />
-
-
             <div style={{ marginTop: "30px" }}>
                 <AdminCharts />
             </div>

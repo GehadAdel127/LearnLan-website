@@ -9,11 +9,11 @@ import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import CourseCard from "./CourseCard";
 
 // custom hook
-import AnimatedSection from '../components/AnimatedSection';
+import { useState } from "react";
+import AnimatedSection from './AnimatedSection';
 
-const CoursesCards = () => {
-    const theme = useTheme()
-
+const PopularCourses = () => {
+    const theme = useTheme();
 
     const coursesData = [
         {
@@ -48,8 +48,23 @@ const CoursesCards = () => {
         }
     ];
 
+    const [savedCourses, setSavedCourses] = useState([]);
+    const [cart, setCart] = useState([]);
+
+    const handleSaveCourse = (id) => {
+        setSavedCourses((prev) =>
+            prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
+        );
+    };
+
+    const handleAddToCart = (id) => {
+        setCart((prev) =>
+            prev.includes(id) ? prev : [...prev, id]
+        );
+    };
+
     return (
-        <section className="coursesCards" style={{ padding: "50px", paddingTop: "0px" }}>
+        <section className="PopularCourses" style={{ padding: "50px", paddingTop: "0px" }}>
             <div className="headerSection" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                 <h2>Our Popular Courses</h2>
                 <div className="linkWithIcon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -62,24 +77,25 @@ const CoursesCards = () => {
                     {coursesData.map((course, index) => (
                         <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
                             <CourseCard
-                                key={course.id}
-                                image={course.image}
+                                id={course.id}
+                                name={course.name}
                                 title={course.title}
+                                image={course.image}
                                 price={course.price}
                                 rate={course.rate}
-                                numberOfLessons={course.numberOfLessons}
                                 numberOfStudents={course.numberOfStudents}
-                                animationDelay={`${index * 0.3}s`}
-                                name={course.name}
+                                numberOfLessons={course.numberOfLessons}
+                                isSaved={savedCourses.includes(course.id)}
+                                onSaveCourse={handleSaveCourse}
+                                onAddToCart={handleAddToCart}
                             />
+
                         </AnimatedSection>
                     ))}
                 </div>
-
             </AnimatedSection>
-
         </section>
-    )
-}
+    );
+};
 
-export default CoursesCards
+export default PopularCourses;

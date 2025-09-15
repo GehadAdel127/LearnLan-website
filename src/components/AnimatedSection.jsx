@@ -1,6 +1,6 @@
 import useOnScreen from './hooks/useOnScreen';
 
-const AnimatedSection = ({ children, animationClass, delay = '0.3s' }) => {
+const AnimatedSection = ({ children, animationClass, delay = '0.3s', width }) => {
   // Use the custom hook to get the ref and visibility state
   const [ref, isVisible] = useOnScreen();
 
@@ -12,7 +12,7 @@ const AnimatedSection = ({ children, animationClass, delay = '0.3s' }) => {
       ref={ref}
       key={isVisible ? 'visible' : 'hidden'}
       className={isVisible ? classes : 'opacity-0'}
-      style={{ animationDelay: delay }}
+      style={{ animationDelay: delay, width: width }}
     >
       {children}
     </div>

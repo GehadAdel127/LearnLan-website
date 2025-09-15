@@ -6,16 +6,16 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const StartCard = ({ title, description, language, image, bottom, backgroundColor, textAlign, color, polygonClipPath, fontSize }) => {
+const StartCard = ({ title, description, language, image, bottom, backgroundColor, textAlign, color, polygonClipPath, fontSize, height, instructorBackground }) => {
     const theme = useTheme();
     return (
         <section style={{ width: "250px", position: "relative", bottom: bottom, margin: "10px", padding: "20px", cursor: "pointer" }} className='card animate__animated animate__bounceIn'>
-            <Card sx={{ height: "470px", boxShadow: "none", border: "none" }}>
+            <Card sx={{ height: height, boxShadow: "none", border: "none", backgroundColor: instructorBackground }}>
                 <div style={{
                     background: backgroundColor,
                     clipPath: polygonClipPath,
                     WebkitClipPath: polygonClipPath,
-                    height: "320px",
+                    height: height ? "300px" : "200px",
                     position: "relative",
                     overflow: "hidden",
                     borderRadius: "10px"
@@ -34,7 +34,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                         }}
                     />
                 </div>
-                <CardContent sx={{ textAlign: textAlign }}>
+                <CardContent sx={{ textAlign: textAlign, padding: "20px" }}>
                     <Typography
                         gutterBottom
                         variant="h6"
@@ -58,7 +58,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                     </Typography>
                 </CardContent>
             </Card>
-        </section>
+        </section >
     );
 };
 

@@ -1,14 +1,13 @@
 // images import
-import TextField from "@mui/material/TextField";
 import logo from "../assets/images/logo.png";
 
 // react router + react
 import { useTheme } from "@emotion/react";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // context
-import { AuthContext } from "../Context/AuthContext";
+import { useAuth } from "../Context/AuthContext";
 
 // MUI
 import {
@@ -23,7 +22,7 @@ import {
 
 const Header = () => {
     const theme = useTheme();
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout } = useAuth();
     const [searchQuery, setSearchQuery] = useState("");
     const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate();
@@ -45,19 +44,14 @@ const Header = () => {
             console.error(error.message);
         }
     };
-
-    const handleSearchClick = () => {
-        if (searchQuery.trim()) {
-            navigate(`/courses?search=${encodeURIComponent(searchQuery.trim())}`);
-            setSearchQuery("");
-        }
-    };
-
     const getLinkStyle = (path) => ({
         fontSize: "16px",
         fontWeight: "700",
         textDecoration: "none",
-        color: window.location.pathname === path ? theme.palette.primary.main : "black",
+        color:
+            window.location.pathname === path
+                ? theme.palette.primary.main
+                : theme.palette.text.primary,
         transition: "color 0.3s ease-in-out"
     });
 
@@ -72,7 +66,6 @@ const Header = () => {
                 width: "100%",
                 p: 3,
                 borderRadius: 3,
-                // boxShadow: "10px 10px 10px rgb(0 0 0 / 13%)",
                 zIndex: 100
             }}
         >
@@ -90,47 +83,27 @@ const Header = () => {
             </Link>
 
             {/* Nav Links */}
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} width="60%" display="flex" justifyContent="center" alignItems="center"  >
                 <Link to="/" style={getLinkStyle("/")}>Home</Link>
                 <Link to="/aboutus" style={getLinkStyle("/aboutus")}>About Us</Link>
                 <Link to="/courses" style={getLinkStyle("/courses")}>Courses</Link>
             </Stack>
 
-            {/* Search and Auth Controls */}
-            <Stack direction="row" spacing={1} alignItems="center" width="28%">
-                <TextField
-                    id="outlined-basic"
-                    label="Search for course"
-                    variant="outlined"
-                    size="small"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            e.preventDefault();
-                            handleSearchClick();
-                        }
-                    }}
-                    sx={{
-                        width: 200,
-                        backgroundColor: "white",
-                        borderRadius: 1
-                    }}
-                />
-
+            {/* Auth Controls */}
+            <Stack direction="row" spacing={1} display="flex" justifyContent="center" alignItems="center" width="23%" >
                 {user ? (
                     <>
-                        <IconButton onClick={handleMenuOpen} style={{ outline: "none" }}>
-                            <Avatar
-                                src={user.profileImage || "/broken-image.jpg"}
-                                alt="User Avatar"
-                                sx={{ width: 40, height: 40 }}
-                            />
-                        </IconButton>
                         <div style={{ textAlign: "right", marginRight: 8 }}>
                             <div style={{ fontSize: 14, fontWeight: 700 }}>{user.name}</div>
                             <div style={{ fontSize: 12, color: "#666" }}>{user.email}</div>
                         </div>
+                        <IconButton onClick={handleMenuOpen} style={{ outline: "none", padding: "0px", marginLeft: "0px" }}>
+                            <Avatar
+                                src={user.profileImage || "/broken-image.jpg"}
+                                alt={user.name}
+                                sx={{ width: 40, height: 40, bgcolor: theme.palette.mode === 'dark' ? '#555' : theme.palette.primary.main, }}
+                            />
+                        </IconButton>
                         <Menu
                             anchorEl={anchorEl}
                             open={Boolean(anchorEl)}
@@ -173,7 +146,7 @@ const Header = () => {
                             sx={{
                                 px: 2,
                                 py: 1,
-                                color: "white",
+                                color: theme.palette.background.paper,
                                 fontSize: "12px",
                                 textTransform: "capitalize"
                             }}
@@ -183,7 +156,7 @@ const Header = () => {
                     </Link>
                 )}
             </Stack>
-        </Box>
+        </Box >
     );
 };
 

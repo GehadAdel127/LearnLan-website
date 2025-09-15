@@ -20,7 +20,7 @@ const PriceCards = ({ name, price, features, icon: IconComponent, selected }) =>
             <Card sx={cardStyle}>
                 <IconComponent sx={{
                     padding: "10px", fontFamily: theme.typography.fontFamily, fontSize: "22px", fontWeight: "600",
-                    borderRadius: "50%", background: "#0a5db027", color: "#0A5EB0"
+                    borderRadius: "50%", background: "#0a5db027", color: theme.palette.primary.main
                 }} />
                 <Typography
                     gutterBottom
@@ -34,7 +34,7 @@ const PriceCards = ({ name, price, features, icon: IconComponent, selected }) =>
                     variant="h3"
                     sx={{
                         fontFamily: "Quicksand",
-                        color: "black",
+                        color: theme.palette.text.primary,
                         fontFamily: theme.typography.fontFamily,
                         fontWeight: "600"
                     }}>

@@ -10,12 +10,19 @@ const Sidebar = ({ user, onSelect }) => {
     const links = [
         { key: "dashboard", label: "Dashboard" },
         { key: "courses", label: "Courses" },
+        ...(user.role === "teacher"
+            ? [{ key: "createCourse", label: "Create Course" }]
+            : []),
         ...(user.role === "teacher" || user.role === "admin"
             ? [{ key: "students", label: "Students" }]
             : []),
         ...(user.role === "admin" ? [{ key: "teachers", label: "Teachers" }] : []),
+        ...(user.role === "student"
+            ? [{ key: "savedCourses", label: "Saved Courses" }]
+            : []),
         { key: "account", label: "Account" },
         { key: "logout", label: "Logout" },
+
     ];
 
     // Dashboard title
@@ -44,7 +51,7 @@ const Sidebar = ({ user, onSelect }) => {
         >
             <h2
                 style={{
-                    color: "#fff",
+                    color: theme.palette.background.paper,
                     padding: "20px",
                     height: "50px",
                     margin: 0,
@@ -72,7 +79,7 @@ const Sidebar = ({ user, onSelect }) => {
                             fontWeight: "500",
                             transition: "all 0.2s ease",
                             color:
-                                selected === link.key ? "#fff" : "#b9b5b5ff",
+                                selected === link.key ? theme.palette.background.paper : "#b9b5b5ff",
                             transform:
                                 selected === link.key
                                     ? "translateX(10px)"
@@ -82,7 +89,7 @@ const Sidebar = ({ user, onSelect }) => {
                             if (selected !== link.key) {
                                 e.currentTarget.style.transform =
                                     "translateX(10px)";
-                                e.currentTarget.style.color = "#fff";
+                                e.currentTarget.style.color = theme.palette.background.paper;
                             }
                         }}
                         onMouseLeave={(e) => {

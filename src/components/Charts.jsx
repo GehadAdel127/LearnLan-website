@@ -1,11 +1,10 @@
 import { useTheme } from "@mui/material/styles";
 import { PieChart } from "@mui/x-charts/PieChart";
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import { useAuth } from "../Context/AuthContext";
 import coursesData from "../pages/CoursesData";
 
 export default function Charts() {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const theme = useTheme();
 
     if (!user || user.role !== "student") {
@@ -37,7 +36,7 @@ export default function Charts() {
             colors={[
                 theme.palette.primary.main,
                 theme.palette.secondary.main,
-                theme.palette.background2.main,
+                theme.palette.background.primary,
                 "#8884d8", // fallback extra color
             ]}
             height={250}

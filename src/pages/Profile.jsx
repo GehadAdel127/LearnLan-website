@@ -1,10 +1,9 @@
 // src/pages/Profile.jsx
-import { Avatar, IconButton, Menu, MenuItem, Stack } from "@mui/material";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import { Avatar, IconButton, Menu, MenuItem, Stack, useTheme } from "@mui/material";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { Link, useNavigate } from "react-router-dom";
 
 import AdminDashboard from "../components/AdminDashboard";
 import Sidebar from "../components/profileSideBar";
@@ -18,13 +17,19 @@ import ProfileDetails from "../components/ProfileDetails";
 import StudentsChart from "../components/StudentsCharts";
 import TeacherCharts from "../components/TeacherCharts";
 
-import { AuthContext } from "../Context/AuthContext";
-import fakeDB from "../Services/AuthServices"; // ✅ students + teachers info
-import coursesData from "./CoursesData"; // ✅ courses info
+import { useAuth } from "../Context/AuthContext";
+import { useCourses } from "../Context/CoursesContext";
+import fakeDB from "../Services/AuthServices";
+import coursesData from "./CoursesData";
+import TeacherCourseManager from "./CreateCourse";
+import SavedCoursesSection from "./SavedCourses";
 
 const Profile = () => {
+    const theme = useTheme();
     const navigate = useNavigate();
-    const auth = useContext(AuthContext);
+    const auth = useAuth();
+    const { savedCourses, toggleSaveCourse, addToCart } = useCourses();
+
     const contextUser = auth?.user ?? null;
     const contextLogout = auth?.logout ?? null;
 
@@ -32,10 +37,9 @@ const Profile = () => {
     const [section, setSection] = useState("dashboard");
     const [date, setDate] = useState(new Date());
     const [visitDates, setVisitDates] = useState([]);
-
     const [anchorEl, setAnchorEl] = useState(null);
 
-    // Load user from context or localStorage
+    // Load user
     useEffect(() => {
         if (contextUser) {
             setUser(contextUser);
@@ -46,7 +50,7 @@ const Profile = () => {
             try {
                 setUser(JSON.parse(stored));
             } catch (err) {
-                console.error("Failed to parse currentUser from localStorage", err);
+                console.error("Failed to parse currentUser", err);
             }
         }
     }, [contextUser]);
@@ -80,7 +84,7 @@ const Profile = () => {
         [contextLogout, navigate]
     );
 
-    // Compute enrolled courses safely
+    // Compute enrolled courses
     const enrolled = useMemo(() => {
         if (!user?.enrolledCourses) return [];
         return user.enrolledCourses.map((ec) =>
@@ -92,6 +96,7 @@ const Profile = () => {
         return <div style={{ padding: 40, textAlign: "center" }}>Loading profile...</div>;
     }
 
+    // Renderer
     const renderContent = () => {
         switch (section) {
             case "dashboard":
@@ -104,12 +109,10 @@ const Profile = () => {
                 return (
                     <div>
                         <h2 style={{ marginBottom: 16 }}>Courses</h2>
-
-                        {/* Student */}
                         {user.role === "student" && (
                             <>
-                                <TeacherCharts user={user} /> {/* optional chart */}
-                                <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "15px" }}>
+                                <TeacherCharts user={user} />
+                                <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: "15px" }}>
                                     {enrolled.map((course, i) =>
                                         course ? (
                                             <ProfileDetails
@@ -125,8 +128,6 @@ const Profile = () => {
                                 </div>
                             </>
                         )}
-
-                        {/* Teacher */}
                         {user.role === "teacher" && (
                             <div>
                                 <TeacherCharts user={user} />
@@ -140,8 +141,6 @@ const Profile = () => {
                                 </ul>
                             </div>
                         )}
-
-                        {/* Admin */}
                         {user.role === "admin" && (
                             <div>
                                 <AdminCharts />
@@ -157,6 +156,19 @@ const Profile = () => {
                     </div>
                 );
 
+            case "savedCourses":
+                const saved = coursesData.filter((c) => savedCourses.includes(c.id));
+                return (
+                    <SavedCoursesSection
+                        savedCourses={saved}
+                        onSaveCourse={toggleSaveCourse}
+                        onAddToCart={addToCart}
+                    />
+                );
+
+            case "createCourse":
+                return <TeacherCourseManager />;
+
             case "students":
                 if (user.role === "teacher" || user.role === "admin") {
                     const students = fakeDB.users.filter((u) => u.role === "student");
@@ -167,7 +179,8 @@ const Profile = () => {
                             <ul style={{ marginTop: 20 }}>
                                 {students.map((s) => (
                                     <li key={s.userId}>
-                                        <strong>{s.name}</strong> - {s.email} - {s.enrolledCourses?.length || 0} courses
+                                        <strong>{s.name}</strong> - {s.email} -{" "}
+                                        {s.enrolledCourses?.length || 0} courses
                                     </li>
                                 ))}
                             </ul>
@@ -186,7 +199,8 @@ const Profile = () => {
                             <ul style={{ marginTop: 20 }}>
                                 {teachers.map((t) => (
                                     <li key={t.userId}>
-                                        <strong>{t.name}</strong> - {t.email} - {t.teachingCourses?.length || 0} courses
+                                        <strong>{t.name}</strong> - {t.email} -{" "}
+                                        {t.teachingCourses?.length || 0} courses
                                     </li>
                                 ))}
                             </ul>
@@ -221,12 +235,18 @@ const Profile = () => {
                         alignItems: "center",
                         padding: "18px 24px",
                         borderBottom: "1px solid #eee",
-                        background: "#fff",
+                        background: theme.palette.background.paper,
                     }}
                 >
                     <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
                         <Stack direction="row" alignItems="center" spacing={1}>
-                            <h2 style={{ margin: 0, fontFamily: "Arial, sans-serif", color: "#0A5EB0" }}>
+                            <h2
+                                style={{
+                                    margin: 0,
+                                    fontFamily: "Arial, sans-serif",
+                                    color: theme.palette.primary.main,
+                                }}
+                            >
                                 Learnlan
                             </h2>
                         </Stack>
@@ -242,7 +262,14 @@ const Profile = () => {
                             <Avatar
                                 src={user.profileImage || "/broken-image.jpg"}
                                 alt={user.name}
-                                sx={{ width: 40, height: 40 }}
+                                sx={{
+                                    width: 40,
+                                    height: 40,
+                                    bgcolor:
+                                        theme.palette.mode === "dark"
+                                            ? "#555"
+                                            : theme.palette.primary.main,
+                                }}
                             />
                         </IconButton>
 

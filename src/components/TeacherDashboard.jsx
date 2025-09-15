@@ -1,7 +1,9 @@
+import { useTheme } from "@emotion/react";
 import TeacherCharts from "./TeacherCharts";
 
 const TeacherDashboard = ({ user }) => {
     // Aggregate teacher info
+    const theme = useTheme()
     const totalCourses = user.teachingCourses.length;
     const totalStudents = user.teachingCourses.reduce(
         (acc, c) => acc + c.studentsEnrolled,
@@ -21,8 +23,8 @@ const TeacherDashboard = ({ user }) => {
                 <div
                     style={{
                         flex: "1",
-                        background: "#0A5EB0",
-                        color: "#fff",
+                        background: theme.palette.primary.main,
+                        color: theme.palette.background.paper,
                         padding: "20px",
                         borderRadius: "12px",
                         textAlign: "center",
@@ -37,7 +39,7 @@ const TeacherDashboard = ({ user }) => {
                 <div
                     style={{
                         flex: "1",
-                        background: "#e96581ff",
+                        background: theme.palette.secondary.main,
                         color: "#fff",
                         padding: "20px",
                         borderRadius: "12px",

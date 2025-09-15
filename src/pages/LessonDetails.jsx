@@ -1,3 +1,4 @@
+import { useTheme } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { markLessonAsWatched } from "../components/ProgressUtilies";
@@ -6,6 +7,7 @@ import coursesData from "./CoursesData";
 
 const LessonDetails = () => {
     const { name, lessonId } = useParams();
+    const theme = useTheme()
     const [playVideo, setPlayVideo] = useState(false);
 
     // Find course
@@ -86,7 +88,7 @@ const LessonDetails = () => {
                                 background: "rgba(0, 0, 0, 0.6)",
                                 borderRadius: "50%",
                                 padding: "25px 35px",
-                                color: "white",
+                                color: theme.palette.background.primary,
                                 fontSize: "2rem",
                             }}
                         >
