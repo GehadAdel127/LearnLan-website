@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 // images
 import Instructors from "../components/Instructors";
+import PopularCourses from "../components/popularCourses";
 import PriceComponent from "../components/PriceComponent";
 import Start from "../components/Start";
 import Testimonial from "../components/Testimonial";
-import PopularCourses from "../components/popularCourses";
-
 
 // custom hook
 import AnimatedSection from '../components/AnimatedSection';
