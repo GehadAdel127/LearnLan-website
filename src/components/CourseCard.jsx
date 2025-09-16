@@ -3,7 +3,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import { Button, Card, CardActions, CardContent, CardMedia, IconButton } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useCourses } from "../Context/CoursesContext";
 
@@ -15,64 +15,71 @@ const CourseCard = ({ id, name, title, image, price, rate, numberOfStudents, num
     const isInCart = cart.some((c) => c.id === id);
 
     return (
-        <Card sx={{ width: 300, borderRadius: 2, boxShadow: 3, overflow: "hidden", position: "relative" }}>
+        <Card
+            sx={{
+                borderRadius: 2,
+                boxShadow: 3,
+                overflow: "hidden",
+                position: "relative",
+                display: "grid",
+                minWidth: "300px",
+                maxWidth: "300px",
+                gridTemplateRows: "auto 1fr auto",
+            }}
+        >
             {/* Image */}
-            <Link to={`/courses/${name}`}>
-                <CardMedia component="img" height="180" image={image} alt={title} />
+            <Link to={`/courses/${name}`} sx={{ gridRow: 1 }}>
+                <CardMedia
+                    component="img"
+                    height="180"
+                    image={image}
+                    alt={title}
+                    sx={{ objectFit: "cover", width: "100%" }}
+                />
             </Link>
-
-            {/* Rating badge */}
-            <div
-                style={{
+            <Box
+                sx={{
                     position: "absolute",
-                    top: "10px",
-                    left: "10px",
-                    color: theme.palette.background.paper,
+                    top: 10,
+                    left: 10,
                     display: "flex",
                     alignItems: "center",
-                    background: "#0c0c0cb9",
-                    gap: "5px",
-                    borderRadius: "20px",
-                    padding: "5px 10px",
-                    fontWeight: "600",
+                    gap: 0.5,
+                    bgcolor: "rgba(12,12,12,0.7)",
+                    color: theme.palette.background.paper,
+                    borderRadius: 2,
+                    px: 1.5,
+                    py: 0.5,
+                    fontWeight: 600,
+                    fontSize: 14
                 }}
             >
-                <StarRateIcon style={{ fontSize: "20px", color: "gold" }} />
+                <StarRateIcon sx={{ fontSize: 20, color: "gold" }} />
                 {rate}
-            </div>
+            </Box>
 
-            <CardContent>
-                <p style={{ fontWeight: 700, fontSize: "16px" }}>
-                    <span style={{ color: theme.palette.primary.main }}>{name}</span> : {title}
-                </p>
-
-                {/* Stats row */}
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
-                    <IconButton
-                        onClick={() =>
-                            toggleSaveCourse({ id, name, title, image, price, rate, numberOfStudents, numberOfLessons })
-                        }
-                    >
+            <CardContent sx={{ flexGrow: 1, gridRow: 2, display: "grid", gridTemplateRows: "auto auto 1fr auto" }}> {/* Assign to grid row 2, and make content a nested grid */}
+                <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+                    <Box component="span" sx={{ color: theme.palette.primary.main }}>{name}</Box>: {title}
+                </Typography>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+                    <IconButton onClick={() => toggleSaveCourse({ id, name, title, image, price, rate, numberOfStudents, numberOfLessons })}>
                         {isSaved ? <BookmarkIcon color="primary" /> : <BookmarkBorderOutlinedIcon color="primary" />}
                     </IconButton>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <PeopleAltOutlinedIcon style={{ marginRight: 5 }} />
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                        <PeopleAltOutlinedIcon fontSize="small" />
                         {numberOfStudents}
-                    </div>
-                </div>
+                    </Box>
+                </Box>
 
                 <hr style={{ margin: "10px 0" }} />
-
-                {/* Price + Cart */}
-                <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-                    <div style={{ fontWeight: 600, color: theme.palette.primary.main }}>${price}</div>
+                <CardActions sx={{ display: "flex", justifyContent: "space-between", p: 0 }}>
+                    <Typography sx={{ fontWeight: 600, color: theme.palette.primary.main }}>${price}</Typography>
                     <Button
                         variant="contained"
                         size="small"
                         disabled={isInCart}
-                        onClick={() =>
-                            addToCart({ id, name, title, image, price, rate, numberOfStudents, numberOfLessons })
-                        }
+                        onClick={() => addToCart({ id, name, title, image, price, rate, numberOfStudents, numberOfLessons })}
                     >
                         {isInCart ? "In Cart" : "Add to Cart"}
                     </Button>

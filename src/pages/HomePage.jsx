@@ -18,8 +18,8 @@ import PopularCourses from "../components/popularCourses";
 const HomePage = () => {
     const theme = useTheme()
     return (
-        <section>
-            <div className="home" style={{ marginTop: "50px", padding: "60px", width: "100%", display: "flex", textAlign: "center", width: "90%" }}>
+        <>
+            <div className="home" style={{ marginTop: "50px", padding: "60px", width: "100%", display: "flex", textAlign: "center", width: "100%" }}>
                 <AnimatedSection animationClass="fadeInLeft">
                     <h2 style={{ fontSize: "32px", fontWeight: "800", padding: "0px", margin: "0px" }}>Unlock Your World with New <span style={{ color: theme.palette.primary.main }}>Languages</span></h2>
                     <AnimatedSection animationClass="fadeInRight">
@@ -34,14 +34,12 @@ const HomePage = () => {
                         </AnimatedSection>
                     </div>
                 </AnimatedSection>
-
             </div>
             <PopularCourses />
             <Start />
             <Instructors />
             <PriceComponent />
-            <Testimonial />
-        </section>
+            <Testimonial /></>
     )
 }
 

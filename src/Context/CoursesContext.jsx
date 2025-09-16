@@ -1,21 +1,39 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CoursesContext = createContext();
 
 export const CoursesProvider = ({ children }) => {
-    const [savedCourses, setSavedCourses] = useState([]);
-    const [cart, setCart] = useState([]);
+    // Load from localStorage (or default to empty)
+    const [savedCourses, setSavedCourses] = useState(() => {
+        const stored = localStorage.getItem("savedCourses");
+        return stored ? JSON.parse(stored) : [];
+    });
 
-    // Toggle save/remove course
+    const [cart, setCart] = useState(() => {
+        const stored = localStorage.getItem("cart");
+        return stored ? JSON.parse(stored) : [];
+    });
+
+    // 🔄 Sync to localStorage whenever savedCourses changes
+    useEffect(() => {
+        localStorage.setItem("savedCourses", JSON.stringify(savedCourses));
+    }, [savedCourses]);
+
+    // 🔄 Sync to localStorage whenever cart changes
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
+
+    // ✅ Toggle save/remove course
     const toggleSaveCourse = (course) => {
         setSavedCourses((prev) =>
             prev.some((c) => c.id === course.id)
                 ? prev.filter((c) => c.id !== course.id)
-                : [...prev, course]
+                : [...prev, { ...course }]
         );
     };
 
-    // Add to cart (with quantity support)
+    // ✅ Add to cart (with quantity support)
     const addToCart = (course) => {
         setCart((prev) => {
             const existing = prev.find((c) => c.id === course.id);
@@ -28,10 +46,12 @@ export const CoursesProvider = ({ children }) => {
         });
     };
 
+    // ✅ Remove course from cart
     const removeFromCart = (id) => {
         setCart((prev) => prev.filter((c) => c.id !== id));
     };
 
+    // ✅ Update quantity (never below 1)
     const updateQuantity = (id, delta) => {
         setCart((prev) =>
             prev.map((c) =>

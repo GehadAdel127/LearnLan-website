@@ -30,7 +30,6 @@ const plans = [
             "Full Assessments And Quizzes",
             "Interactive Assignments And Projects",
             "Monthly progress reports",
-            "Offline course access"
         ],
         icon: LayersOutlinedIcon,
         selected: true
@@ -56,7 +55,7 @@ const PriceComponent = () => {
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "70px", width: "100%" }}>
             <CompentesHeader title="Pricing Plans" head="Simple,easy pricing" />
             <AnimatedSection animationClass="fadeInDown">
-                <div className="priceCards" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginTop: "70px" }}>
+                <div className="priceCards" style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", marginTop: "20px", gap: "20px", flexWrap: "wrap" }}>
                     {plans.map((plan, index) => (
                         <AnimatedSection key={plan.id} animationClass="fadeInDown" delay={`${index * 0.3}s`}>
                             <PriceCards name={plan.name} price={plan.price} features={plan.features} icon={plan.icon} key={plan.id} selected={plan.selected} />

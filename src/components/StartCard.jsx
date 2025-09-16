@@ -9,13 +9,14 @@ import Typography from '@mui/material/Typography';
 const StartCard = ({ title, description, language, image, bottom, backgroundColor, textAlign, color, polygonClipPath, fontSize, height, instructorBackground }) => {
     const theme = useTheme();
     return (
-        <section style={{ width: "100%", position: "relative", bottom: bottom, margin: "10px", padding: height ? "0" : "20px", cursor: "pointer" }} className='card animate__animated animate__bounceIn'>
+        <section style={{ width: "100%", position: "relative", bottom: bottom, cursor: "pointer" }} className='card'>
             <Card sx={{ height: height || "400px", boxShadow: "none", border: "none", backgroundColor: instructorBackground }}>
                 <div style={{
                     background: backgroundColor,
                     clipPath: polygonClipPath,
                     WebkitClipPath: polygonClipPath,
                     height: height ? "350px" : "250px",
+                    minWidth: "300px",
                     position: "relative",
                     overflow: "hidden",
                     borderRadius: "10px"
@@ -26,7 +27,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                         image={image}
                         alt={title}
                         sx={{
-                            objectFit: "cover",
+                            objectFit: "fit",
                             width: "100%",
                             height: "100%",
                             position: "absolute",

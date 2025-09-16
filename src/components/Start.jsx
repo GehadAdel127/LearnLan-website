@@ -1,4 +1,3 @@
-// images
 import { useTheme } from "@emotion/react";
 import image1 from "../assets/images/Globalization.jpeg";
 import image3 from "../assets/images/Learninglanguages (1).jpeg";
@@ -40,19 +39,34 @@ const steps = [
 ];
 
 const Start = () => {
-    const theme = useTheme()
+    const theme = useTheme();
+
     return (
-        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", width: "100%" }}>
             <CompentesHeader title="Simple steps" head="Start Your Learning Journey" />
-            <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
+
+            <div
+                className="cards"
+                style={{
+                    width: "100%",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                    gap: "30px",
+                    padding: "0 50px"
+                }}
+            >
                 {steps.map((step, index) => (
-                    <AnimatedSection key={step.id} animationClass="fadeInUp" delay={`${index * 0.3}s`} width={"20%"}>
-                        <StartCard title={step.title} description={step.description} image={step.image} />
+                    <AnimatedSection key={step.id} animationClass="fadeInDown" delay={`${index * 0.3}s`} >
+                        <StartCard
+                            title={step.title}
+                            description={step.description}
+                            image={step.image}
+                        />
                     </AnimatedSection>
                 ))}
             </div>
-        </section>
-    )
-}
+        </div>
+    );
+};
 
-export default Start
+export default Start;

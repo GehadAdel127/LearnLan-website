@@ -63,7 +63,7 @@ const Header = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                width: "100%",
+                width: "95%",
                 p: 3,
                 borderRadius: 3,
                 zIndex: 100

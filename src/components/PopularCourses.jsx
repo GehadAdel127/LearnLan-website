@@ -67,7 +67,7 @@ const PopularCourses = () => {
     };
 
     return (
-        <section className="PopularCourses" style={{ padding: "50px", paddingTop: "0px" }}>
+        <section className="PopularCourses" style={{ padding: "20px" }}>
             <div className="headerSection" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                 <h2>Our Popular Courses</h2>
                 <div className="linkWithIcon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

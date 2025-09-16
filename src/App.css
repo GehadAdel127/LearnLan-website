@@ -5,6 +5,7 @@
 * {
   font-family: 'Quicksand' !important;
   outline: none !important;
+  box-sizing: border-box !important;
 }
 
 body {
@@ -30,7 +31,7 @@ body.dark {
 .App {
   background-color: var(--bg-color) !important;
   color: var(--text-color);
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   width: 100%;
 }
 
@@ -111,10 +112,6 @@ button {
   padding: 0px !important;
   padding-left: 17px !important;
   color: var(--text-color) !important;
-}
-
-.cards .animate__animated {
-  width: 25%;
 }
 
 /* footer */
