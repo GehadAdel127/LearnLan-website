@@ -19,7 +19,7 @@ const AdminCharts = () => {
             colors={[
                 theme.palette.primary.main,
                 theme.palette.secondary.main,
-                theme.palette.background2.main,
+                theme.palette.background.default,
             ]}
             height={300}
             width={400}

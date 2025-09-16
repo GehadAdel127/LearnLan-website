@@ -1,10 +1,27 @@
-import Form from "../components/Form"
+// src/pages/Login.jsx
+import { useMediaQuery, useTheme } from "@mui/material";
+import Form from "../components/Form";
 
 const Login = () => {
-    return (
-        <Form flexDirection="row-reverse" title1="Hello," title2="Welcome Back" description="Hey,Welcome back to your place"
-            forget="true" sign="Sign in" unsign="Sign Up" unsignTitle="Don't have an account?" linkPath="/register" padding="0 0 0 50px" remember="true" />
-    )
-}
+    const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down("md")); // true if < sm
 
-export default Login
+    return (
+        <Form
+            flexDirection={isSmall ? "column" : "row-reverse"}
+            title1="Hello,"
+            title2="Welcome Back"
+            description="Hey, Welcome back to your place"
+            forget="true"
+            sign="Sign in"
+            unsign="Sign Up"
+            unsignTitle="Don't have an account?"
+            linkPath="/register"
+            padding={isSmall ? "0" : "0 0 0 50px"} // optional: remove side padding on mobile
+            remember="true"
+            isSmall={isSmall}
+        />
+    );
+};
+
+export default Login;

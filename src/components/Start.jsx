@@ -57,7 +57,7 @@ const Start = () => {
                 }}
             >
                 {steps.map((step, index) => (
-                    <AnimatedSection key={step.id} animationClass="fadeInDown" delay={`${index * 0.3}s`} >
+                    <AnimatedSection key={step.id} animationClass="fadeInUp" delay={`${index * 0.1}s`} >
                         <StartCard
                             title={step.title}
                             description={step.description}

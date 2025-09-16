@@ -24,7 +24,7 @@ const Footer = () => {
                     xs: "20px", // Smaller padding on extra small screens
                     md: "50px", // Original padding on medium screens and up
                 },
-                backgroundColor: theme.palette.background.default, // Example: ensure footer background matches theme
+                backgroundColor: theme.palette.background.paper, // Example: ensure footer background matches theme
                 color: theme.palette.text.primary, // Ensure text color is readable
                 borderTop: `1px solid ${theme.palette.divider}`, // Optional: subtle separator
             }}

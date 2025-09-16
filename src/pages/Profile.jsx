@@ -388,11 +388,10 @@ const Profile = () => {
                             width: isMobile ? "100%" : 300,
                             padding: 16,
                             display: "flex",
-                            justifyContent: "center",
+                            justifyContent: "start",
                             alignItems: "center",
                             flexDirection: "column",
                             borderRadius: 8,
-                            border: "1px solid #eee",
                         }}
                     >
                         <div style={{ marginBottom: 12, fontWeight: 700 }}>My Calendar</div>

@@ -98,7 +98,7 @@ const Instructors = () => {
                 }}
             >
                 {instructorsDetails.map((instructorsDetail, index) => (
-                    <AnimatedSection key={instructorsDetail.id} animationClass="fadeInDown" delay={`${index * 0.3}s`} >
+                    <AnimatedSection key={instructorsDetail.id} animationClass="fadeInUp" delay={`${index * 0.1}s`} >
                         <StartCard title={instructorsDetail.name} language={instructorsDetail.language} description={instructorsDetail.description} image={instructorsDetail.image}
                             backgroundColor={instructorsDetail.backgroundColor} textAlign={instructorsDetail.textAlign} color={instructorsDetail.color}
                             polygonClipPath={instructorsDetail.polygonClipPath} fontSize={instructorsDetail.fontSize}

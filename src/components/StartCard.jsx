@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 const StartCard = ({ title, description, language, image, bottom, backgroundColor, textAlign, color, polygonClipPath, fontSize, height, instructorBackground }) => {
     const theme = useTheme();
     return (
-        <Box sx={{ width: "100%", position: "relative", bottom: { xs: "0", md: bottom }, cursor: "pointer", minWidth: "300px", maxWidth: "300px", }} className='card'>
+        <Box sx={{ width: "100%", position: "relative", bottom: { xs: "0", md: bottom }, cursor: "pointer", minWidth: "250px", maxWidth: "250px", }} className='card'>
             <Card sx={{ height: height || "400px", boxShadow: "none", border: "none", backgroundColor: instructorBackground }}>
                 <div style={{
                     background: backgroundColor,

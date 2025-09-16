@@ -346,6 +346,7 @@ const Header = () => {
                                         color: theme.palette.background.paper,
                                         fontSize: "12px",
                                         textTransform: "capitalize",
+                                        minWidth: "120px"
                                     }}
                                 >
                                     Try for free

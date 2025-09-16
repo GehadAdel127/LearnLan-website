@@ -75,28 +75,26 @@ const PopularCourses = () => {
                     <ChevronRightOutlinedIcon style={{ color: theme.palette.primary.main, fontWeight: "400" }} />
                 </div>
             </div>
-            <AnimatedSection animationClass="fadeInDown">
-                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
-                    {coursesData.map((course, index) => (
-                        <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.3}s`}>
-                            <CourseCard
-                                id={course.id}
-                                name={course.name}
-                                title={course.title}
-                                image={course.image}
-                                price={course.price}
-                                rate={course.rate}
-                                numberOfStudents={course.numberOfStudents}
-                                numberOfLessons={course.numberOfLessons}
-                                isSaved={savedCourses.includes(course.id)}
-                                onSaveCourse={handleSaveCourse}
-                                onAddToCart={handleAddToCart}
-                            />
+            <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
+                {coursesData.map((course, index) => (
+                    <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.1}s`}>
+                        <CourseCard
+                            id={course.id}
+                            name={course.name}
+                            title={course.title}
+                            image={course.image}
+                            price={course.price}
+                            rate={course.rate}
+                            numberOfStudents={course.numberOfStudents}
+                            numberOfLessons={course.numberOfLessons}
+                            isSaved={savedCourses.includes(course.id)}
+                            onSaveCourse={handleSaveCourse}
+                            onAddToCart={handleAddToCart}
+                        />
 
-                        </AnimatedSection>
-                    ))}
-                </div>
-            </AnimatedSection>
+                    </AnimatedSection>
+                ))}
+            </div>
         </section>
     );
 };

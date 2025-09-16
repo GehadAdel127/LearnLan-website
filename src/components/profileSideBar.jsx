@@ -54,7 +54,7 @@ const Sidebar = ({ user, onSelect }) => {
                     color: theme.palette.background.paper,
                     padding: isMobile ? "16px" : "20px",
                     margin: 0,
-                    fontSize: isMobile ? "18px" : "20px",
+                    fontSize: isMobile ? "16px" : "18px",
                     display: "flex",
                     alignItems: "center",
                     borderBottom: "1px solid rgba(255,255,255,0.2)",

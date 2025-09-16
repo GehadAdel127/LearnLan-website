@@ -68,34 +68,32 @@ const PriceComponent = () => {
             }}
         >
             <CompentesHeader title="Pricing Plans" head="Simple,easy pricing" />
-            <AnimatedSection animationClass="fadeInDown">
-                <Stack
-                    className="priceCards"
-                    direction={{ xs: 'column', md: 'row' }} // Stack vertically on small, row on medium and up
-                    spacing={{ xs: 3, md: 2 }} // Responsive spacing
-                    sx={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100%",
-                        mt: { xs: 3, md: 8 }, // Responsive margin-top
-                        maxWidth: 'lg', // Limit width on very large screens
-                        marginBottom: "50px"
-                    }}
-                >
-                    {plans.map((plan, index) => (
-                        <AnimatedSection key={plan.id} animationClass="fadeInDown" delay={`${index * 0.2}s`} >
-                            {/* Conditionally apply sx prop for selected plan */}
-                            <PriceCards
-                                name={plan.name}
-                                price={plan.price}
-                                features={plan.features}
-                                icon={plan.icon}
-                                selected={plan.selected}
-                            />
-                        </AnimatedSection>
-                    ))}
-                </Stack>
-            </AnimatedSection>
+            <Stack
+                className="priceCards"
+                direction={{ xs: 'column', md: 'row' }} // Stack vertically on small, row on medium and up
+                spacing={{ xs: 3, md: 2 }} // Responsive spacing
+                sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                    mt: { xs: 3, md: 8 }, // Responsive margin-top
+                    maxWidth: 'lg', // Limit width on very large screens
+                    marginBottom: "50px"
+                }}
+            >
+                {plans.map((plan, index) => (
+                    <AnimatedSection key={plan.id} animationClass="fadeInUp" delay={`${index * 0.1}s`} >
+                        {/* Conditionally apply sx prop for selected plan */}
+                        <PriceCards
+                            name={plan.name}
+                            price={plan.price}
+                            features={plan.features}
+                            icon={plan.icon}
+                            selected={plan.selected}
+                        />
+                    </AnimatedSection>
+                ))}
+            </Stack>
         </Box>
     )
 }
