@@ -20,12 +20,6 @@ body {
   --secondary-color: #e96581ff;
 }
 
-body.dark {
-  --bg-color: #121212;
-  --text-color: #fff;
-  --primary-color: #90caf9;
-  --secondary-color: #f48fb1;
-}
 
 /* Use variables */
 .App {
@@ -33,10 +27,6 @@ body.dark {
   color: var(--text-color);
   /* overflow-x: hidden; */
   width: 100%;
-}
-
-a {
-  color: var(--primary-color);
 }
 
 button {
@@ -123,6 +113,11 @@ button {
 
 footer a {
   color: var(--text-color);
+  font-weight: 500;
+}
+
+footer a:hover {
+  color: var(--primary-color) !important;
 }
 
 /* forms */

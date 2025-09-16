@@ -18,7 +18,7 @@ const HomePage = () => {
     const theme = useTheme()
     return (
         <>
-            <div className="home" style={{ marginTop: "50px", padding: "60px", width: "100%", display: "flex", textAlign: "center" }}>
+            <div className="home" style={{ marginTop: "50px", padding: "60px", width: "100%", display: "flex", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
                 <AnimatedSection animationClass="fadeInLeft">
                     <h2 style={{ fontSize: "32px", fontWeight: "f800", padding: "0px", margin: "0px" }}>Unlock Your World with New <span style={{ color: theme.palette.primary.main }}>Languages</span></h2>
                     <AnimatedSection animationClass="fadeInRight">

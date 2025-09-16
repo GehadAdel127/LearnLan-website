@@ -10,6 +10,7 @@ import image4 from "../assets/images/teacher4.png";
 import CompentesHeader from "./CompentesHeader";
 
 // custom hook
+import { Box, Stack } from "@mui/material";
 import AnimatedSection from '../components/AnimatedSection';
 
 
@@ -70,9 +71,32 @@ const instructorsDetails = [
 const Instructors = () => {
     const theme = useTheme()
     return (
-        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", width: "100%" }}>
+        <Box
+            component="section"
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                mt: { xs: 5, md: 9 }, // Responsive margin-top
+                px: { xs: 2, sm: 3, md: 0 }, // Add horizontal padding for smaller screens
+            }}
+        >
             <CompentesHeader title="Our instructors" head="Meet the passionate team" />
-            <div className="cards" style={{ width: "100%", gap: "10px", display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap" }}>
+            <Stack
+                className="cards"
+                direction={{ xs: "column", md: "row" }} // Stack vertically on small, row on medium and up
+                spacing={{ xs: 3, md: 4 }} // Responsive gap between cards
+                sx={{
+                    width: "100%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: { xs: "nowrap", md: "wrap" }, // Allow cards to wrap to the next line on smaller screens
+                    mt: { xs: 3, md: 5 }, // Responsive margin-top
+                    maxWidth: 'lg', // Limit width on very large screens for better readability
+                }}
+            >
                 {instructorsDetails.map((instructorsDetail, index) => (
                     <AnimatedSection key={instructorsDetail.id} animationClass="fadeInDown" delay={`${index * 0.3}s`} >
                         <StartCard title={instructorsDetail.name} language={instructorsDetail.language} description={instructorsDetail.description} image={instructorsDetail.image}
@@ -82,8 +106,8 @@ const Instructors = () => {
                     </AnimatedSection>
 
                 ))}
-            </div>
-        </section>
+            </Stack>
+        </Box>
     )
 }
 

@@ -6,13 +6,14 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
-const PriceCards = ({ name, price, features, icon: IconComponent }) => {
+const PriceCards = ({ name, price, features, icon: IconComponent, selected }) => {
     const theme = useTheme();
     const cardStyle = {
         height: "450px",
-        padding: "50px",
+        padding: "50px 30px",
         boxShadow: "10px 10px 10px 10px #8080801e",
         position: "relative",
+        top: selected ? { xs: 0, md: "-30px" } : ""
     }
     return (
         <section style={{ width: "320px" }} className='card animate__animated animate__slideInDown'>

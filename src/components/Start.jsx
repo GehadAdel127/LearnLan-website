@@ -49,8 +49,9 @@ const Start = () => {
                 className="cards"
                 style={{
                     width: "100%",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                    display: "flex",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
                     gap: "30px",
                     padding: "0 50px"
                 }}

@@ -1,6 +1,7 @@
 // StartCard.jsx
 // MUI 
 import { useTheme } from '@emotion/react';
+import { Box } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,14 +10,13 @@ import Typography from '@mui/material/Typography';
 const StartCard = ({ title, description, language, image, bottom, backgroundColor, textAlign, color, polygonClipPath, fontSize, height, instructorBackground }) => {
     const theme = useTheme();
     return (
-        <section style={{ width: "100%", position: "relative", bottom: bottom, cursor: "pointer" }} className='card'>
+        <Box sx={{ width: "100%", position: "relative", bottom: { xs: "0", md: bottom }, cursor: "pointer", minWidth: "300px", maxWidth: "300px", }} className='card'>
             <Card sx={{ height: height || "400px", boxShadow: "none", border: "none", backgroundColor: instructorBackground }}>
                 <div style={{
                     background: backgroundColor,
                     clipPath: polygonClipPath,
                     WebkitClipPath: polygonClipPath,
                     height: height ? "350px" : "250px",
-                    minWidth: "300px",
                     position: "relative",
                     overflow: "hidden",
                     borderRadius: "10px"
@@ -59,7 +59,7 @@ const StartCard = ({ title, description, language, image, bottom, backgroundColo
                     </Typography>
                 </CardContent>
             </Card>
-        </section >
+        </ Box>
     );
 };
 

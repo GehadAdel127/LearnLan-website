@@ -1,9 +1,11 @@
 // src/components/profileSideBar.jsx
 import { useTheme } from "@emotion/react";
+import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
 const Sidebar = ({ user, onSelect }) => {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [selected, setSelected] = useState("dashboard");
 
     // links differ per role
@@ -22,7 +24,6 @@ const Sidebar = ({ user, onSelect }) => {
             : []),
         { key: "account", label: "Account" },
         { key: "logout", label: "Logout" },
-
     ];
 
     // Dashboard title
@@ -39,23 +40,21 @@ const Sidebar = ({ user, onSelect }) => {
         <aside
             style={{
                 flexShrink: 0,
-                width: "20%",
+                width: isMobile ? "100%" : "20%",
                 background: theme.palette.primary.main,
-                borderRight: "1px solid #ddd",
-                borderTopRightRadius: "10px",
-                borderBottomRightRadius: "10px",
+                borderRight: isMobile ? "none" : "1px solid #ddd",
+                borderRadius: isMobile ? "0" : "0 10px 10px 0",
                 display: "flex",
                 flexDirection: "column",
-                minHeight: "100vh",
+                minHeight: isMobile ? "100vh" : "auto",
             }}
         >
             <h2
                 style={{
                     color: theme.palette.background.paper,
-                    padding: "20px",
-                    height: "50px",
+                    padding: isMobile ? "16px" : "20px",
                     margin: 0,
-                    fontSize: "20px",
+                    fontSize: isMobile ? "18px" : "20px",
                     display: "flex",
                     alignItems: "center",
                     borderBottom: "1px solid rgba(255,255,255,0.2)",
@@ -64,7 +63,14 @@ const Sidebar = ({ user, onSelect }) => {
                 {roleTitle}
             </h2>
 
-            <nav style={{ flex: 1, padding: "16px 0" }}>
+            <nav
+                style={{
+                    flex: 1,
+                    padding: isMobile ? "8px 0" : "16px 0",
+                    display: "flex",
+                    flexDirection: "column",
+                }}
+            >
                 {links.map((link) => (
                     <div
                         key={link.key}
@@ -73,29 +79,28 @@ const Sidebar = ({ user, onSelect }) => {
                             onSelect(link.key);
                         }}
                         style={{
-                            padding: "12px 20px",
+                            padding: isMobile ? "12px 16px" : "12px 20px",
                             cursor: "pointer",
-                            fontSize: "18px",
+                            fontSize: isMobile ? "16px" : "18px",
                             fontWeight: "500",
                             transition: "all 0.2s ease",
                             color:
-                                selected === link.key ? theme.palette.background.paper : "#b9b5b5ff",
-                            transform:
                                 selected === link.key
-                                    ? "translateX(10px)"
-                                    : "translateX(0)",
+                                    ? theme.palette.background.paper
+                                    : "#b9b5b5ff",
+                            transform:
+                                selected === link.key ? "translateX(10px)" : "translateX(0)",
                         }}
                         onMouseEnter={(e) => {
                             if (selected !== link.key) {
-                                e.currentTarget.style.transform =
-                                    "translateX(10px)";
-                                e.currentTarget.style.color = theme.palette.background.paper;
+                                e.currentTarget.style.transform = "translateX(10px)";
+                                e.currentTarget.style.color =
+                                    theme.palette.background.paper;
                             }
                         }}
                         onMouseLeave={(e) => {
                             if (selected !== link.key) {
-                                e.currentTarget.style.transform =
-                                    "translateX(0)";
+                                e.currentTarget.style.transform = "translateX(0)";
                                 e.currentTarget.style.color = "#b9b5b5ff";
                             }
                         }}

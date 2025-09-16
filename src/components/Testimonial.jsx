@@ -8,7 +8,6 @@ import Rating from '@mui/material/Rating';
 
 
 // images imports
-import Button from '@mui/material/Button';
 import student from "../assets/images/student.jpg";
 import studentGirl from "../assets/images/studentgirl.jpg";
 import studentGirl2 from "../assets/images/studentgirl2.jpg";
@@ -40,7 +39,7 @@ const itemData = [
 
 const Testimonial = () => {
     return (
-        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginBottom: "50px" }}>
             <CompentesHeader title="Testimonial" head="Over 1000+ students trust us" />
             <AnimatedSection animationClass="slideInDown">
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px" }}>
@@ -71,8 +70,6 @@ const Testimonial = () => {
                     ))}
                 </div>
             </AnimatedSection>
-            <CompentesHeader title="Become an instructor" head="You can join with LearnLang as an instrutor?" />
-            <Button variant="contained">Learn More</Button>
         </section>
     )
 }

@@ -1,5 +1,15 @@
 // src/pages/Profile.jsx
-import { Avatar, IconButton, Menu, MenuItem, Stack, useTheme } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+    Avatar,
+    Drawer,
+    IconButton,
+    Menu,
+    MenuItem,
+    Stack,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -26,6 +36,7 @@ import SavedCoursesSection from "./SavedCourses";
 
 const Profile = () => {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const navigate = useNavigate();
     const auth = useAuth();
     const { savedCourses, toggleSaveCourse, addToCart } = useCourses();
@@ -38,6 +49,13 @@ const Profile = () => {
     const [date, setDate] = useState(new Date());
     const [visitDates, setVisitDates] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
+
+    // Sidebar drawer toggle
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const toggleDrawer = (open) => () => {
+        setDrawerOpen(open);
+    };
 
     // Load user
     useEffect(() => {
@@ -93,7 +111,11 @@ const Profile = () => {
     }, [user]);
 
     if (!user) {
-        return <div style={{ padding: 40, textAlign: "center" }}>Loading profile...</div>;
+        return (
+            <div style={{ padding: 40, textAlign: "center" }}>
+                Loading profile...
+            </div>
+        );
     }
 
     // Renderer
@@ -112,7 +134,14 @@ const Profile = () => {
                         {user.role === "student" && (
                             <>
                                 <TeacherCharts user={user} />
-                                <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: "15px" }}>
+                                <div
+                                    style={{
+                                        marginTop: 20,
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: "15px",
+                                    }}
+                                >
                                     {enrolled.map((course, i) =>
                                         course ? (
                                             <ProfileDetails
@@ -222,9 +251,26 @@ const Profile = () => {
     };
 
     return (
-        <div style={{ display: "flex", minHeight: "100vh" }}>
-            {/* Sidebar */}
-            <Sidebar user={user} onSelect={setSection} />
+        <div
+            style={{
+                display: "flex",
+                minHeight: "100vh",
+                flexDirection: isMobile ? "column" : "row",
+            }}
+        >
+            {/* Sidebar - show drawer on mobile */}
+            {!isMobile && <Sidebar user={user} onSelect={setSection} />}
+            {isMobile && (
+                <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+                    <Sidebar
+                        user={user}
+                        onSelect={(s) => {
+                            setSection(s);
+                            setDrawerOpen(false);
+                        }}
+                    />
+                </Drawer>
+            )}
 
             <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
                 {/* Header */}
@@ -233,26 +279,41 @@ const Profile = () => {
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        padding: "18px 24px",
+                        padding: isMobile ? "12px 16px" : "18px 24px",
                         borderBottom: "1px solid #eee",
                         background: theme.palette.background.paper,
+                        flexWrap: "wrap",
                     }}
                 >
-                    <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-                        <Stack direction="row" alignItems="center" spacing={1}>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                        {isMobile && (
+                            <IconButton onClick={toggleDrawer(true)}>
+                                <MenuIcon />
+                            </IconButton>
+                        )}
+                        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
                             <h2
                                 style={{
                                     margin: 0,
                                     fontFamily: "Arial, sans-serif",
-                                    color: theme.palette.primary.main,
+                                    fontSize: isMobile ? "18px" : "22px",
+                                    color: "#213547ff"
                                 }}
                             >
-                                Learnlan
+                                Learn<span style={{ color: theme.palette.primary.main }}>lan</span>
                             </h2>
-                        </Stack>
-                    </Link>
+                        </Link>
+                    </Stack>
 
-                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 12,
+                            marginTop: isMobile ? 8 : 0,
+                            flexWrap: "wrap",
+                        }}
+                    >
                         <div style={{ textAlign: "right", marginRight: 8 }}>
                             <div style={{ fontSize: 14, fontWeight: 700 }}>{user.name}</div>
                             <div style={{ fontSize: 12, color: "#666" }}>{user.email}</div>
@@ -291,6 +352,14 @@ const Profile = () => {
                                 Profile
                             </MenuItem>
                             <MenuItem
+                                onClick={() => {
+                                    navigate("/cart");
+                                    handleMenuClose();
+                                }}
+                            >
+                                Cart
+                            </MenuItem>
+                            <MenuItem
                                 onClick={(e) => {
                                     handleLogout(e);
                                     handleMenuClose();
@@ -303,11 +372,29 @@ const Profile = () => {
                 </header>
 
                 {/* Main content */}
-                <main style={{ display: "flex", gap: 24, padding: 24 }}>
+                <main
+                    style={{
+                        display: "flex",
+                        gap: 24,
+                        padding: isMobile ? 12 : 24,
+                        flexDirection: isMobile ? "column" : "row",
+                    }}
+                >
                     <section style={{ flex: 1 }}>{renderContent()}</section>
 
                     {/* Calendar */}
-                    <aside style={{ width: 300, padding: 16, borderRadius: 8 }}>
+                    <aside
+                        style={{
+                            width: isMobile ? "100%" : 300,
+                            padding: 16,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "column",
+                            borderRadius: 8,
+                            border: "1px solid #eee",
+                        }}
+                    >
                         <div style={{ marginBottom: 12, fontWeight: 700 }}>My Calendar</div>
                         <Calendar
                             onChange={setDate}
@@ -315,7 +402,8 @@ const Profile = () => {
                             prevLabel="<"
                             nextLabel=">"
                             tileClassName={({ date: tileDate, view }) => {
-                                const today = new Date().toDateString() === tileDate.toDateString();
+                                const today =
+                                    new Date().toDateString() === tileDate.toDateString();
                                 if (view === "month") {
                                     if (today) return "today";
                                     if (isVisited(tileDate)) return "visited-day";

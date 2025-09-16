@@ -18,7 +18,7 @@ const Lessons = () => {
     // Handle the case where no courses are found for the specified language.
     if (!filteredLessons) {
         return (
-            <div style={{ marginTop: "150px", padding: "50px", textAlign: "center" }}>
+            <div style={{ marginTop: "50px", padding: "50px", textAlign: "center" }}>
                 <h2>No Courses Found</h2>
                 <p>There are no courses available for this language.</p>
             </div>
@@ -37,7 +37,7 @@ const Lessons = () => {
                 All {filteredcourses.name} Course Lessons
             </h2>
             {displayLessons.map((lesson, index) => (
-                <div style={{ width: "20%" }} key={lesson.lessonId}>
+                <div key={lesson.lessonId}>
                     <AnimatedSection animationClass="fadeInDown" delay={`${index * 0.1}s`}>
                         <LessonsCard link={`/courses/${name}/${lesson.lessonId}`} title={filteredLessons.title} lessonTitle={lesson.lessonTitle} image={filteredcourses.image} description={lesson.description} />
                     </AnimatedSection>

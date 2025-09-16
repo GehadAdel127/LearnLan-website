@@ -3,6 +3,9 @@ import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import CompentesHeader from './CompentesHeader';
 import PriceCards from './PriceCards';
 
+// MUI
+import { Box, Stack } from '@mui/material'; // Import Box and Stack for better layout control
+
 // custom hook
 import AnimatedSection from './AnimatedSection';
 
@@ -32,7 +35,7 @@ const plans = [
             "Monthly progress reports",
         ],
         icon: LayersOutlinedIcon,
-        selected: true
+        selected: true // This plan is marked as selected
     },
     {
         id: 3,
@@ -52,19 +55,49 @@ const plans = [
 
 const PriceComponent = () => {
     return (
-        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "70px", width: "100%" }}>
+        <Box
+            component="section"
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                mt: { xs: 5, md: 9 }, // Responsive margin-top
+                width: "100%",
+                px: { xs: 2, sm: 3, md: 0 } // Add horizontal padding for smaller screens
+            }}
+        >
             <CompentesHeader title="Pricing Plans" head="Simple,easy pricing" />
             <AnimatedSection animationClass="fadeInDown">
-                <div className="priceCards" style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", marginTop: "20px", gap: "20px", flexWrap: "wrap" }}>
+                <Stack
+                    className="priceCards"
+                    direction={{ xs: 'column', md: 'row' }} // Stack vertically on small, row on medium and up
+                    spacing={{ xs: 3, md: 2 }} // Responsive spacing
+                    sx={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100%",
+                        mt: { xs: 3, md: 8 }, // Responsive margin-top
+                        maxWidth: 'lg', // Limit width on very large screens
+                        marginBottom: "50px"
+                    }}
+                >
                     {plans.map((plan, index) => (
-                        <AnimatedSection key={plan.id} animationClass="fadeInDown" delay={`${index * 0.3}s`}>
-                            <PriceCards name={plan.name} price={plan.price} features={plan.features} icon={plan.icon} key={plan.id} selected={plan.selected} />
+                        <AnimatedSection key={plan.id} animationClass="fadeInDown" delay={`${index * 0.2}s`} >
+                            {/* Conditionally apply sx prop for selected plan */}
+                            <PriceCards
+                                name={plan.name}
+                                price={plan.price}
+                                features={plan.features}
+                                icon={plan.icon}
+                                selected={plan.selected}
+                            />
                         </AnimatedSection>
                     ))}
-                </div>
+                </Stack>
             </AnimatedSection>
-        </section>
+        </Box>
     )
 }
 
-export default PriceComponent
+export default PriceComponent;
