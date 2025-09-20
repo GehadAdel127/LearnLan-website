@@ -125,12 +125,11 @@ footer a:hover {
 }
 
 /* forms */
-form .css-1xp5r68-MuiFormControl-root-MuiTextField-root {
+form .css-1pv2xcc {
   width: 100% !important;
 }
 
-form .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input,
-.css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
+form .css-1dsj8i6 {
   padding: 30px 14px !important;
 }
 
