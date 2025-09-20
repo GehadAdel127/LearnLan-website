@@ -41,7 +41,7 @@ const Testimonial = () => {
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginBottom: "50px" }}>
             <CompentesHeader title="Testimonial" head="Over 1000+ students trust us" />
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px", width: "98%" }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px", width: "70%" }}>
                     {itemData.map((item, index) => (
                         <ImageListItem key={item.id} style={{ width: "350px", height: "300px", cursor: "pointer" }}>
                             <img
