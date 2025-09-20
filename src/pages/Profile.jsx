@@ -1,5 +1,8 @@
 // src/pages/Profile.jsx
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import {
     Avatar,
     Drawer,
@@ -23,10 +26,10 @@ import AccountPage from "./AccountPage";
 
 import AdminCharts from "../components/AdminCharts";
 import AdminTeachersChart from "../components/AdminTeacherCharts";
+import AnimatedSection from "../components/AnimatedSection";
 import ProfileDetails from "../components/ProfileDetails";
 import StudentsChart from "../components/StudentsCharts";
 import TeacherCharts from "../components/TeacherCharts";
-import AnimatedSection from "../components/AnimatedSection";
 
 import { useAuth } from "../Context/AuthContext";
 import { useCourses } from "../Context/CoursesContext";
@@ -382,25 +385,31 @@ const Profile = () => {
                                     handleMenuClose();
                                 }}
                             >
+                                <AccountCircleOutlinedIcon sx={{ mr: 1 }} />
                                 Profile
                             </MenuItem>
+
                             <MenuItem
                                 onClick={() => {
                                     navigate("/cart");
                                     handleMenuClose();
                                 }}
                             >
+                                <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
                                 Cart
                             </MenuItem>
+
                             <MenuItem
                                 onClick={(e) => {
                                     handleLogout(e);
                                     handleMenuClose();
                                 }}
                             >
+                                <LogoutOutlinedIcon sx={{ mr: 1 }} />
                                 Logout
                             </MenuItem>
                         </Menu>
+
                     </div>
                 </header>
 
