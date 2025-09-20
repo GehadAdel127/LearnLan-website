@@ -16,7 +16,7 @@ import { loginService, registerService } from '../Services/AuthServices'
 import AnimatedSection from './AnimatedSection'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign, unsignTitle, linkPath, remember, nameInput, isSmall }) => {
+const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign, unsignTitle, linkPath, remember, nameInput }) => {
     const theme = useTheme()
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
