@@ -26,6 +26,7 @@ import AdminTeachersChart from "../components/AdminTeacherCharts";
 import ProfileDetails from "../components/ProfileDetails";
 import StudentsChart from "../components/StudentsCharts";
 import TeacherCharts from "../components/TeacherCharts";
+import AnimatedSection from "../components/AnimatedSection";
 
 import { useAuth } from "../Context/AuthContext";
 import { useCourses } from "../Context/CoursesContext";
