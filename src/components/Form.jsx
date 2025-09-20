@@ -1,8 +1,12 @@
 import { useTheme } from '@emotion/react'
+import Visibility from "@mui/icons-material/Visibility"
+import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
+import IconButton from "@mui/material/IconButton"
+import InputAdornment from "@mui/material/InputAdornment"
 import TextField from '@mui/material/TextField'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -21,6 +25,8 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
     const { login } = useAuth()
     const [role, setRole] = useState("student");
     const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -82,22 +88,49 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                             </AnimatedSection>}
                             {!remember && <AnimatedSection animationClass="fadeInDown" delay='0.6s' >
                                 <TextField
-                                    id="outlined-new-password-input"
-                                    label="New Password"
+                                    id="outlined-password-input"
+                                    label="Password"
                                     variant="outlined"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     autoComplete="current-password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    onClick={() => setShowPassword((prev) => !prev)}
+                                                    edge="end"
+                                                >
+                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}
                                 />
+
                             </AnimatedSection>}
                             <AnimatedSection animationClass="fadeInDown" delay='0.7s' >
                                 <TextField
                                     id="outlined-password-input"
                                     label="Password"
                                     variant="outlined"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     autoComplete="current-password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    onClick={() => setShowPassword((prev) => !prev)}
+                                                    edge="end"
+                                                >
+                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}
                                 />
                             </AnimatedSection>
                             {sign === "Sign Up" && (
