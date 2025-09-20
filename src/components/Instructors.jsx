@@ -9,9 +9,8 @@ import image3 from "../assets/images/teacher3.png";
 import image4 from "../assets/images/teacher4.png";
 import CompentesHeader from "./CompentesHeader";
 
-// custom hook
 import { Box, Stack } from "@mui/material";
-import AnimatedSection from '../components/AnimatedSection';
+
 
 
 const polygonClipPath = 'polygon(0% 10%, 100% 0%, 100% 90%, 0% 100%)';
@@ -84,7 +83,6 @@ const Instructors = () => {
             }}
         >
             <CompentesHeader title="Our instructors" head="Meet the passionate team" />
-            <AnimatedSection animationClass="fadeInUp" delay="0.2s">
                 <Stack
                     className="cards"
                     direction={{ xs: "column", md: "row" }}
@@ -115,7 +113,6 @@ const Instructors = () => {
 
                     ))}
                 </Stack>
-            </AnimatedSection>
         </Box>
     )
 }
