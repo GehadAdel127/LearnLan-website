@@ -161,6 +161,45 @@ form .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input,
   box-shadow: 10px 10px 10px #ddd;
 }
 
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  vertical-align: bottom;
+  font-family: "Quicksand";
+  /* Align with surrounding text */
+  line-height: 1.2;
+  /* Match the header line height */
+  animation: typing 4s steps(9, end) infinite, blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+
+  0%,
+  100% {
+    width: 0;
+  }
+
+  50% {
+    width: 9ch;
+  }
+
+  /* Number of characters in "Languages" */
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: currentColor;
+  }
+}
+
 /* Container */
 .react-calendar {
   width: 100%;

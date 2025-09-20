@@ -116,7 +116,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                                     />
                                 </AnimatedSection>
                             )}
-                            <AnimatedSection animationClass="fadeInDown" delay="9s">
+                            <AnimatedSection animationClass="fadeInDown" delay="0.9s">
                                 <FormControl fullWidth>
                                     <InputLabel id="role-label">Role</InputLabel>
                                     <Select

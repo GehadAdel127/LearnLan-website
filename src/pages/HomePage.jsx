@@ -21,8 +21,12 @@ const HomePage = () => {
             <div className="home" style={{ marginTop: "50px", padding: "60px", textAlign: "center" }}>
                 <AnimatedSection animationClass="fadeInLeft">
                     <h2 style={{ fontSize: "32px", fontWeight: "800" }}>
-                        Unlock Your World with New <span style={{ color: theme.palette.primary.main }}>Languages</span>
+                        Unlock Your World with New{" "}
+                        <span className="typewriter" style={{ color: theme.palette.primary.main }}>
+                            Languages
+                        </span>
                     </h2>
+
                 </AnimatedSection>
 
                 <AnimatedSection animationClass="fadeInRight" delay="0.2s">
