@@ -6,9 +6,6 @@ import PriceCards from './PriceCards';
 // MUI
 import { Box, Stack } from '@mui/material';
 
-// custom hook
-import AnimatedSection from './AnimatedSection';
-
 const plans = [
     {
         id: 1,
@@ -68,7 +65,6 @@ const PriceComponent = () => {
             }}
         >
             <CompentesHeader title="Pricing Plans" head="Simple,easy pricing" />
-            <AnimatedSection animationClass="fadeInUp" delay="0.2s" >
                 <Stack
                     className="priceCards"
                     direction={{ xs: 'column', md: 'row' }}
@@ -93,7 +89,6 @@ const PriceComponent = () => {
                         />
                     ))}
                 </Stack>
-            </AnimatedSection>
         </Box>
     )
 }
