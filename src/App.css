@@ -128,11 +128,8 @@ footer a:hover {
 form .css-1pv2xcc {
   width: 100% !important;
 }
-
-form .css-1pk1fka:-webkit-autofill {
-  padding: 12px 12px !important;
-}
-form .css-qwdxx6:-webkit-autofill{
+form .css-qwdxx6:-webkit-autofill ,
+form .css-1pk1fka:-webkit-autofill{
   padding: 30px 12px;
 }
 /* profile */
