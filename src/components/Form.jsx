@@ -14,6 +14,7 @@ import loginImage from "../assets/images/Globalization.jpeg"
 import { useAuth } from '../Context/AuthContext'
 import { loginService, registerService } from '../Services/AuthServices'
 import AnimatedSection from './AnimatedSection'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign, unsignTitle, linkPath, remember, nameInput, isSmall }) => {
     const theme = useTheme()
@@ -26,7 +27,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
     const [role, setRole] = useState("student");
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false);
-
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
 
     const handleSubmit = async (e) => {
         e.preventDefault()
