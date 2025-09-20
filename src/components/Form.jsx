@@ -101,7 +101,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                                 />
                             </AnimatedSection>
                             {sign === "Sign Up" && (
-                                <AnimatedSection animationClass="fadeInDown" delay="8s">
+                                <AnimatedSection animationClass="fadeInDown" delay="0.8s">
                                     <TextField
                                         type="file"
                                         inputProps={{ accept: "image/*" }}
