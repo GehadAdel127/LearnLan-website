@@ -1,10 +1,10 @@
 import { useTheme } from "@emotion/react";
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import { Link } from "react-router-dom";
+import AnimatedSection from '../components/AnimatedSection';
+import CourseCard from "../components/CourseCard";
 import { useCourses } from "../Context/CoursesContext";
-import coursesData from "../pages/CoursesData";
-import AnimatedSection from './AnimatedSection';
-import CourseCard from "./CourseCard";
+import coursesData from "./CoursesData";
 
 const PopularCourses = () => {
     const theme = useTheme();
