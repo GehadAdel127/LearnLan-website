@@ -129,7 +129,8 @@ form .css-1pv2xcc {
   width: 100% !important;
 }
 form .css-qwdxx6:-webkit-autofill ,
-form .css-1pk1fka:-webkit-autofill{
+form .css-1pk1fka:-webkit-autofill,
+form .css-1pk1fka:invalid{
   padding: 30px 12px;
 }
 /* profile */
