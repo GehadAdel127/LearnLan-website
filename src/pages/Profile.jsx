@@ -243,9 +243,18 @@ const Profile = () => {
                             <StudentsChart students={students} />
                             <ul style={{ marginTop: 20 }}>
                                 {students.map((s) => (
-                                    <li key={s.userId}>
-                                        <strong>{s.name}</strong> - {s.email} -{" "}
-                                        {s.enrolledCourses?.length || 0} courses
+                                    <li key={s.userId} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                                        <span>
+                                            <strong>{s.name}</strong> - {s.email} - {s.enrolledCourses?.length || 0} courses
+                                        </span>
+                                        {user.role === "admin" && (
+                                            <button
+                                                onClick={() => handleDeleteUser(s.userId)}
+                                                style={{ color: "white", cursor: "pointer", backgroundColor: "red", padding: "10px 20px", border: "none", borderRadius: "10px" }}
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
                                     </li>
                                 ))}
                             </ul>
@@ -263,9 +272,16 @@ const Profile = () => {
                             <AdminTeachersChart teachers={teachers} />
                             <ul style={{ marginTop: 20 }}>
                                 {teachers.map((t) => (
-                                    <li key={t.userId}>
-                                        <strong>{t.name}</strong> - {t.email} -{" "}
-                                        {t.teachingCourses?.length || 0} courses
+                                    <li key={t.userId} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                                        <span>
+                                            <strong>{t.name}</strong> - {t.email} - {t.teachingCourses?.length || 0} courses
+                                        </span>
+                                        <button
+                                            onClick={() => handleDeleteUser(t.userId)}
+                                            style={{ color: "white", cursor: "pointer", backgroundColor: "red", padding: "10px 20px", border: "none", borderRadius: "10px" }}
+                                        >
+                                            Delete
+                                        </button>
                                     </li>
                                 ))}
                             </ul>
@@ -284,6 +300,15 @@ const Profile = () => {
             default:
                 return <h2>Welcome {user.name}</h2>;
         }
+    };
+    const handleDeleteUser = (userId) => {
+        if (!window.confirm("Are you sure you want to delete this user?")) return;
+
+        // For fakeDB example, filter out the user
+        fakeDB.users = fakeDB.users.filter((u) => u.userId !== userId);
+
+        // Trigger a re-render
+        setUser((prev) => ({ ...prev })); // Force update
     };
 
     return (
