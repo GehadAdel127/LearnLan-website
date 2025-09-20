@@ -1,7 +1,8 @@
-// images import
+// src/components/Header.jsx
+
 import logo from "../assets/images/logo.png";
 
-// react router + react
+// react + router
 import { useTheme } from "@emotion/react";
 import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,8 +11,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 
 // MUI
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CloseIcon from "@mui/icons-material/Close";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {
     Avatar,
     Box,
@@ -27,7 +31,7 @@ import {
     useMediaQuery,
 } from "@mui/material";
 
-// animation wrapper
+// animation
 import AnimatedSection from "./AnimatedSection";
 
 const Header = () => {
@@ -40,23 +44,13 @@ const Header = () => {
 
     // --- Handlers ---
     const handleMobileMenuToggle = () => setMobileOpen(!mobileOpen);
-
-    const handleMenuOpen = useCallback((event) => {
-        setAnchorEl(event.currentTarget);
-    }, []);
-
-    const handleMenuClose = useCallback(() => {
-        setAnchorEl(null);
-    }, []);
+    const handleMenuOpen = useCallback((e) => setAnchorEl(e.currentTarget), []);
+    const handleMenuClose = useCallback(() => setAnchorEl(null), []);
 
     const handleLogout = (e) => {
         e.preventDefault();
-        try {
-            logout();
-            navigate("/login");
-        } catch (error) {
-            console.error(error.message);
-        }
+        logout();
+        navigate("/login");
     };
 
     // --- Helpers ---
@@ -69,9 +63,7 @@ const Header = () => {
                 ? theme.palette.primary.main
                 : theme.palette.text.primary,
         transition: "color 0.3s ease-in-out",
-        "&:hover": {
-            color: theme.palette.primary.main,
-        },
+        "&:hover": { color: theme.palette.primary.main },
     });
 
     // --- Drawer for Mobile ---
@@ -143,14 +135,14 @@ const Header = () => {
                             { to: "/cart", label: "Cart" },
                         ]
                         : []),
-                ].map((link, index) => (
+                ].map((link, i) => (
                     <AnimatedSection
                         key={link.to}
                         animationClass="fadeInLeft"
-                        delay={`${index * 0.15}s`}
+                        delay={`${i * 0.15}s`}
                     >
                         <ListItem
-                            component={Link}  // <-- use component instead of `button`
+                            component={Link}
                             to={link.to}
                             onClick={handleMobileMenuToggle}
                             sx={{ cursor: "pointer" }}
@@ -173,7 +165,7 @@ const Header = () => {
                                 handleLogout(e);
                                 handleMobileMenuToggle();
                             }}
-                            sx={{ cursor: "pointer" }} // clickable style
+                            sx={{ cursor: "pointer" }}
                         >
                             <ListItemText
                                 primary="Logout"
@@ -190,7 +182,6 @@ const Header = () => {
                     </AnimatedSection>
                 )}
             </List>
-
         </Box>
     );
 
@@ -211,16 +202,13 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" style={{ textDecoration: "none" }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
-                    <img src={logo} alt="logo" style={{ width: "50px" }} loading="lazy" />
+                    <img src={logo} alt="logo" style={{ width: "50px" }} />
                     <h2 style={{ fontFamily: "arial", color: "#213547" }}>
                         Learn
                         <span
-                            style={{
-                                fontFamily: "Quicksand",
-                                color: theme.palette.primary.main,
-                            }}
+                            style={{ fontFamily: "Quicksand", color: theme.palette.primary.main }}
                         >
-                            lang
+                            lan
                         </span>
                     </h2>
                 </Stack>
@@ -228,96 +216,50 @@ const Header = () => {
 
             {/* Nav Links */}
             {!isMobile && (
-                <Stack
-                    direction="row"
-                    spacing={2}
-                    width="75%"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                >
-                    <Link to="/" style={getLinkSx("/")}>
-                        Home
-                    </Link>
-                    <Link to="/aboutus" style={getLinkSx("/aboutus")}>
-                        About Us
-                    </Link>
-                    <Link to="/courses" style={getLinkSx("/courses")}>
-                        Courses
-                    </Link>
+                <Stack direction="row" spacing={2} justifyContent="center" flex={1}>
+                    <Link to="/" style={getLinkSx("/")}>Home</Link>
+                    <Link to="/aboutus" style={getLinkSx("/aboutus")}>About Us</Link>
+                    <Link to="/courses" style={getLinkSx("/courses")}>Courses</Link>
                 </Stack>
             )}
 
             {/* Auth Controls */}
-            <Stack
-                direction="row"
-                spacing={1}
-                display="flex"
-                justifyContent="end"
-                alignItems="center"
-                sx={{ width: isMobile ? "100%" : "" }}
-            >
+            <Stack direction="row" spacing={1} alignItems="center">
                 {isMobile ? (
-                    <IconButton
-                        onClick={handleMobileMenuToggle}
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="end"
-                    >
+                    <IconButton onClick={handleMobileMenuToggle}>
                         <MenuIcon sx={{ color: theme.palette.text.primary }} />
                     </IconButton>
-                ) : (
+                ) : user ? (
                     <>
-                        {user ? (
-                            <>
-                                <div style={{ textAlign: "right", marginRight: 8 }}>
-                                    <div style={{ fontSize: 14, fontWeight: 700 }}>{user.name}</div>
-                                    <div style={{ fontSize: 12, color: "#666" }}>{user.email}</div>
-                                </div>
-                                <IconButton
-                                    onClick={handleMenuOpen}
-                                    style={{
-                                        outline: "none",
-                                        padding: "0px",
-                                        marginLeft: "0px",
-                                    }}
-                                >
-                                    <Avatar
-                                        src={user.profileImage || "/broken-image.jpg"}
-                                        alt={user.name}
-                                        sx={{
-                                            width: 40,
-                                            height: 40,
-                                            bgcolor:
-                                                theme.palette.mode === "dark"
-                                                    ? "#555"
-                                                    : theme.palette.primary.main,
-                                        }}
-                                    />
-                                </IconButton>
-                            </>
-                        ) : (
-                            <Link to="/login">
-                                <Button
-                                    variant="contained"
-                                    sx={{
-                                        px: 2,
-                                        py: 1,
-                                        color: theme.palette.background.paper,
-                                        fontSize: "12px",
-                                        textTransform: "capitalize",
-                                        minWidth: "120px",
-                                    }}
-                                >
-                                    Try for free
-                                </Button>
-                            </Link>
-                        )}
+                        <div style={{ textAlign: "right", marginRight: 8 }}>
+                            <div style={{ fontSize: 14, fontWeight: 700 }}>{user.name}</div>
+                            <div style={{ fontSize: 12, color: "#666" }}>{user.email}</div>
+                        </div>
+                        <IconButton onClick={handleMenuOpen}>
+                            <Avatar
+                                src={user.profileImage || "/broken-image.jpg"}
+                                alt={user.name}
+                                sx={{
+                                    width: 40,
+                                    height: 40,
+                                    bgcolor:
+                                        theme.palette.mode === "dark"
+                                            ? "#555"
+                                            : theme.palette.primary.main,
+                                }}
+                            />
+                        </IconButton>
                     </>
+                ) : (
+                    <Link to="/login">
+                        <Button variant="contained" sx={{ textTransform: "capitalize" }}>
+                            Try for free
+                        </Button>
+                    </Link>
                 )}
             </Stack>
 
-            {/* User Dropdown Menu */}
+            {/* User Dropdown Menu with icons */}
             {user && (
                 <Menu
                     anchorEl={anchorEl}
@@ -325,8 +267,7 @@ const Header = () => {
                     onClose={handleMenuClose}
                     anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                     transformOrigin={{ vertical: "top", horizontal: "right" }}
-                    PaperProps={{ elevation: 3, sx: { minWidth: 150 } }}
-                    disableScrollLock
+                    PaperProps={{ elevation: 3, sx: { minWidth: 160 } }}
                 >
                     <MenuItem
                         onClick={() => {
@@ -334,6 +275,7 @@ const Header = () => {
                             handleMenuClose();
                         }}
                     >
+                        <AccountCircleOutlinedIcon sx={{ mr: 1 }} />
                         Profile
                     </MenuItem>
                     <MenuItem
@@ -342,6 +284,7 @@ const Header = () => {
                             handleMenuClose();
                         }}
                     >
+                        <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
                         Cart
                     </MenuItem>
                     <MenuItem
@@ -350,32 +293,25 @@ const Header = () => {
                             handleMenuClose();
                         }}
                     >
+                        <LogoutOutlinedIcon sx={{ mr: 1 }} />
                         Logout
                     </MenuItem>
                 </Menu>
             )}
 
             {/* Mobile Drawer */}
-            <nav>
-                <Drawer
-                    variant="temporary"
-                    anchor="right"
-                    open={mobileOpen}
-                    onClose={handleMobileMenuToggle}
-                    ModalProps={{ keepMounted: true }}
-                    sx={{
-                        display: { xs: "block", md: "none" },
-                        "& .MuiDrawer-paper": {
-                            boxSizing: "border-box",
-                            width: 250,
-                            borderTopLeftRadius: theme.spacing(1),
-                            borderBottomLeftRadius: theme.spacing(1),
-                        },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-            </nav>
+            <Drawer
+                anchor="right"
+                open={mobileOpen}
+                onClose={handleMobileMenuToggle}
+                ModalProps={{ keepMounted: true }}
+                sx={{
+                    display: { xs: "block", md: "none" },
+                    "& .MuiDrawer-paper": { width: 250, borderRadius: 1 },
+                }}
+            >
+                {drawer}
+            </Drawer>
         </Box>
     );
 };
