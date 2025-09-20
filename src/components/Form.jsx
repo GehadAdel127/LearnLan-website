@@ -109,7 +109,7 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                                             const file = e.target.files[0];
                                             const reader = new FileReader();
                                             reader.onloadend = () => {
-                                                setProfileImage(reader.result); // base64 string
+                                                setProfileImage(reader.result);
                                             };
                                             if (file) reader.readAsDataURL(file);
                                         }}

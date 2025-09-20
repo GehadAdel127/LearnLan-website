@@ -27,6 +27,7 @@ import ProfileDetails from "../components/ProfileDetails";
 import StudentsChart from "../components/StudentsCharts";
 import TeacherCharts from "../components/TeacherCharts";
 
+import AnimatedSection from "../components/AnimatedSection";
 import { useAuth } from "../Context/AuthContext";
 import { useCourses } from "../Context/CoursesContext";
 import fakeDB from "../Services/AuthServices";
@@ -130,10 +131,16 @@ const Profile = () => {
             case "courses":
                 return (
                     <div>
-                        <h2 style={{ marginBottom: 16 }}>Courses</h2>
+                        <AnimatedSection animationClass="fadeInDown" delay="0.1s">
+                            <h2 style={{ marginBottom: 16 }}>Courses</h2>
+                        </AnimatedSection>
+
                         {user.role === "student" && (
                             <>
-                                <TeacherCharts user={user} />
+                                <AnimatedSection animationClass="fadeInUp" delay="0.2s">
+                                    <TeacherCharts user={user} />
+                                </AnimatedSection>
+
                                 <div
                                     style={{
                                         marginTop: 20,
@@ -144,46 +151,72 @@ const Profile = () => {
                                 >
                                     {enrolled.map((course, i) =>
                                         course ? (
-                                            <ProfileDetails
+                                            <AnimatedSection
                                                 key={i}
-                                                name={course.name}
-                                                details={`${user.enrolledCourses[i].progress}% completed`}
-                                                title={course.title}
-                                                color={course.profileColor}
-                                                image={course.profileImage}
-                                            />
+                                                animationClass="fadeInUp"
+                                                delay={`${0.3 + i * 0.2}s`}
+                                            >
+                                                <ProfileDetails
+                                                    name={course.name}
+                                                    details={`${user.enrolledCourses[i].progress}% completed`}
+                                                    title={course.title}
+                                                    color={course.profileColor}
+                                                    image={course.profileImage}
+                                                />
+                                            </AnimatedSection>
                                         ) : null
                                     )}
                                 </div>
                             </>
                         )}
+
                         {user.role === "teacher" && (
                             <div>
-                                <TeacherCharts user={user} />
+                                <AnimatedSection animationClass="fadeInUp" delay="0.2s">
+                                    <TeacherCharts user={user} />
+                                </AnimatedSection>
+
                                 <ul style={{ marginTop: 20 }}>
-                                    {(user.teachingCourses || []).map((c) => (
-                                        <li key={c.courseId}>
-                                            {`Course ${c.courseId} – ${c.studentsEnrolled} students, ${c.lessonsCount} lessons`}{" "}
-                                            {c.published ? "✅ Published" : "❌ Draft"}
-                                        </li>
+                                    {(user.teachingCourses || []).map((c, i) => (
+                                        <AnimatedSection
+                                            key={c.courseId}
+                                            animationClass="fadeInUp"
+                                            delay={`${0.3 + i * 0.2}s`}
+                                        >
+                                            <li>
+                                                {`Course ${c.courseId} – ${c.studentsEnrolled} students, ${c.lessonsCount} lessons`}{" "}
+                                                {c.published ? "✅ Published" : "❌ Draft"}
+                                            </li>
+                                        </AnimatedSection>
                                     ))}
                                 </ul>
                             </div>
                         )}
+
                         {user.role === "admin" && (
                             <div>
-                                <AdminCharts />
+                                <AnimatedSection animationClass="fadeInUp" delay="0.2s">
+                                    <AdminCharts />
+                                </AnimatedSection>
+
                                 <ul style={{ marginTop: 20 }}>
-                                    {coursesData.map((c) => (
-                                        <li key={c.id}>
-                                            {c.title} – {c.lessons.length} lessons
-                                        </li>
+                                    {coursesData.map((c, i) => (
+                                        <AnimatedSection
+                                            key={c.id}
+                                            animationClass="fadeInUp"
+                                            delay={`${0.3 + i * 0.2}s`}
+                                        >
+                                            <li>
+                                                {c.title} – {c.lessons.length} lessons
+                                            </li>
+                                        </AnimatedSection>
                                     ))}
                                 </ul>
                             </div>
                         )}
                     </div>
                 );
+
 
             case "savedCourses":
                 const saved = coursesData.filter((c) => savedCourses.includes(c.id));

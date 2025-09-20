@@ -1,3 +1,4 @@
+// src/pages/SavedCourses.jsx
 import { Container, Grid, Typography } from "@mui/material";
 import { useCourses } from "../Context/CoursesContext";
 import AnimatedSection from "../components/AnimatedSection";
@@ -8,17 +9,27 @@ const SavedCourses = () => {
 
     return (
         <Container sx={{ padding: "50px 20px" }}>
-            <Typography variant="h4" gutterBottom>
-                Saved Courses
-            </Typography>
+            {/* Title animation */}
+            <AnimatedSection animationClass="fadeInDown" delay="0.1s">
+                <Typography variant="h4" gutterBottom>
+                    Saved Courses
+                </Typography>
+            </AnimatedSection>
 
             {savedCourses.length === 0 ? (
-                <Typography variant="body1">You haven’t saved any courses yet.</Typography>
+                <AnimatedSection animationClass="fadeInUp" delay="0.2s">
+                    <Typography variant="body1">
+                        You haven’t saved any courses yet.
+                    </Typography>
+                </AnimatedSection>
             ) : (
-                <Grid container spacing={3} direction="column">
+                <Grid container spacing={3}>
                     {savedCourses.map((course, index) => (
-                        <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={course.id}  >
-                            <AnimatedSection animationClass="fadeInUp" delay={`${index * 0.2}s`}>
+                        <Grid key={course.id} size={{ xs: 12, sm: 6, md: 4 }}>
+                            <AnimatedSection
+                                animationClass="fadeInUp"
+                                delay={`${index * 0.2 + 0.2}s`}
+                            >
                                 <CourseCard {...course} />
                             </AnimatedSection>
                         </Grid>

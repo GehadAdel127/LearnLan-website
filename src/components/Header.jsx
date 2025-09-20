@@ -19,13 +19,16 @@ import {
     Drawer,
     IconButton,
     List,
-    ListItem,
+    ListItemButton,
     ListItemText,
     Menu,
     MenuItem,
     Stack,
     useMediaQuery,
 } from "@mui/material";
+
+// animation wrapper
+import AnimatedSection from "./AnimatedSection";
 
 const Header = () => {
     const theme = useTheme();
@@ -74,6 +77,7 @@ const Header = () => {
     // --- Drawer for Mobile ---
     const drawer = (
         <Box
+            className="animate__animated animate__fadeInRight"
             sx={{
                 textAlign: "center",
                 width: 250,
@@ -129,77 +133,41 @@ const Header = () => {
             </Box>
 
             <List sx={{ width: "100%" }}>
-                <ListItem
-                    button
-                    component={Link}
-                    to="/"
-                    onClick={handleMobileMenuToggle}
-                >
-                    <ListItemText
-                        primary="Home"
-                        sx={{ textAlign: "center", "& .MuiListItemText-primary": getLinkSx("/") }}
-                    />
-                </ListItem>
-                <ListItem
-                    button
-                    component={Link}
-                    to="/aboutus"
-                    onClick={handleMobileMenuToggle}
-                >
-                    <ListItemText
-                        primary="About Us"
-                        sx={{
-                            textAlign: "center",
-                            "& .MuiListItemText-primary": getLinkSx("/aboutus"),
-                        }}
-                    />
-                </ListItem>
-                <ListItem
-                    button
-                    component={Link}
-                    to="/courses"
-                    onClick={handleMobileMenuToggle}
-                >
-                    <ListItemText
-                        primary="Courses"
-                        sx={{
-                            textAlign: "center",
-                            "& .MuiListItemText-primary": getLinkSx("/courses"),
-                        }}
-                    />
-                </ListItem>
+                {[
+                    { to: "/", label: "Home" },
+                    { to: "/aboutus", label: "About Us" },
+                    { to: "/courses", label: "Courses" },
+                    ...(user
+                        ? [
+                            { to: "/profile", label: "Profile" },
+                            { to: "/cart", label: "Cart" },
+                        ]
+                        : []),
+                ].map((link, index) => (
+                    <AnimatedSection
+                        key={link.to}
+                        animationClass="fadeInLeft"
+                        delay={`${index * 0.15}s`}
+                    >
+                        <ListItemButton
+                            component={Link}
+                            to={link.to}
+                            onClick={handleMobileMenuToggle}
+                        >
+                            <ListItemText
+                                primary={link.label}
+                                sx={{
+                                    textAlign: "center",
+                                    "& .MuiListItemText-primary": getLinkSx(link.to),
+                                }}
+                            />
+                        </ListItemButton>
+                    </AnimatedSection>
+                ))}
+
                 {user && (
-                    <>
-                        <ListItem
-                            button
-                            component={Link}
-                            to="/profile"
-                            onClick={handleMobileMenuToggle}
-                        >
-                            <ListItemText
-                                primary="Profile"
-                                sx={{
-                                    textAlign: "center",
-                                    "& .MuiListItemText-primary": getLinkSx("/profile"),
-                                }}
-                            />
-                        </ListItem>
-                        <ListItem
-                            button
-                            component={Link}
-                            to="/cart"
-                            onClick={handleMobileMenuToggle}
-                        >
-                            <ListItemText
-                                primary="Cart"
-                                sx={{
-                                    textAlign: "center",
-                                    "& .MuiListItemText-primary": getLinkSx("/cart"),
-                                }}
-                            />
-                        </ListItem>
-                        <ListItem
-                            button
+                    <AnimatedSection animationClass="fadeInLeft" delay="0.6s">
+                        <ListItemButton
                             onClick={(e) => {
                                 handleLogout(e);
                                 handleMobileMenuToggle();
@@ -212,14 +180,12 @@ const Header = () => {
                                     "& .MuiListItemText-primary": {
                                         fontWeight: 700,
                                         transition: "color 0.3s ease-in-out",
-                                        "&:hover": {
-                                            color: theme.palette.primary.main,
-                                        },
+                                        "&:hover": { color: theme.palette.primary.main },
                                     },
                                 }}
                             />
-                        </ListItem>
-                    </>
+                        </ListItemButton>
+                    </AnimatedSection>
                 )}
             </List>
         </Box>
@@ -242,12 +208,7 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" style={{ textDecoration: "none" }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
-                    <img
-                        src={logo}
-                        alt="logo"
-                        style={{ width: "50px" }}
-                        loading="lazy"
-                    />
+                    <img src={logo} alt="logo" style={{ width: "50px" }} loading="lazy" />
                     <h2 style={{ fontFamily: "arial", color: "#213547" }}>
                         Learn
                         <span
@@ -346,7 +307,7 @@ const Header = () => {
                                         color: theme.palette.background.paper,
                                         fontSize: "12px",
                                         textTransform: "capitalize",
-                                        minWidth: "120px"
+                                        minWidth: "120px",
                                     }}
                                 >
                                     Try for free

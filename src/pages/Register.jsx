@@ -4,7 +4,7 @@ import Form from "../components/Form";
 
 const Register = () => {
     const theme = useTheme();
-    const isSmall = useMediaQuery(theme.breakpoints.down("md")); // true if screen < sm
+    const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <div>

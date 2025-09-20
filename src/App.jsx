@@ -8,8 +8,8 @@ import Header from "./components/Header";
 // Pages
 import AboutUs from "./pages/AboutUs";
 import Cart from "./pages/CartPage";
+import Contact from "./pages/Contact";
 import Courses from "./pages/Courses";
-import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
 import HomePage from "./pages/HomePage";
 import LessonDetails from "./pages/LessonDetails";
@@ -18,7 +18,6 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
-
 // Context & Helpers
 import { AuthProvider } from "./Context/AuthContext";
 
@@ -50,14 +49,6 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           {/* Protected routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/courses"
             element={
@@ -92,6 +83,7 @@ function App() {
           />
 
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

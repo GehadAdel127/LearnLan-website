@@ -77,7 +77,7 @@ const PopularCourses = () => {
             </div>
             <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
                 {coursesData.map((course, index) => (
-                    <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.1}s`}>
+                    <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.2}s`}>
                         <CourseCard
                             id={course.id}
                             name={course.name}

@@ -33,6 +33,11 @@ button {
   font-size: 12px !important;
 }
 
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

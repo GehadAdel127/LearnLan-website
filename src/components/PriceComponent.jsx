@@ -4,7 +4,7 @@ import CompentesHeader from './CompentesHeader';
 import PriceCards from './PriceCards';
 
 // MUI
-import { Box, Stack } from '@mui/material'; // Import Box and Stack for better layout control
+import { Box, Stack } from '@mui/material';
 
 // custom hook
 import AnimatedSection from './AnimatedSection';
@@ -35,7 +35,7 @@ const plans = [
             "Monthly progress reports",
         ],
         icon: LayersOutlinedIcon,
-        selected: true // This plan is marked as selected
+        selected: true
     },
     {
         id: 3,
@@ -62,28 +62,27 @@ const PriceComponent = () => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                mt: { xs: 5, md: 9 }, // Responsive margin-top
+                mt: { xs: 5, md: 9 },
                 width: "100%",
-                px: { xs: 2, sm: 3, md: 0 } // Add horizontal padding for smaller screens
+                px: { xs: 2, sm: 3, md: 0 }
             }}
         >
             <CompentesHeader title="Pricing Plans" head="Simple,easy pricing" />
             <Stack
                 className="priceCards"
-                direction={{ xs: 'column', md: 'row' }} // Stack vertically on small, row on medium and up
-                spacing={{ xs: 3, md: 2 }} // Responsive spacing
+                direction={{ xs: 'column', md: 'row' }}
+                spacing={{ xs: 3, md: 2 }}
                 sx={{
                     justifyContent: "center",
                     alignItems: "center",
                     width: "100%",
-                    mt: { xs: 3, md: 8 }, // Responsive margin-top
-                    maxWidth: 'lg', // Limit width on very large screens
+                    mt: { xs: 3, md: 8 },
+                    maxWidth: 'lg',
                     marginBottom: "50px"
                 }}
             >
                 {plans.map((plan, index) => (
                     <AnimatedSection key={plan.id} animationClass="fadeInUp" delay={`${index * 0.1}s`} >
-                        {/* Conditionally apply sx prop for selected plan */}
                         <PriceCards
                             name={plan.name}
                             price={plan.price}

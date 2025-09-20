@@ -1,14 +1,13 @@
-// src/components/profileSideBar.jsx
 import { useTheme } from "@emotion/react";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
+import AnimatedSection from "./AnimatedSection";
 
 const Sidebar = ({ user, onSelect }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [selected, setSelected] = useState("dashboard");
 
-    // links differ per role
     const links = [
         { key: "dashboard", label: "Dashboard" },
         { key: "courses", label: "Courses" },
@@ -19,14 +18,11 @@ const Sidebar = ({ user, onSelect }) => {
             ? [{ key: "students", label: "Students" }]
             : []),
         ...(user.role === "admin" ? [{ key: "teachers", label: "Teachers" }] : []),
-        ...(user.role === "student"
-            ? [{ key: "savedCourses", label: "Saved Courses" }]
-            : []),
+        { key: "savedCourses", label: "Saved Courses" },
         { key: "account", label: "Account" },
         { key: "logout", label: "Logout" },
     ];
 
-    // Dashboard title
     const roleTitle =
         user.role === "student"
             ? "Student Dashboard"
@@ -71,42 +67,44 @@ const Sidebar = ({ user, onSelect }) => {
                     flexDirection: "column",
                 }}
             >
-                {links.map((link) => (
-                    <div
+                {links.map((link, index) => (
+                    <AnimatedSection
                         key={link.key}
-                        onClick={() => {
-                            setSelected(link.key);
-                            onSelect(link.key);
-                        }}
-                        style={{
-                            padding: isMobile ? "12px 16px" : "12px 20px",
-                            cursor: "pointer",
-                            fontSize: isMobile ? "16px" : "18px",
-                            fontWeight: "500",
-                            transition: "all 0.2s ease",
-                            color:
-                                selected === link.key
-                                    ? theme.palette.background.paper
-                                    : "#b9b5b5ff",
-                            transform:
-                                selected === link.key ? "translateX(10px)" : "translateX(0)",
-                        }}
-                        onMouseEnter={(e) => {
-                            if (selected !== link.key) {
-                                e.currentTarget.style.transform = "translateX(10px)";
-                                e.currentTarget.style.color =
-                                    theme.palette.background.paper;
-                            }
-                        }}
-                        onMouseLeave={(e) => {
-                            if (selected !== link.key) {
-                                e.currentTarget.style.transform = "translateX(0)";
-                                e.currentTarget.style.color = "#b9b5b5ff";
-                            }
-                        }}
+                        animationClass="fadeInLeft"
+                        delay={`${index * 0.1}s`}
                     >
-                        {link.label}
-                    </div>
+                        <div
+                            key={link.key}
+                            onClick={() => {
+                                setSelected(link.key);
+                                onSelect(link.key);
+                            }}
+                            style={{
+                                padding: isMobile ? "12px 16px" : "12px 20px",
+                                cursor: "pointer",
+                                fontSize: isMobile ? "16px" : "18px",
+                                fontWeight: "500",
+                                transition: "all 0.2s ease",
+                                color:
+                                    selected === link.key
+                                        ? theme.palette.background.paper
+                                        : "#b9b5b5ff",
+                                transform:
+                                    !isMobile && selected === link.key
+                                        ? "translateX(10px)"
+                                        : "translateX(0)",
+
+                                backgroundColor:
+                                    isMobile && selected === link.key
+                                        ? "rgba(255,255,255,0.15)"
+                                        : "transparent",
+                                borderRadius: isMobile ? "4px" : "0",
+                            }}
+                        >
+                            {link.label}
+                        </div>
+
+                    </AnimatedSection>
                 ))}
             </nav>
         </aside>

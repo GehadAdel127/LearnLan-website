@@ -18,18 +18,21 @@ import AnimatedSection from '../components/AnimatedSection';
 
 const itemData = [
     {
+        id: 1,
         img: studentGirl,
         title: "Social Networking",
         author: 'Mera',
         value: 5
     },
     {
+        id: 2,
         img: student,
         title: "Buisness Strategy",
         author: 'Mohanad',
         value: 4
     },
     {
+        id: 3,
         img: studentGirl2,
         title: "Software Developer",
         author: 'Esraa',
@@ -43,7 +46,7 @@ const Testimonial = () => {
             <CompentesHeader title="Testimonial" head="Over 1000+ students trust us" />
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px" }}>
                 {itemData.map((item, index) => (
-                    <AnimatedSection key={item.img} animationClass="fadeInUp" delay={`${index * 0.1}s`}>
+                    <AnimatedSection key={item.id} animationClass="fadeInUp" delay={`${index * 0.1}s`}>
                         <ImageListItem style={{ width: "350px", height: "300px", cursor: "pointer" }}>
                             <img
                                 src={item.img}

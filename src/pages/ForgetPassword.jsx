@@ -4,7 +4,7 @@ import Form from "../components/Form";
 
 const ForgetPassword = () => {
     const theme = useTheme();
-    const isSmall = useMediaQuery(theme.breakpoints.down("md")); // true if screen < sm
+    const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Form
@@ -12,7 +12,7 @@ const ForgetPassword = () => {
             title1="Set a New Password"
             description="Enter a new password for your account"
             sign="Submit"
-            padding={isSmall ? "0" : "0 0 0 50px"} // remove padding on mobile for better centering
+            padding={isSmall ? "0" : "0 0 0 50px"}
             isSmall={isSmall}
         />
     );

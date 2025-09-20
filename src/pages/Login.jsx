@@ -4,7 +4,7 @@ import Form from "../components/Form";
 
 const Login = () => {
     const theme = useTheme();
-    const isSmall = useMediaQuery(theme.breakpoints.down("md")); // true if < sm
+    const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Form
@@ -17,7 +17,7 @@ const Login = () => {
             unsign="Sign Up"
             unsignTitle="Don't have an account?"
             linkPath="/register"
-            padding={isSmall ? "0" : "0 0 0 50px"} // optional: remove side padding on mobile
+            padding={isSmall ? "0" : "0 0 0 50px"}
             remember="true"
             isSmall={isSmall}
         />

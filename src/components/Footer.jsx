@@ -8,7 +8,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 // custom hook
-import { Box, Typography } from "@mui/material"; // Import Box for more flexible responsive containers
+import { Box, Typography } from "@mui/material";
 import AnimatedSection from '../components/AnimatedSection';
 
 const Footer = () => {
@@ -18,15 +18,15 @@ const Footer = () => {
             component="footer"
             sx={{
                 display: "flex",
-                flexDirection: "column", // Always column for the footer as a whole
-                alignItems: "center", // Center content horizontally
+                flexDirection: "column",
+                alignItems: "center",
                 padding: {
-                    xs: "20px", // Smaller padding on extra small screens
-                    md: "50px", // Original padding on medium screens and up
+                    xs: "20px",
+                    md: "50px",
                 },
-                backgroundColor: theme.palette.background.paper, // Example: ensure footer background matches theme
-                color: theme.palette.text.primary, // Ensure text color is readable
-                borderTop: `1px solid ${theme.palette.divider}`, // Optional: subtle separator
+                backgroundColor: theme.palette.background.paper,
+                color: theme.palette.text.primary,
+                borderTop: `1px solid ${theme.palette.divider}`,
             }}
         >
             <Box
@@ -34,38 +34,37 @@ const Footer = () => {
                 sx={{
                     display: "flex",
                     flexDirection: {
-                        xs: "column", // Stack vertically on extra small screens
-                        md: "row",   // Row layout on medium screens and up
+                        xs: "column",
+                        md: "row",
                     },
-                    justifyContent: "space-between", // Distribute space horizontally on wider screens
+                    justifyContent: "space-between",
                     alignItems: {
-                        xs: "center", // Center items when stacked
-                        md: "flex-start", // Align to start when in a row
+                        xs: "center",
+                        md: "flex-start",
                     },
                     gap: {
-                        xs: "30px", // Smaller gap on small screens
-                        md: "50px", // Original gap on medium screens and up
+                        xs: "30px",
+                        md: "50px",
                     },
-                    width: "100%", // Take full width
-                    maxWidth: "lg", // Optional: Limit overall width for very large screens
+                    width: "100%",
+                    maxWidth: "lg",
                     marginBottom: {
                         xs: "30px",
                         md: "50px",
                     },
                 }}
             >
-                {/* Main Section */}
                 <Box
                     className="main"
                     sx={{
                         width: {
-                            xs: "100%", // Full width on small screens
-                            sm: "80%", // Slightly less on small-medium
-                            md: "35%", // Original width on medium and up
+                            xs: "100%",
+                            sm: "80%",
+                            md: "35%",
                         },
                         textAlign: {
-                            xs: "center", // Center text on small screens
-                            md: "left",   // Left align on medium and up
+                            xs: "center",
+                            md: "left",
                         },
                     }}
                 >
@@ -74,12 +73,12 @@ const Footer = () => {
                         sx={{
                             display: "flex",
                             justifyContent: {
-                                xs: "center", // Center logo on small screens
-                                md: "flex-start", // Left align on medium and up
+                                xs: "center",
+                                md: "flex-start",
                             },
                             alignItems: "center",
                             gap: "10px",
-                            mb: 2, // Margin bottom for spacing
+                            mb: 2,
                         }}
                     >
                         <img src={logo} alt="logo image" style={{ width: "50px" }} loading="lazy" />
@@ -94,14 +93,13 @@ const Footer = () => {
                     </AnimatedSection>
                 </Box>
 
-                {/* Courses Section */}
                 <Box
                     className="courses"
                     sx={{
                         width: {
-                            xs: "100%", // Full width on small screens
-                            sm: "80%", // Slightly less on small-medium
-                            md: "21%", // Original width on medium and up
+                            xs: "100%",
+                            sm: "80%",
+                            md: "21%",
                         },
                         textAlign: {
                             xs: "center",
@@ -138,11 +136,11 @@ const Footer = () => {
                                 marginTop: "22px",
                             }}
                         >
-                            <Link to="#" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Arabic Course</Link>
-                            <Link to="#" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>English Course</Link>
-                            <Link to="#" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Spanish Course</Link>
-                            <Link to="#" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>French Course</Link>
-                            <Link to="#" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Chinese Course</Link>
+                            <Link to="/courses/arabic" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Arabic Course</Link>
+                            <Link to="/courses/english" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>English Course</Link>
+                            <Link to="/courses/spanish" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Spanish Course</Link>
+                            <Link to="/courses/french" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>French Course</Link>
+                            <Link to="/courses/german" style={{ textDecoration: "none", color: theme.palette.text.secondary }}>German Course</Link>
                         </Box>
                     </AnimatedSection>
                 </Box>
@@ -195,7 +193,7 @@ const Footer = () => {
                             <Link to={"/terms"} style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Terms</Link>
                             <Link to={"/aboutus"} style={{ textDecoration: "none", color: theme.palette.text.secondary }}>About Us</Link>
                             <Link to={"/contact"} style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Contact Us</Link>
-                            <Link to={"privacy"} style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Privacy</Link>
+                            <Link to={"/privacy"} style={{ textDecoration: "none", color: theme.palette.text.secondary }}>Privacy</Link>
                         </Box>
                     </AnimatedSection>
                 </Box>
