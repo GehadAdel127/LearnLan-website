@@ -8,9 +8,6 @@ import image4 from "../assets/images/timeManagement.jpeg";
 import CompentesHeader from "./CompentesHeader";
 import StartCard from "./StartCard";
 
-// custom hook
-import AnimatedSection from '../components/AnimatedSection';
-
 const steps = [
     {
         id: 1,
@@ -44,7 +41,6 @@ const Start = () => {
     return (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", width: "100%" }}>
             <CompentesHeader title="Simple steps" head="Start Your Learning Journey" />
-            <AnimatedSection animationClass="fadeInUp" delay="0.2s" >
                 <div
                     className="cards"
                     style={{
@@ -65,7 +61,6 @@ const Start = () => {
                         />
                     ))}
                 </div>
-            </AnimatedSection>
         </div>
     );
 };
