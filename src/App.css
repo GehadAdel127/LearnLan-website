@@ -130,7 +130,9 @@ form .css-1pv2xcc {
 }
 form .css-qwdxx6:-webkit-autofill ,
 form .css-1pk1fka:-webkit-autofill,
-form .css-1pk1fka:invalid{
+form .css-1pk1fka:invalid,
+form .css-qwdxx6,
+form .css-1pk1fka{
   padding: 30px 12px;
 }
 /* profile */
