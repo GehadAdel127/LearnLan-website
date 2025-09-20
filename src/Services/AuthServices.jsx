@@ -76,7 +76,7 @@ export const registerService = async (name, email, password, profileImage, role)
     if (exists) throw new Error("User already exists");
 
     const newUser = {
-        userId: fakeDB.users.length + 1,
+        userId: Math.max(...fakeDB.users.map(u => u.userId)) + 1,
         name,
         email,
         password,

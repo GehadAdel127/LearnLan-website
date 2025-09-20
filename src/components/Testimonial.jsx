@@ -44,10 +44,10 @@ const Testimonial = () => {
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginBottom: "50px" }}>
             <CompentesHeader title="Testimonial" head="Over 1000+ students trust us" />
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px" }}>
-                {itemData.map((item, index) => (
-                    <AnimatedSection key={item.id} animationClass="fadeInUp" delay={`${index * 0.1}s`}>
-                        <ImageListItem style={{ width: "350px", height: "300px", cursor: "pointer" }}>
+            <AnimatedSection animationClass="fadeInUp" delay="0.2s">
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px" }}>
+                    {itemData.map((item, index) => (
+                        <ImageListItem key={item.id} style={{ width: "350px", height: "300px", cursor: "pointer" }}>
                             <img
                                 src={item.img}
                                 alt={item.title}
@@ -68,9 +68,9 @@ const Testimonial = () => {
                                 }
                             />
                         </ImageListItem>
-                    </AnimatedSection>
-                ))}
-            </div>
+                    ))}
+                </div>
+            </AnimatedSection>
         </section>
     )
 }

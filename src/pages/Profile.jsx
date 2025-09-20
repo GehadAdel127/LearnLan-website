@@ -27,7 +27,6 @@ import ProfileDetails from "../components/ProfileDetails";
 import StudentsChart from "../components/StudentsCharts";
 import TeacherCharts from "../components/TeacherCharts";
 
-import AnimatedSection from "../components/AnimatedSection";
 import { useAuth } from "../Context/AuthContext";
 import { useCourses } from "../Context/CoursesContext";
 import fakeDB from "../Services/AuthServices";
@@ -429,6 +428,7 @@ const Profile = () => {
                     >
                         <div style={{ marginBottom: 12, fontWeight: 700 }}>My Calendar</div>
                         <Calendar
+                            className="custom-calendar"
                             onChange={setDate}
                             value={date}
                             prevLabel="<"

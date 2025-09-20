@@ -93,7 +93,7 @@ const Contact = () => {
                     direction={isMediumDown ? "column" : "row"}
                     justifyContent={"center"}
                 >
-                    <Grid item xs={12} md={7} width={"80%"}>
+                    <Grid item xs={12} md={7} width={"100%"}>
                         <Paper
                             elevation={4}
                             sx={{
@@ -178,7 +178,7 @@ const Contact = () => {
                         </Paper>
                     </Grid>
 
-                    <Grid item xs={12} md={5} width={"80%"}>
+                    <Grid item xs={12} md={5} width={"100%"}>
                         <Paper
                             elevation={4}
                             sx={{

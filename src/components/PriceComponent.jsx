@@ -68,31 +68,32 @@ const PriceComponent = () => {
             }}
         >
             <CompentesHeader title="Pricing Plans" head="Simple,easy pricing" />
-            <Stack
-                className="priceCards"
-                direction={{ xs: 'column', md: 'row' }}
-                spacing={{ xs: 3, md: 2 }}
-                sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "100%",
-                    mt: { xs: 3, md: 8 },
-                    maxWidth: 'lg',
-                    marginBottom: "50px"
-                }}
-            >
-                {plans.map((plan, index) => (
-                    <AnimatedSection key={plan.id} animationClass="fadeInUp" delay={`${index * 0.1}s`} >
+            <AnimatedSection animationClass="fadeInUp" delay="0.2s" >
+                <Stack
+                    className="priceCards"
+                    direction={{ xs: 'column', md: 'row' }}
+                    spacing={{ xs: 3, md: 2 }}
+                    sx={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100%",
+                        mt: { xs: 3, md: 8 },
+                        maxWidth: 'lg',
+                        marginBottom: "50px"
+                    }}
+                >
+                    {plans.map((plan, index) => (
                         <PriceCards
+                            key={plan.id}
                             name={plan.name}
                             price={plan.price}
                             features={plan.features}
                             icon={plan.icon}
                             selected={plan.selected}
                         />
-                    </AnimatedSection>
-                ))}
-            </Stack>
+                    ))}
+                </Stack>
+            </AnimatedSection>
         </Box>
     )
 }

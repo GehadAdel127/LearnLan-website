@@ -22,8 +22,8 @@ const CourseCard = ({ id, name, title, image, price, rate, numberOfStudents, num
                 overflow: "hidden",
                 position: "relative",
                 display: "grid",
-                minWidth: "300px",
-                maxWidth: "300px",
+                minWidth: "278px",
+                maxWidth: "278px",
                 gridTemplateRows: "auto 1fr auto",
             }}
         >

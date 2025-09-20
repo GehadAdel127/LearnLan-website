@@ -19,7 +19,7 @@ import {
     Drawer,
     IconButton,
     List,
-    ListItemButton,
+    ListItem,
     ListItemText,
     Menu,
     MenuItem,
@@ -149,10 +149,11 @@ const Header = () => {
                         animationClass="fadeInLeft"
                         delay={`${index * 0.15}s`}
                     >
-                        <ListItemButton
-                            component={Link}
+                        <ListItem
+                            component={Link}  // <-- use component instead of `button`
                             to={link.to}
                             onClick={handleMobileMenuToggle}
+                            sx={{ cursor: "pointer" }}
                         >
                             <ListItemText
                                 primary={link.label}
@@ -161,17 +162,18 @@ const Header = () => {
                                     "& .MuiListItemText-primary": getLinkSx(link.to),
                                 }}
                             />
-                        </ListItemButton>
+                        </ListItem>
                     </AnimatedSection>
                 ))}
 
                 {user && (
                     <AnimatedSection animationClass="fadeInLeft" delay="0.6s">
-                        <ListItemButton
+                        <ListItem
                             onClick={(e) => {
                                 handleLogout(e);
                                 handleMobileMenuToggle();
                             }}
+                            sx={{ cursor: "pointer" }} // clickable style
                         >
                             <ListItemText
                                 primary="Logout"
@@ -184,10 +186,11 @@ const Header = () => {
                                     },
                                 }}
                             />
-                        </ListItemButton>
+                        </ListItem>
                     </AnimatedSection>
                 )}
             </List>
+
         </Box>
     );
 
@@ -268,12 +271,8 @@ const Header = () => {
                         {user ? (
                             <>
                                 <div style={{ textAlign: "right", marginRight: 8 }}>
-                                    <div style={{ fontSize: 14, fontWeight: 700 }}>
-                                        {user.name}
-                                    </div>
-                                    <div style={{ fontSize: 12, color: "#666" }}>
-                                        {user.email}
-                                    </div>
+                                    <div style={{ fontSize: 14, fontWeight: 700 }}>{user.name}</div>
+                                    <div style={{ fontSize: 12, color: "#666" }}>{user.email}</div>
                                 </div>
                                 <IconButton
                                     onClick={handleMenuOpen}

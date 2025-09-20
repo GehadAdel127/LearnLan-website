@@ -61,7 +61,7 @@ const Courses = () => {
                 <AnimatedSection animationClass="fadeInLeft">
                     <Paper
                         component="form"
-                        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
+                        sx={{ p: "5px 4px", display: "flex", alignItems: "center", width: "100%" }}
                     >
                         <InputBase
                             sx={{ ml: 1, flex: 1 }}
@@ -75,7 +75,7 @@ const Courses = () => {
                     </Paper>
                 </AnimatedSection>
                 <AnimatedSection animationClass="fadeInRight" delay="0.2s">
-                    <FormControl sx={{ minWidth: 200 }}>
+                    <FormControl sx={{ minWidth: "30%" }}>
                         <Select value={sortOption} onChange={handleSortChange}>
                             <MenuItem value="default">Sort By:</MenuItem>
                             <MenuItem value="priceLowHigh">Price: Low to High</MenuItem>

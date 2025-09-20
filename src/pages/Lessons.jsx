@@ -39,7 +39,13 @@ const Lessons = () => {
             {displayLessons.map((lesson, index) => (
                 <div key={lesson.lessonId}>
                     <AnimatedSection animationClass="fadeInDown" delay={`${index * 0.1}s`}>
-                        <LessonsCard link={`/courses/${name}/${lesson.lessonId}`} title={filteredLessons.title} lessonTitle={lesson.lessonTitle} image={filteredcourses.image} description={lesson.description} />
+                        <LessonsCard
+                            link={`/courses/${name}/${lesson.lessonId}`}
+                            title={filteredcourses.title}
+                            lessonTitle={lesson.lessonTitle}
+                            image={filteredcourses.image}
+                            description={lesson.description}
+                        />
                     </AnimatedSection>
                 </div>
             ))}

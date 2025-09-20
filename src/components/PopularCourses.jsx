@@ -75,10 +75,11 @@ const PopularCourses = () => {
                     <ChevronRightOutlinedIcon style={{ color: theme.palette.primary.main, fontWeight: "400" }} />
                 </div>
             </div>
-            <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
-                {coursesData.map((course, index) => (
-                    <AnimatedSection key={course.id} animationClass="fadeInUp" delay={`${index * 0.2}s`}>
+            <AnimatedSection animationClass="fadeInUp" delay="0.2s">
+                <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
+                    {coursesData.map((course, index) => (
                         <CourseCard
+                            key={course.id}
                             id={course.id}
                             name={course.name}
                             title={course.title}
@@ -92,9 +93,9 @@ const PopularCourses = () => {
                             onAddToCart={handleAddToCart}
                         />
 
-                    </AnimatedSection>
-                ))}
-            </div>
+                    ))}
+                </div>
+            </AnimatedSection>
         </section>
     );
 };

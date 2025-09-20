@@ -79,34 +79,43 @@ const Instructors = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 width: "100%",
-                mt: { xs: 5, md: 9 }, // Responsive margin-top
-                px: { xs: 2, sm: 3, md: 0 }, // Add horizontal padding for smaller screens
+                mt: { xs: 5, md: 9 },
+                px: { xs: 2, sm: 3, md: 0 },
             }}
         >
             <CompentesHeader title="Our instructors" head="Meet the passionate team" />
-            <Stack
-                className="cards"
-                direction={{ xs: "column", md: "row" }} // Stack vertically on small, row on medium and up
-                spacing={{ xs: 3, md: 4 }} // Responsive gap between cards
-                sx={{
-                    width: "100%",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexWrap: { xs: "nowrap", md: "wrap" }, // Allow cards to wrap to the next line on smaller screens
-                    mt: { xs: 3, md: 5 }, // Responsive margin-top
-                    maxWidth: 'lg', // Limit width on very large screens for better readability
-                }}
-            >
-                {instructorsDetails.map((instructorsDetail, index) => (
-                    <AnimatedSection key={instructorsDetail.id} animationClass="fadeInUp" delay={`${index * 0.1}s`} >
-                        <StartCard title={instructorsDetail.name} language={instructorsDetail.language} description={instructorsDetail.description} image={instructorsDetail.image}
-                            backgroundColor={instructorsDetail.backgroundColor} textAlign={instructorsDetail.textAlign} color={instructorsDetail.color}
-                            polygonClipPath={instructorsDetail.polygonClipPath} fontSize={instructorsDetail.fontSize}
-                            bottom={instructorsDetail.bottom} instructorBackground={"transparent"} height={"450px"} />
-                    </AnimatedSection>
+            <AnimatedSection animationClass="fadeInUp" delay="0.2s">
+                <Stack
+                    className="cards"
+                    direction={{ xs: "column", md: "row" }}
+                    spacing={{ xs: 3, md: 4 }}
+                    sx={{
+                        width: "100%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexWrap: { xs: "nowrap", md: "wrap" },
+                        mt: { xs: 3, md: 5 },
+                        maxWidth: 'lg',
+                    }}
+                >
+                    {instructorsDetails.map((instructorsDetail, index) => (
+                        <StartCard
+                            key={instructorsDetail.id}
+                            title={instructorsDetail.name}
+                            language={instructorsDetail.language}
+                            description={instructorsDetail.description}
+                            image={instructorsDetail.image}
+                            backgroundColor={instructorsDetail.backgroundColor}
+                            textAlign={instructorsDetail.textAlign}
+                            color={instructorsDetail.color}
+                            polygonClipPath={instructorsDetail.polygonClipPath}
+                            fontSize={instructorsDetail.fontSize}
+                            bottom={instructorsDetail.bottom}
+                            instructorBackground={"transparent"} height={"450px"} />
 
-                ))}
-            </Stack>
+                    ))}
+                </Stack>
+            </AnimatedSection>
         </Box>
     )
 }
