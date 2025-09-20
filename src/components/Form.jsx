@@ -1,33 +1,51 @@
 import { useTheme } from '@emotion/react'
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import Alert from '@mui/material/Alert'
-import Button from '@mui/material/Button'
-import Checkbox from '@mui/material/Checkbox'
-import IconButton from "@mui/material/IconButton"
-import InputAdornment from "@mui/material/InputAdornment"
-import TextField from '@mui/material/TextField'
+import {
+    Alert,
+    Button,
+    Checkbox,
+    FormControl,
+    Grid,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+    useMediaQuery
+} from '@mui/material'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import loginImage from "../assets/images/Globalization.jpeg"
 import { useAuth } from '../Context/AuthContext'
 import { loginService, registerService } from '../Services/AuthServices'
 import AnimatedSection from './AnimatedSection'
-import useMediaQuery from '@mui/material/useMediaQuery'
 
-const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign, unsignTitle, linkPath, remember, nameInput }) => {
+const Form = ({
+    title1,
+    title2,
+    description,
+    forget,
+    sign,
+    unsign,
+    unsignTitle,
+    linkPath,
+    remember,
+    nameInput
+}) => {
     const theme = useTheme()
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
+
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [profileImage, setProfileImage] = useState(null)
     const [errorMessage, setErrorMessage] = useState("")
     const { login } = useAuth()
-    const [role, setRole] = useState("student");
+    const [role, setRole] = useState("student")
     const navigate = useNavigate()
-    const [showPassword, setShowPassword] = useState(false);
-    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -37,160 +55,154 @@ const Form = ({ flexDirection, title1, title2, description, forget, sign, unsign
                 user = await loginService(email, password, role)
             } else if (sign === "Sign Up") {
                 user = await registerService(name, email, password, profileImage, role)
-            } else {
-                console.log("Other forms like forget password");
             }
             login(user)
             navigate("/profile")
-        }
-        catch (error) {
+        } catch (error) {
             setErrorMessage(error.message)
         }
     }
 
     return (
-        <section style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", flexDirection: flexDirection, marginTop: "50px", gap: "10%" }}>
-            <AnimatedSection animationClass="fadeInDown" delay='0.1s' width={isSmall ? "80%" : "40%"} >
-                <img src={loginImage} alt="login image" style={{ width: "100%" }} />
-            </AnimatedSection>
+        <Grid
+            container
+            spacing={4}
+            alignItems="center"
+            justifyContent="center"
+            sx={{ mt: 5, px: 2 }}
+        >
+            {/* Image Section */}
+            <Grid
+                item
+                xs={12}
+                md={6}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <AnimatedSection animationClass="fadeInDown" delay="0.1s">
+                    <img
+                        src={loginImage}
+                        alt="login"
+                        style={{
+                            width: "100%",
+                            maxWidth: "500px",
+                            maxHeight: "400px",   // ✅ restricts size
+                            objectFit: "cover",
+                            borderRadius: "12px",
+                        }}
+                    />
+                </AnimatedSection>
+            </Grid>
 
-            <div className="contentSection" style={{ width: isSmall ? "80%" : "40%", }}>
-                <div className="content" style={{ textAlign: isSmall ? "center" : "" }}>
-                    <AnimatedSection animationClass="fadeInDown" delay='0.1s'>
-                        <h2 style={{ margin: "5px" }}> {title1}</h2>
+            {/* Form Section */}
+            <Grid item xs={12} md={6}>
+                <div style={{ width: "100%", maxWidth: "500px", margin: "0 auto" }}>
+                    <AnimatedSection animationClass="fadeInDown" delay="0.1s">
+                        <h2>{title1}</h2>
                     </AnimatedSection>
-                    <AnimatedSection animationClass="fadeInDown" delay='0.2s'>
-                        <h2 style={{ margin: "5px" }}>{title2}</h2>
+                    <AnimatedSection animationClass="fadeInDown" delay="0.2s">
+                        <h2>{title2}</h2>
                     </AnimatedSection>
-                    <AnimatedSection animationClass="fadeInDown" delay='0.3s' >
+                    <AnimatedSection animationClass="fadeInDown" delay="0.3s">
                         <p>{description}</p>
                     </AnimatedSection>
-                    <form style={{ width: "100%", display: isSmall ? "flex" : "", justifyContent: "center", alignItems: "center", flexDirection: "column" }} >
-                        <div className="inputs" style={{ display: "flex", flexDirection: "column", width: "100%", gap: "20px" }}>
-                            {nameInput && <AnimatedSection animationClass="fadeInDown" delay='0.4s' >
-                                <TextField
-                                    required
-                                    id="name-input"
-                                    variant="outlined"
-                                    label="Name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                            </AnimatedSection>}
-                            {remember && <AnimatedSection animationClass="fadeInDown" delay='0.5s' >
-                                <TextField
-                                    required
-                                    id="email-input"
-                                    variant="outlined"
-                                    label="Email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </AnimatedSection>}
-                            {!remember && <AnimatedSection animationClass="fadeInDown" delay='0.6s' >
-                                <TextField
-                                    id="outlined-password-input"
-                                    label="Password"
-                                    variant="outlined"
-                                    type={showPassword ? "text" : "password"}
-                                    autoComplete="current-password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    onClick={() => setShowPassword((prev) => !prev)}
-                                                    edge="end"
-                                                >
-                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
 
-                            </AnimatedSection>}
-                            <AnimatedSection animationClass="fadeInDown" delay='0.7s' >
-                                <TextField
-                                    id="outlined-password-input"
-                                    label="Password"
-                                    variant="outlined"
-                                    type={showPassword ? "text" : "password"}
-                                    autoComplete="current-password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    onClick={() => setShowPassword((prev) => !prev)}
-                                                    edge="end"
-                                                >
-                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </AnimatedSection>
-                            {sign === "Sign Up" && (
-                                <AnimatedSection animationClass="fadeInDown" delay="0.8s">
-                                    <TextField
-                                        type="file"
-                                        inputProps={{ accept: "image/*" }}
-                                        onChange={(e) => {
-                                            const file = e.target.files[0];
-                                            const reader = new FileReader();
-                                            reader.onloadend = () => {
-                                                setProfileImage(reader.result);
-                                            };
-                                            if (file) reader.readAsDataURL(file);
-                                        }}
-                                    />
-                                </AnimatedSection>
-                            )}
-                            <AnimatedSection animationClass="fadeInDown" delay="0.9s">
-                                <FormControl fullWidth>
-                                    <InputLabel id="role-label">Role</InputLabel>
-                                    <Select
-                                        labelId="role-label"
-                                        value={role}
-                                        label="Role"
-                                        onChange={(e) => setRole(e.target.value)}
-                                    >
-                                        <MenuItem value="student">Student</MenuItem>
-                                        <MenuItem value="teacher">Teacher</MenuItem>
-                                        <MenuItem value="admin">Admin</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </AnimatedSection>
+                    <form
+                        onSubmit={handleSubmit}
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "20px",
+                            marginTop: "20px",
+                        }}
+                    >
+                        {nameInput && (
+                            <TextField
+                                required
+                                label="Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        )}
 
-                        </div>
-                        <AnimatedSection animationClass="fadeInDown" delay='1s' >
-                            {remember && <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px", width: "100%", gap: "10px" }}>
-                                <div className="rememberCheck">
-                                    <Checkbox sx={{ color: theme.palette.primary.main, padding: "0", paddingRight: "10px" }} />
+                        <TextField
+                            required
+                            label="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+
+                        <TextField
+                            label="Password"
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={() => setShowPassword((prev) => !prev)}>
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+
+                        {sign === "Sign Up" && (
+                            <TextField
+                                type="file"
+                                inputProps={{ accept: "image/*" }}
+                                onChange={(e) => {
+                                    const file = e.target.files[0]
+                                    const reader = new FileReader()
+                                    reader.onloadend = () => setProfileImage(reader.result)
+                                    if (file) reader.readAsDataURL(file)
+                                }}
+                            />
+                        )}
+
+                        <FormControl fullWidth>
+                            <InputLabel id="role-label">Role</InputLabel>
+                            <Select
+                                labelId="role-label"
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
+                            >
+                                <MenuItem value="student">Student</MenuItem>
+                                <MenuItem value="teacher">Teacher</MenuItem>
+                                <MenuItem value="admin">Admin</MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        {remember && (
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <Checkbox />
                                     Remember me
                                 </div>
                                 {forget && <Link to="/forgetpassword">Forget password?</Link>}
-                            </div>}
-                        </AnimatedSection>
-                        {errorMessage &&
-                            <AnimatedSection animationClass="fadeInDown" delay='0.1s'>
-                                <Alert severity="error" style={{ marginTop: "20px" }}>{errorMessage}</Alert>
-                            </AnimatedSection>
-                        }
-                        <AnimatedSection animationClass="fadeInDown" delay='1.1s' >
-                            <Button variant="contained" sx={{ marginTop: "20px" }} onClick={handleSubmit}>{sign}</Button>
-                        </AnimatedSection>
-                        <AnimatedSection animationClass="fadeInDown" delay='1.4s' >
-                            <p style={{ marginTop: "20px" }}>{unsignTitle} <Link to={linkPath} style={{ fontWeight: "bold" }} >{unsign}</Link></p>
-                        </AnimatedSection>
+                            </div>
+                        )}
+
+                        {errorMessage && (
+                            <Alert severity="error">{errorMessage}</Alert>
+                        )}
+
+                        <Button type="submit" variant="contained">
+                            {sign}
+                        </Button>
+
+                        <p>
+                            {unsignTitle}{" "}
+                            <Link to={linkPath} style={{ fontWeight: "bold" }}>
+                                {unsign}
+                            </Link>
+                        </p>
                     </form>
                 </div>
-            </div>
-        </section>
+            </Grid>
+        </Grid>
     )
 }
 
