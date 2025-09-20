@@ -1,7 +1,6 @@
 import { useTheme } from "@emotion/react";
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import { Link } from "react-router-dom";
-import AnimatedSection from '../components/AnimatedSection';
 import CourseCard from "../components/CourseCard";
 import { useCourses } from "../Context/CoursesContext";
 import coursesData from "./CoursesData";
@@ -22,18 +21,12 @@ const PopularCourses = () => {
 
             <div className="cards" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", width: "100%", gap: "20px" }}>
                 {coursesData.slice(0, 3).map((course, index) => (
-                    <AnimatedSection
-                        key={course.id}
-                        animationClass={index % 2 === 0 ? "fadeInLeft" : "fadeInRight"} // alternate left/right animations
-                        delay={`${index * 0.2}s`}
-                    >
                         <CourseCard
                             {...course}
                             isSaved={savedCourses.includes(course.id)}
                             onSaveCourse={toggleSaveCourse}
                             onAddToCart={addToCart}
                         />
-                    </AnimatedSection>
                 ))}
             </div>
         </section>
