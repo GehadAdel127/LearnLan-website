@@ -13,6 +13,9 @@ import studentGirl from "../assets/images/studentgirl.jpg";
 import studentGirl2 from "../assets/images/studentgirl2.jpg";
 
 
+// custom hook
+import AnimatedSection from '../components/AnimatedSection';
+
 const itemData = [
     {
         id: 1,
@@ -41,8 +44,9 @@ const Testimonial = () => {
     return (
         <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginBottom: "50px" }}>
             <CompentesHeader title="Testimonial" head="Over 1000+ students trust us" />
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px", width: "70%" }}>
-                    {itemData.map((item, index) => (
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexFlow: "wrap", gap: "70px", padding: "50px 0px" }}>
+                {itemData.map((item, index) => (
+                    <AnimatedSection animationClass="fadeInUp" delay={`${index}*0.1s`}>
                         <ImageListItem key={item.id} style={{ width: "350px", height: "300px", cursor: "pointer" }}>
                             <img
                                 src={item.img}
@@ -64,8 +68,9 @@ const Testimonial = () => {
                                 }
                             />
                         </ImageListItem>
-                    ))}
-                </div>
+                    </AnimatedSection>
+                ))}
+            </div>
         </section>
     )
 }
